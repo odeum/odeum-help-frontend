@@ -14,7 +14,6 @@ import { RenderFooterLabel, handleLink } from './framework/FooterLabel'
 
 // Content imports
 import Homepage from './content/Homepage/Homepage'
-import Installation from './content/docs/Installation'
 import Helppage from './content/Helppage/Helppage'
 
 class App extends Component {

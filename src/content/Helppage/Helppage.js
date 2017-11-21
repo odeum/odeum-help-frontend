@@ -20,7 +20,7 @@ class Helppage extends Component {
 		this.setState({ mode: { list: true } })
 	}
 
-	renderList = () => {
+	renderHelpFormList = () => {
 		return (
 			<div>
 				Rendering list ... 
@@ -28,7 +28,7 @@ class Helppage extends Component {
 		)
 	}
 
-	renderEdit = () => {
+	renderHelpFormEdit = () => {
 		return (
 			<div>
 				Rendering edit help item ...
@@ -36,7 +36,7 @@ class Helppage extends Component {
 		)
 	}
 
-	renderNew = () => {
+	renderHelpFormNew = () => {
 		return (
 			<div>
 				Rendering new help item
@@ -49,9 +49,9 @@ class Helppage extends Component {
 		return (
 			<div>
 				{
-					this.state.mode.list ? this.renderList() : 
-						this.state.mode.edit ? this.renderEdit() : 
-							this.state.mode.new ? this.renderNew() : null
+					this.state.mode.list ? this.renderHelpFormList() : 
+						this.state.mode.edit ? this.renderHelpFormEdit() : 
+							this.state.mode.new ? this.renderHelpFormNew() : null
 				}
 			</div>
 		)
