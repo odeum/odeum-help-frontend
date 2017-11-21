@@ -1,15 +1,19 @@
 import React from 'react'
+import IdleState from './IdleState'
 
 export const handleLink = () => {
-	return '/home'
+	return '/'
 }
+
+
 
 export const RenderFooterLabel = () => {
 	const date = new Date()
 	return (
 		<div>
-			<strong>ODEUM Code</strong> v0.2.6 © Copyright
-			{' '}{date.getFullYear()}
+			<strong>ODEUM Code</strong> v0.2.24 © Copyright
+			{' '}{date.getFullYear()}{' '}
+			<IdleState />{' '}
 		</div>
 	)
 }
