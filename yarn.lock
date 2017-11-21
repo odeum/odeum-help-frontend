@@ -4427,11 +4427,11 @@ obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.1.tgz#104124b6c602c6796881a042541d36db43a5264e"
 
-odeum-app@^0.2.24:
-  version "0.2.24"
-  resolved "https://registry.yarnpkg.com/odeum-app/-/odeum-app-0.2.24.tgz#2320ca5a7f621b5117f8c4c7c6a63f012c4f8a8a"
+odeum-app@^0.2.25:
+  version "0.2.25"
+  resolved "https://registry.yarnpkg.com/odeum-app/-/odeum-app-0.2.25.tgz#6f50e9bfb1ed1c3e177f4f2e4ad8f30557c85382"
   dependencies:
-    odeum-ui "^0.1.27"
+    odeum-ui "^0.1.28"
     react "^16.1.0"
     react-dom "^16.1.0"
     react-icons "^2.2.7"
@@ -4439,16 +4439,15 @@ odeum-app@^0.2.24:
     react-router-dom "^4.2.2"
     styled-components "^2.1.2"
 
-odeum-ui@^0.1.27:
-  version "0.1.27"
-  resolved "https://registry.yarnpkg.com/odeum-ui/-/odeum-ui-0.1.27.tgz#494bd4b6ad8fd24e206147a0da0728eb0ba0bca0"
+odeum-ui@^0.1.28:
+  version "0.1.28"
+  resolved "https://registry.yarnpkg.com/odeum-ui/-/odeum-ui-0.1.28.tgz#0d0bffc31568f751d8ed5aa987514d77d8fb01b2"
   dependencies:
     polished "^1.8.0"
     react "^16.0.0"
     react-dom "^16.0.0"
     react-icons "^2.2.7"
     react-modal "^3.0.0"
-    react-router-dom "^4.2.2"
     styled-components "^2.1.2"
 
 on-finished@~2.3.0:

@@ -5,7 +5,7 @@ import {
 	HomepageHeader, 
 	HomepageTagLine, 
 	HomepageButonsContainer, 
-	LinkTo, 
+	// LinkTo, 
 	HomepageButtonSpacer,
 	HomepageFlexContainer,
 	HomepageBox, 
