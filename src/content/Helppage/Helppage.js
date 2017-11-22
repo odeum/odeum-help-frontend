@@ -20,6 +20,7 @@ class Helppage extends Component {
 
 	}
 
+
 	componentDidMount() {
 		this.setState({ mode: { new: true } })
 	}
@@ -27,23 +28,37 @@ class Helppage extends Component {
 	renderHelpList = () => {
 		return (
 			<div>
-				<HelpList />				
+				<HelpList />
 			</div>
 		)
 	}
 
+	// Section: Edit help item 
+	handleOnSubmitEdit = () => {
+		this.setState({ mode: { new: false, list: true } })
+	}
+	
 	renderHelpFormEdit = () => {
 		return (
 			<div>
-				<HelpFormEdit />				
+				<HelpFormEdit
+					onSubmit={this.handleOnSubmitEdit}
+				/>
 			</div>
 		)
+	}
+
+	// Section: New help item 
+	handleOnSubmitNew = () => {
+		this.setState({ mode: { new: false, list: true } })
 	}
 
 	renderHelpFormNew = () => {
 		return (
 			<div>
-				<HelpFormNew />				
+				<HelpFormNew 
+					onSubmit={this.handleOnSubmitNew} 
+				/>
 			</div>
 		)
 	}

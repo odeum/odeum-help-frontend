@@ -48,7 +48,7 @@ class HelpFormNew extends Component {
 				fieldValidationErrors.email = emailValid ? '' : ' is invalid'
 				break
 			case 'password':
-				passwordValid = value.length >= 6
+				passwordValid = value.length >= 8
 				fieldValidationErrors.password = passwordValid ? '' : ' is too short'
 				break
 			default:
@@ -71,6 +71,10 @@ class HelpFormNew extends Component {
 		// return (error.length === 0 ? false : true)
 	}
 
+	errorColor(error) {		
+		return (error.length === 0 ? false : true)
+	}
+
 	createRef = (input) => {
 		this.textInput = input
 	}
@@ -90,7 +94,7 @@ class HelpFormNew extends Component {
 			<div>
 				<form>
 					<h1>Create New Help Item</h1>
-					<div className={`${this.errorClass(this.state.formErrors.email)}`}>						
+					<div>
 						<Email 
 							type={'email'} 
 							// required 
@@ -99,24 +103,26 @@ class HelpFormNew extends Component {
 							value={this.state.email}
 							onChange={this.handleUserInput}
 							innerRef={this.createRef}
+							color={this.errorColor(this.state.formErrors.email) && '#CE1D1D'}
 						/>						
        				</div>
-					<div className={`${this.errorClass(this.state.formErrors.password)}`}>						
+					<div>
 						<Password 
 							type={'password'} 
 							placeholder={'Password'} 
 							name={'password'}
 							value={this.state.password}
 							onChange={this.handleUserInput}
+							color={this.errorColor(this.state.formErrors.password) && '#CE1D1D'}
 						/>
        				</div>
 
-					<ButtonPanel justify={'left'} margin={'0px'} style={{ margin: '0px'}}>
+					<ButtonPanel justify={'left'} margin={'0px'} style={{ margin: '0px' }}>
 
 						<Button 
 							label={'Save'} 
 							type={'submit'} 
-							onClick={this.handleResetInput} 
+							onClick={this.props.onSubmit} 
 							disabled={!this.state.formValid} 
 							isDisabled={!this.state.formValid}
 							color={this.state.formValid ? '#13A085' : ''}
