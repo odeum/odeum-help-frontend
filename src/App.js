@@ -15,6 +15,7 @@ import { RenderFooterLabel, handleLink } from './framework/FooterLabel'
 // Content imports
 import Homepage from './content/Homepage/Homepage'
 import Helppage from './content/Helppage/Helppage'
+import FormPage from './content/Form/FormPage'
 
 class App extends Component {
 
@@ -46,8 +47,8 @@ class App extends Component {
 					</Menu>
 
 					<Menu icon={'assignment'} label={'Form'} route={'/form'}>
-						<Tab icon={'assignment'} label={'Form'} route={'/formdemo'}>
-							<Helppage />
+						<Tab icon={'assignment'} label={'Form'} route={'/form'}>
+							<FormPage />
 						</Tab>
 						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
 							Tutorial ...

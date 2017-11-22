@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { ButtonPanel, Button } from 'odeum-ui'
 
-import { Email, Password } from './HelpFormStyles'
-import HelpFormErrors from './HelpFormErrors'
+import { Email, Password } from './FormStyles'
+import FormErrors from './FormErrors'
 
-class HelpFormNew extends Component {
+class FormNew extends Component {
 
 	constructor(props) {
 		super(props)
@@ -109,7 +109,7 @@ class HelpFormNew extends Component {
 		return (
 			<div>
 				<form autoComplete={'no'} >
-					<h1>Create New Help Item</h1>
+					<h1>Form Demo</h1>
 					<div>
 						<Email 
 							type={'email'} 
@@ -159,7 +159,7 @@ class HelpFormNew extends Component {
 
 					</ButtonPanel>
 					<div>
-						<HelpFormErrors formErrors={this.state.formErrors} />
+						<FormErrors formErrors={this.state.formErrors} />
 						{`${this.errorClass(email)}`}
 						{`${this.errorClass(password)}`}
 					</div>
@@ -169,5 +169,5 @@ class HelpFormNew extends Component {
 	}
 }
 
-export default HelpFormNew
+export default FormNew
 
