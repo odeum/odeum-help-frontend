@@ -3185,8 +3185,8 @@ inherits@2.0.1:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.1.tgz#b17d08d326b4423e568eff719f91b0b1cbdf69f1"
 
 ini@^1.3.4, ini@~1.3.0:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
 
 inquirer@3.3.0, inquirer@^3.0.6:
   version "3.3.0"
@@ -4428,8 +4428,8 @@ obuf@^1.0.0, obuf@^1.1.1:
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.1.tgz#104124b6c602c6796881a042541d36db43a5264e"
 
 odeum-app@^0.2.25:
-  version "0.2.25"
-  resolved "https://registry.yarnpkg.com/odeum-app/-/odeum-app-0.2.25.tgz#6f50e9bfb1ed1c3e177f4f2e4ad8f30557c85382"
+  version "0.2.26"
+  resolved "https://registry.yarnpkg.com/odeum-app/-/odeum-app-0.2.26.tgz#5415a7ede8da29a3de6f52146b25f5af602eff31"
   dependencies:
     odeum-ui "^0.1.28"
     react "^16.1.0"
@@ -4439,9 +4439,9 @@ odeum-app@^0.2.25:
     react-router-dom "^4.2.2"
     styled-components "^2.1.2"
 
-odeum-ui@^0.1.28:
-  version "0.1.28"
-  resolved "https://registry.yarnpkg.com/odeum-ui/-/odeum-ui-0.1.28.tgz#0d0bffc31568f751d8ed5aa987514d77d8fb01b2"
+odeum-ui@^0.1.28, odeum-ui@^0.1.32:
+  version "0.1.32"
+  resolved "https://registry.yarnpkg.com/odeum-ui/-/odeum-ui-0.1.32.tgz#a338c977150a896e54dc543bde5b315ae05795ef"
   dependencies:
     polished "^1.8.0"
     react "^16.0.0"

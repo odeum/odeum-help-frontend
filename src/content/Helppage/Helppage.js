@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+import HelpFormEdit from '../HelpForm/HelpFormEdit'
+import HelpFormNew from '../HelpForm/HelpFormNew'
+import HelpList from './HelpList'
+
 class Helppage extends Component {
 	constructor(props) {
 		super(props)
@@ -17,13 +21,13 @@ class Helppage extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({ mode: { list: true } })
+		this.setState({ mode: { new: true } })
 	}
 
-	renderHelpFormList = () => {
+	renderHelpList = () => {
 		return (
 			<div>
-				Rendering list ... 
+				<HelpList />				
 			</div>
 		)
 	}
@@ -31,7 +35,7 @@ class Helppage extends Component {
 	renderHelpFormEdit = () => {
 		return (
 			<div>
-				Rendering edit help item ...
+				<HelpFormEdit />				
 			</div>
 		)
 	}
@@ -39,7 +43,7 @@ class Helppage extends Component {
 	renderHelpFormNew = () => {
 		return (
 			<div>
-				Rendering new help item
+				<HelpFormNew />				
 			</div>
 		)
 	}
@@ -49,7 +53,7 @@ class Helppage extends Component {
 		return (
 			<div>
 				{
-					this.state.mode.list ? this.renderHelpFormList() : 
+					this.state.mode.list ? this.renderHelpList() : 
 						this.state.mode.edit ? this.renderHelpFormEdit() : 
 							this.state.mode.new ? this.renderHelpFormNew() : null
 				}

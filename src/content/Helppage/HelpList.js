@@ -4,7 +4,7 @@ class HelpList extends Component {
 	render() {
 		return (
 			<div>
-
+				Rendering list ... 
 			</div>
 		)
 	}

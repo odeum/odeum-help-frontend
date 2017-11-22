@@ -4,7 +4,7 @@ class HelpFormEdit extends Component {
 	render() {
 		return (
 			<div>
-
+				Rendering edit help item ...
 			</div>
 		)
 	}
