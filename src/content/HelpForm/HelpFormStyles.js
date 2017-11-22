@@ -16,13 +16,12 @@ export const Input = styled.input`
 		cursor: ${(props) => props.isDisabled ? 'not-allowed' : 'pointer'};
     }
 
-    &:focus {
+    /* &:focus {
 		color: ${(props) => props.color ? props.color : '#13A085'};
 		font-size: 22px;
 		font-weight: 300;
 		box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
-		/* box-shadow: ${(props) => props.isDisabled ? null : `0 0 0 3px`}; */
-    }
+    } */
 `
 
 export const Account = Input.extend`

@@ -37,6 +37,12 @@ class HelpFormNew extends Component {
 			() => { this.validateField(name, value) })
 	}
 
+	handleSubmit = (e) => {
+		alert('Your mail address is: ' + this.state.email)
+		e.preventDefault()
+		this.props.onSubmit()
+	}
+
 	validateField(fieldName, value) {
 		let fieldValidationErrors = this.state.formErrors
 		let emailValid = this.state.emailValid
@@ -122,7 +128,7 @@ class HelpFormNew extends Component {
 						<Button 
 							label={'Save'} 
 							type={'submit'} 
-							onClick={this.props.onSubmit} 
+							onClick={this.handleSubmit} 
 							disabled={!this.state.formValid} 
 							isDisabled={!this.state.formValid}
 							color={this.state.formValid ? '#13A085' : ''}

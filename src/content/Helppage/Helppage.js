@@ -22,13 +22,26 @@ class Helppage extends Component {
 
 
 	componentDidMount() {
-		this.setState({ mode: { new: true } })
+		this.setState({ mode: { list: true } })
+	}
+
+	// Section: List items and accept new and edit
+
+	handleNew = () => {
+		this.setState({ mode: { new: true, list: false, edit: false } })
+	}
+
+	handleEdit = () => {
+		this.setState({ mode: { new: false, list: false, edit: true } })
 	}
 
 	renderHelpList = () => {
 		return (
 			<div>
-				<HelpList />
+				<HelpList 
+					handleNew={this.handleNew} 
+					handleEdit={this.handleEdit}
+				/>
 			</div>
 		)
 	}
