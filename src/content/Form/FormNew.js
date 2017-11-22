@@ -108,7 +108,7 @@ class FormNew extends Component {
 		const { email, password } = this.state.formErrors
 		return (
 			<div>
-				<form autoComplete={'no'} >
+				<form autocomplete={'false'} >
 					<h1>Form Demo</h1>
 					<div>
 						<Email 
@@ -123,6 +123,7 @@ class FormNew extends Component {
 							focusColor={!this.state.emailValid ? '#BE4F44' : undefined}
 							readonly 
 							onfocus={this.handleOnFocus}
+							autocomplete={'false'}
 						/>						
        				</div>
 					<div>

@@ -18,4 +18,3 @@ class FormList extends Component {
 }
 
 export default FormList
-

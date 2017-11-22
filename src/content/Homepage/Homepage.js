@@ -5,7 +5,7 @@ import {
 	HomepageHeader, 
 	HomepageTagLine, 
 	HomepageButonsContainer, 
-	// LinkTo, 
+	LinkTo, 
 	HomepageButtonSpacer,
 	HomepageFlexContainer,
 	HomepageBox, 
@@ -23,7 +23,7 @@ const Homepage = () => {
 
 						<LinkButton label={'Get Help'} icon={'help'} route={'/help/gethelp'} color={'#13A085'}/>
 						<HomepageButtonSpacer />
-						<LinkButton label={'Tutorial'} icon={'star'} route={'/help/tutorial'}/>
+						<LinkButton label={'Form demo'} icon={'assignment'} route={'/form/formdemo'}/>
 
 					</ButtonPanel>
 				</HomepageButonsContainer>
@@ -44,11 +44,11 @@ const Homepage = () => {
 					<HomepageSection>Get ODEUM Code Help before your neighbor calls for help somewhere else.</HomepageSection>
 				</HomepageBox>
 
-				{/* <HomepageBox width={1 / 3} ml={40} mr={40}>					
-					<HomepageSectionHeader>Fast Frontend Development</HomepageSectionHeader>
-					<HomepageSection>By introducing not only the basic framework of your Web App, but also a plethora of <LinkTo to={'/docs/installation'}>Ready-made UI components</LinkTo>, you can build frontends for Web Apps and websites pretty fast. Reuse existing React components and apply our responsive component model to ensure perfect rendering on all devices.</HomepageSection>
-					<HomepageSection>Through framework and visual UI primitives ODEUM Code is scaffolding your Web App with a quick launch in sight.</HomepageSection>
-				</HomepageBox> */}
+				<HomepageBox width={1 / 3} ml={40} mr={40}>					
+					<HomepageSectionHeader>Simple Form Setup</HomepageSectionHeader>
+					<HomepageSection>Using our simple Form component you'll be on track with creating forms in minutes. Check it out in this <LinkTo to={'/form/formdemo'}>Form Demo</LinkTo>. The Form component includes form field validation you configure very easily.</HomepageSection>
+					<HomepageSection>Creating fast and simple forms in React has never been easier.</HomepageSection>
+				</HomepageBox>
 				
 			</HomepageFlexContainer>
 		</div>
