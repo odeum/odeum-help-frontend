@@ -38,7 +38,7 @@ class HelpFormNew extends Component {
 	}
 
 	handleSubmit = (e) => {
-		alert('Your mail address is: ' + this.state.email)
+		alert('Your mail address is: ' + this.state.email + ' and your password is: ********')
 		e.preventDefault()
 		this.props.onSubmit()
 	}
@@ -109,7 +109,7 @@ class HelpFormNew extends Component {
 							value={this.state.email}
 							onChange={this.handleUserInput}
 							innerRef={this.createRef}
-							color={this.errorColor(this.state.formErrors.email) && '#CE1D1D'}
+							color={this.errorColor(this.state.formErrors.email) ? '#CE1D1D' : undefined}
 						/>						
        				</div>
 					<div>
@@ -119,7 +119,7 @@ class HelpFormNew extends Component {
 							name={'password'}
 							value={this.state.password}
 							onChange={this.handleUserInput}
-							color={this.errorColor(this.state.formErrors.password) && '#CE1D1D'}
+							color={this.errorColor(this.state.formErrors.password) ? '#CE1D1D' : undefined}
 						/>
        				</div>
 
