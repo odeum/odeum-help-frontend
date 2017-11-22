@@ -77,7 +77,7 @@ class HelpFormNew extends Component {
 		// return (error.length === 0 ? false : true)
 	}
 
-	errorColor(error) {		
+	inputError(error) {		
 		return (error.length === 0 ? false : true)
 	}
 
@@ -96,6 +96,7 @@ class HelpFormNew extends Component {
 	
 
 	render() {
+		const { email, password } = this.state.formErrors
 		return (
 			<div>
 				<form>
@@ -109,7 +110,8 @@ class HelpFormNew extends Component {
 							value={this.state.email}
 							onChange={this.handleUserInput}
 							innerRef={this.createRef}
-							color={this.errorColor(this.state.formErrors.email) ? '#CE1D1D' : undefined}
+							color={this.inputError(email) ? '#BE4F44' : undefined}
+							focusColor={!this.state.emailValid ? '#BE4F44' : undefined}
 						/>						
        				</div>
 					<div>
@@ -119,7 +121,8 @@ class HelpFormNew extends Component {
 							name={'password'}
 							value={this.state.password}
 							onChange={this.handleUserInput}
-							color={this.errorColor(this.state.formErrors.password) ? '#CE1D1D' : undefined}
+							color={this.inputError(password) ? '#BE4F44' : undefined}
+							focusColor={!this.state.passwordValid ? '#BE4F44' : undefined}
 						/>
        				</div>
 
@@ -139,15 +142,15 @@ class HelpFormNew extends Component {
 							label={'Reset'} 
 							type={'reset'} 
 							onClick={this.handleResetInput} 
-							color={'#E74C3C'}
+							color={'#BE4F44'}
 							margin={'0px'}
 						/>
 
 					</ButtonPanel>
 					<div>
 						<HelpFormErrors formErrors={this.state.formErrors} />
-						{`${this.errorClass(this.state.formErrors.email)}`}
-						{`${this.errorClass(this.state.formErrors.password)}`}
+						{`${this.errorClass(email)}`}
+						{`${this.errorClass(password)}`}
 					</div>
      			</form>
 			</div>

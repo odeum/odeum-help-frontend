@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import { transparentize } from 'polished'
 
 export const Input = styled.input`    
 	font-size: 17px;
@@ -10,18 +10,22 @@ export const Input = styled.input`
     border: none;
 	border-radius: 4px;
     box-sizing: border-box;
+	outline: none;
 
-    &:hover {
+    /* &:hover {
         box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+		cursor: ${(props) => props.isDisabled ? 'not-allowed' : 'pointer'};
+    } */
+
+    &:hover {		
+        border-color: ${transparentize(0.7, '#3B97D3')};		 
+		box-shadow: ${`0 0 0 3px ${transparentize(0.7, '#3B97D3')}`};
 		cursor: ${(props) => props.isDisabled ? 'not-allowed' : 'pointer'};
     }
 
-    /* &:focus {
-		color: ${(props) => props.color ? props.color : '#13A085'};
-		font-size: 22px;
-		font-weight: 300;
-		box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
-    } */
+    &:focus {
+		box-shadow: ${(props) => props.focusColor ? `0 0 0 3px ` + props.focusColor : `0 0 0 3px #13A085`};
+    }
 `
 
 export const Account = Input.extend`
