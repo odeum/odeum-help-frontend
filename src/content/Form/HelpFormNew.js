@@ -89,16 +89,26 @@ class HelpFormNew extends Component {
 		this.textInput.focus()
 	}
 
+	handleOnFocus = () => {
+		if (this.hasAttribute('readonly')) {
+			this.removeAttribute('readonly')
+			// fix for mobile safari to show virtual keyboard
+			this.blur() 
+			this.focus()
+		}
+	}
+
 	componentDidMount() {
 		this.handleResetInput()
 		this.focusTextInput()
 	}
+	
 
 	render() {
 		const { email, password } = this.state.formErrors
 		return (
 			<div>
-				<form>
+				<form autoComplete={'no'} >
 					<h1>Create New Help Item</h1>
 					<div>
 						<Email 
@@ -110,7 +120,9 @@ class HelpFormNew extends Component {
 							onChange={this.handleUserInput}
 							innerRef={this.createRef}
 							color={this.inputError(email) ? '#BE4F44' : undefined}
-							focusColor={!this.state.emailValid ? '#BE4F44' : undefined}							
+							focusColor={!this.state.emailValid ? '#BE4F44' : undefined}
+							readonly 
+							onfocus={this.handleOnFocus}
 						/>						
        				</div>
 					<div>

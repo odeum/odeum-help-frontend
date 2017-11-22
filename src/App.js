@@ -45,18 +45,15 @@ class App extends Component {
 						</Tab>						
 					</Menu>
 
-
-					{/* <Menu icon={'directions'} label={'Docs'} route={'/docs'}>
-						<Tab icon={'cloud_download'} label={'Installation'} route={'/installation'}>
-							<Installation />
+					<Menu icon={'assignment'} label={'Form'} route={'/form'}>
+						<Tab icon={'assignment'} label={'Form'} route={'/formdemo'}>
+							<Helppage />
 						</Tab>
-						<Tab icon={'language'} label={'Hello World'} route={'/hello-world'}>
-							Hello World ...
+						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
+							Tutorial ...
 						</Tab>
 					</Menu>
 
-
- */}
 				</MenuPanel>
 				<Footer label={RenderFooterLabel} labelLink={handleLink()} helpID={'Messages ...'} />
 			</AppContainer>
