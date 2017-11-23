@@ -96,16 +96,13 @@ class FormNew extends Component {
 	}
 	
 	handleFocus = () => {
-		console.log('OnFocus')
 	}
 
 	handleBlur = () => {
-		console.log('OnBlur')
 	}
 	
 	handleMouse = (passage) => (e) => {
 		e.preventDefault()
-		console.log('OnMouse' + passage)
 	}
 
 	render() {

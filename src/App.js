@@ -30,7 +30,7 @@ class App extends Component {
 	render() {
 		return (
 			<AppContainer>
-				<Header logo={'default'}/>
+				<Header />
 				<MenuPanel>
 
 					<Menu route={'/'} exact>
@@ -47,7 +47,7 @@ class App extends Component {
 					</Menu>
 
 					<Menu icon={'assignment'} label={'Form'} route={'/form'}>
-						<Tab icon={'assignment'} label={'Form'} route={'/formdemo'}>
+						<Tab icon={'assignment'} label={'Form List'} route={'/formlist'}>
 							<FormPage />
 						</Tab>
 						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
