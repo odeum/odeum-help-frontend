@@ -41,7 +41,7 @@ class FormNew extends Component {
 		alert('Your mail address is: ' + this.state.email + ' and your password is: ********')
 		e.preventDefault()
 		console.log('Form submitted ... ')
-		this.props.onSubmit(this.state.email)
+		this.props.onSubmit(this.state)
 	}
 
 	validateField(fieldName, value) {
