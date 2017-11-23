@@ -28,6 +28,7 @@ class FormNew extends Component {
 			passwordValid: false,
 			formValid: false
 		})
+		this.focusTextInput()
 	}
 
 	handleChange = (e) => {
@@ -37,8 +38,7 @@ class FormNew extends Component {
 			() => { this.validateField(name, value) })
 	}
 
-	handleSubmit = (e) => {
-		alert('Your mail address is: ' + this.state.email + ' and your password is: ********')
+	handleSubmit = (e) => {		
 		e.preventDefault()
 		console.log('Form submitted ... ')
 		this.props.onSubmit(this.state)
