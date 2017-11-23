@@ -5,11 +5,12 @@ class FormList extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Form Data</h1>
+				<h1>Form List Data</h1>
 				<p>Rendering list of form data ... </p>
 
 				<Button
 					label={'Create New'}
+					icon={'add_circle'}
 					onClick={this.props.handleNew}
 				/>
 			</div>

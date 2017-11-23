@@ -30,7 +30,7 @@ class FormNew extends Component {
 		})
 	}
 
-	handleUserInput = (e) => {
+	handleChange = (e) => {
 		const name = e.target.name
 		const value = e.target.value
 		this.setState({ [name]: value },
@@ -40,7 +40,8 @@ class FormNew extends Component {
 	handleSubmit = (e) => {
 		alert('Your mail address is: ' + this.state.email + ' and your password is: ********')
 		e.preventDefault()
-		this.props.onSubmit()
+		console.log('Form submitted ... ')
+		this.props.onSubmit(this.state.email)
 	}
 
 	validateField(fieldName, value) {
@@ -89,27 +90,31 @@ class FormNew extends Component {
 		this.textInput.focus()
 	}
 
-	handleOnFocus = () => {
-		if (this.hasAttribute('readonly')) {
-			this.removeAttribute('readonly')
-			// fix for mobile safari to show virtual keyboard
-			this.blur() 
-			this.focus()
-		}
-	}
-
 	componentDidMount() {
-		this.handleResetInput()
+		// this.handleResetInput()
 		this.focusTextInput()
 	}
 	
+	handleFocus = () => {
+		console.log('OnFocus')
+	}
+
+	handleBlur = () => {
+		console.log('OnBlur')
+	}
+	
+	handleMouse = (passage) => (e) => {
+		e.preventDefault()
+		console.log('OnMouse' + passage)
+	}
 
 	render() {
 		const { email, password } = this.state.formErrors
 		return (
 			<div>
-				<form autocomplete={'false'} >
-					<h1>Form Demo</h1>
+				<h1>Form Demo</h1>
+				<p>Please enter your e-mail and password:</p>
+				<form>
 					<div>
 						<Email 
 							type={'email'} 
@@ -117,13 +122,15 @@ class FormNew extends Component {
 							placeholder={'Mail address'} 
 							name={'email'} 
 							value={this.state.email}
-							onChange={this.handleUserInput}
+							disabled={false}
+							onChange={this.handleChange}
 							innerRef={this.createRef}
-							color={this.inputError(email) ? '#BE4F44' : undefined}
+							color={!this.state.emailValid ? '#BE4F44' : undefined}
 							focusColor={!this.state.emailValid ? '#BE4F44' : undefined}
-							readonly 
-							onfocus={this.handleOnFocus}
-							autocomplete={'false'}
+							onFocus={this.handleFocus}
+							onBlur={this.handleBlur}
+							onMouseEnter={this.handleMouse('Enter')}
+							onMouseLeave={this.handleMouse('Leave')}
 						/>						
        				</div>
 					<div>
@@ -132,43 +139,46 @@ class FormNew extends Component {
 							placeholder={'Password'} 
 							name={'password'}
 							value={this.state.password}
-							onChange={this.handleUserInput}
-							color={this.inputError(password) ? '#BE4F44' : undefined}
+							disabled={false}
+							onChange={this.handleChange}
+							color={!this.state.passwordValid ? '#BE4F44' : undefined}
 							focusColor={!this.state.passwordValid ? '#BE4F44' : undefined}
+							onFocus={this.handleFocus}
+							onBlur={this.handleBlur}
 						/>
        				</div>
 
-					<ButtonPanel justify={'left'} margin={'0px'} style={{ margin: '0px' }}>
+					<ButtonPanel justify={'left'} >
 
 						<Button 
 							label={'Save'} 
+							icon={'check'}
 							type={'submit'} 
 							onClick={this.handleSubmit} 
 							disabled={!this.state.formValid} 
 							isDisabled={!this.state.formValid}
-							color={this.state.formValid ? '#13A085' : ''}
-							margin={'0px'}
+							color={this.state.formValid ? '#13A085' : ''}							
+							onSubmit={this.handleOnSubmit}
 						/>
 						
 						<Button 
 							label={'Reset'} 
+							icon={'close'}
 							type={'reset'} 
 							onClick={this.handleResetInput} 
-							color={'#BE4F44'}
-							margin={'0px'}
+							color={'#BE4F44'}							
 						/>
 
 					</ButtonPanel>
 					<div>
 						<FormErrors formErrors={this.state.formErrors} />
-						{`${this.errorClass(email)}`}
+						{`${this.errorClass(email)}`}{' '}
 						{`${this.errorClass(password)}`}
 					</div>
-     			</form>
+				</form>
 			</div>
 		)
 	}
 }
 
 export default FormNew
-
