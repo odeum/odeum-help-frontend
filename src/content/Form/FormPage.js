@@ -62,15 +62,11 @@ class FormPage extends Component {
 	// Section: New help item 
 	handleOnSubmitNew = (newModel) => {
 		this.setState({ mode: { new: false, list: true } })
-		// console.log(newModel)
-
-		let newModelArray = [...this.state.model]  
+	
+		let newModelArray = [...this.state.model]
 		console.log('newModelArray: ', newModelArray)
 
 		newModelArray.push({ email: newModel.email, password: newModel.password })
-
-		// newModelArray.email = newModel.email
-		// newModelArray.password = newModel.password
 
 		this.setState({ model: newModelArray })
 
