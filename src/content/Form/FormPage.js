@@ -33,6 +33,7 @@ class FormPage extends Component {
 	}
 
 	renderList = () => {
+		console.log('state: ', this.state.model)
 		return (
 			<div>
 				<FormList 
@@ -64,15 +65,8 @@ class FormPage extends Component {
 		this.setState({ mode: { new: false, list: true } })
 	
 		let newModelArray = [...this.state.model]
-		console.log('newModelArray: ', newModelArray)
-
 		newModelArray.push({ email: newModel.email, password: newModel.password })
-
 		this.setState({ model: newModelArray })
-
-		console.log('newModelArray: ', newModelArray)
-		console.log('state: ', this.state.model)
-
 	}
 
 	renderFormNew = () => {

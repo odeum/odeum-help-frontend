@@ -7,7 +7,7 @@ export const handleLink = () => {
 
 
 
-export const RenderFooterLabel = () => {
+export const FooterLabel = () => {
 	const date = new Date()
 	return (
 		<div>

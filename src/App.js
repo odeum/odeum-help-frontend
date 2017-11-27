@@ -10,7 +10,7 @@ import {
 	Footer } from 'odeum-app'
 
 // Framework helper imports
-import { RenderFooterLabel, handleLink } from './framework/FooterLabel'
+import { FooterLabel, handleLink } from './framework/FooterLabel'
 
 // Content imports
 import Homepage from './content/Homepage/Homepage'
@@ -56,7 +56,7 @@ class App extends Component {
 					</Menu>
 
 				</MenuPanel>
-				<Footer label={RenderFooterLabel} labelLink={handleLink()} helpID={'Messages ...'} />
+				<Footer label={FooterLabel} labelLink={handleLink()} helpID={'Messages ...'} />
 			</AppContainer>
 		)
 	}
