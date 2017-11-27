@@ -10,7 +10,8 @@ import {
 	HomepageFlexContainer,
 	HomepageBox, 
 	HomepageSectionHeader,
-	HomepageSection } from './HomepageStyles'
+	HomepageSection, 
+} from './HomepageStyles'
 
 const Homepage = () => {
 	return (

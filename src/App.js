@@ -16,6 +16,7 @@ import { FooterLabel, handleLink } from './framework/FooterLabel'
 import Homepage from './content/Homepage/Homepage'
 import Helppage from './content/Helppage/Helppage'
 import FormPage from './content/Form/FormPage'
+import TutorialPage from './content/Tutorial/TutorialPage'
 
 class App extends Component {
 
@@ -42,7 +43,7 @@ class App extends Component {
 							<Helppage />
 						</Tab>
 						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
-							Tutorial ...
+							<TutorialPage />
 						</Tab>						
 					</Menu>
 
