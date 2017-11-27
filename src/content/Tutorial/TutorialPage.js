@@ -19,4 +19,3 @@ class TutorialPage extends Component {
 }
 
 export default TutorialPage
-

@@ -20,9 +20,9 @@ const Homepage = () => {
 				<HomepageHeader>ODEUM Code Help</HomepageHeader>
 				<HomepageTagLine>A NodeJS API and React components for building Help Indexes for ODEUM Code Apps</HomepageTagLine>
 				<HomepageButonsContainer>
-					<ButtonPanel>
+					<ButtonPanel wrap={'wrap'}>
 
-						<LinkButton label={'Get Help'} icon={'help'} route={'/help/gethelp'} color={'#13A085'}/>
+						<LinkButton label={'Get Help'} icon={'help'} route={'/help/'} color={'#13A085'}/>
 						<HomepageButtonSpacer />
 						<LinkButton label={'Form demo'} icon={'assignment'} route={'/form/formlist'}/>
 						<HomepageButtonSpacer />
@@ -35,13 +35,13 @@ const Homepage = () => {
 			
 			<HomepageFlexContainer>
 
-				<HomepageBox width={1 / 2} ml={40} mr={40}>					
+				<HomepageBox width={1 / 3} ml={40} mr={40}>					
 					<HomepageSectionHeader>Declarative API</HomepageSectionHeader>
 					<HomepageSection>ODEUM Code Help exhibits a simple NodeJS API for CRUD based persistance of help items and help indexes for an ODEUM Code App.</HomepageSection>
 					<HomepageSection>Create, Read, Update and Delete help items for a specific App ID and access the API through React components.</HomepageSection>
 				</HomepageBox>
 
-				<HomepageBox width={1 / 2} ml={40} mr={40}>					
+				<HomepageBox width={1 / 3} ml={40} mr={40}>					
 					<HomepageSectionHeader>React components</HomepageSectionHeader>
 					<HomepageSection>ODEUM Code Help implements React components for creating, listing, editing and deleting help items for a designated ODEUM Web App.</HomepageSection>
 					<HomepageSection>Get ODEUM Code Help before your neighbor calls for help somewhere else.</HomepageSection>
