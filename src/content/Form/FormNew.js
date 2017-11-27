@@ -19,6 +19,30 @@ class FormNew extends Component {
 		}
 	}
 
+	// Lifecycle Methods
+
+	componentDidMount() {
+		// this.handleResetInput()
+		this.focusEmailInput()
+		document.addEventListener('keydown', this.onKeydown)
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.onKeydown)
+	}
+	
+	onKeydown = ({ keyCode }) => {
+		switch (keyCode) {
+			case 27: // ESCAPE
+				this.handleResetInput()
+				break
+			case 13: // ENTER
+				break
+			default:
+				break
+		}
+	}
+
 	handleResetInput = () => {
 		this.setState({
 			email: '',
@@ -28,10 +52,11 @@ class FormNew extends Component {
 			passwordValid: false,
 			formValid: false
 		})
-		this.focusTextInput()
+		this.focusEmailInput()
 	}
 
 	handleChange = (e) => {
+		console.log('Input changed')
 		const name = e.target.name
 		const value = e.target.value
 		this.setState({ [name]: value },
@@ -83,18 +108,13 @@ class FormNew extends Component {
 	}
 
 	createRef = (input) => {
-		this.textInput = input
+		this.emailInput = input
 	}
 
-	focusTextInput = () => {
-		this.textInput.focus()
+	focusEmailInput = () => {
+		this.emailInput.focus()
 	}
 
-	componentDidMount() {
-		// this.handleResetInput()
-		this.focusTextInput()
-	}
-	
 	handleFocus = () => {
 	}
 
@@ -125,7 +145,7 @@ class FormNew extends Component {
 							color={!this.state.emailValid ? '#BE4F44' : undefined}
 							focusColor={!this.state.emailValid ? '#BE4F44' : undefined}
 							onFocus={this.handleFocus}
-							onBlur={this.handleBlur}
+							onBlur={this.handleChange}
 							onMouseEnter={this.handleMouse('Enter')}
 							onMouseLeave={this.handleMouse('Leave')}
 						/>						
@@ -141,7 +161,7 @@ class FormNew extends Component {
 							color={!this.state.passwordValid ? '#BE4F44' : undefined}
 							focusColor={!this.state.passwordValid ? '#BE4F44' : undefined}
 							onFocus={this.handleFocus}
-							onBlur={this.handleBlur}
+							onBlur={this.handleChange}
 						/>
        				</div>
 
