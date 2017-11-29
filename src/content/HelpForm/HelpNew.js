@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { ButtonPanel, Button } from 'odeum-ui'
 
-<<<<<<< HEAD
-import { /* HelpContent,  */HelpTitle, HelpDescription, Text, Image, Video, Link, SVG, PDF, Document } from './HelpStyles'
-=======
 import { HelpTitle } from './HelpStyles'
->>>>>>> 724f17be2454bc4607771b78571c17099e01b614
 import HelpErrors from './HelpErrors'
 
 class HelpNew extends Component {
@@ -106,7 +102,7 @@ class HelpNew extends Component {
 
 		this.setState({
 			helpErrors: fieldValidationErrors,
-			helptitleValid: helptitleValid,
+			helptitleValid: enHelptitleValid,
 		}, this.validateHelp)
 	}
 
@@ -142,7 +138,7 @@ class HelpNew extends Component {
 	}
 
 	render() {
-		const { en, da } = this.state.locale_content
+		const { en, /* da */ } = this.state.locale_content
 		return (
 			<div>
 				<h1>Help Demo</h1>

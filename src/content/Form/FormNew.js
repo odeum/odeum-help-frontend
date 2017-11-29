@@ -5,10 +5,13 @@ import { Email, Password } from './FormStyles'
 import FormErrors from './FormErrors'
 
 class FormNew extends Component {
+	
 	inputs = []
+	inputRefs = {}
+	
 	constructor(props) {
 		super(props)
-
+		
 		this.state = {
 			email: '',
 			password: '',
@@ -23,9 +26,7 @@ class FormNew extends Component {
 	// Lifecycle Methods
 
 	componentDidMount() {
-		// this.handleResetInput()
-		this.focusInput(0)
-		console.log(this.refs)
+		this.focusInput(0)		
 		document.addEventListener('keydown', this.onKeydown)
 	}
 
@@ -56,11 +57,11 @@ class FormNew extends Component {
 			passwordValid: false,
 			formValid: false
 		})
-		this.focusEmailInput()
+		// this.focusEmailInput()
+		this.focusInput(0)
 	}
 
 	handleChange = (e) => {
-		// console.log('Input changed')
 		const name = e.target.name
 		const value = e.target.value
 		this.setState({ [name]: value },
@@ -69,7 +70,6 @@ class FormNew extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		// console.log('Form submitted ... ')
 		this.props.onSubmit(this.state)
 	}
 
@@ -111,29 +111,23 @@ class FormNew extends Component {
 		return (error.length === 0 ? false : true)
 	}
 
-	createRef = (input) => {
+	createRef = (input) => {		
 		return this.inputs.push(input)
 	}
-
+	
+	createInnerRef = (name) => (input) => {		
+		// let refObject = { name: name, input: input }
+		return this.inputs.push(inputRefs)
+		// return this.inputs.push(refObject)		
+	}
+	
 	focusInput = (index) => {
 		this.inputs[index].focus()
 	}
-	// createRef = (input) => {
-	// 	this.emailInput = input
-	// }
-
-	// focusEmailInput = () => {
-	// 	this.emailInput.focus()
-	// }
-	// createRefpass = (input) => {
-	// 	this.passInput = input
-	// }
-
-	// focusPassInput = () => {
-	// 	this.passInput.focus()
-	// }
 
 	handleFocus = () => {
+		console.log('Changing field focus')
+		console.log(this.inputs)
 	}
 
 	handleBlur = () => {
