@@ -78,12 +78,12 @@ class HelpNew extends Component {
 
 	validateField(fieldName, value) {
 		let fieldValidationErrors = this.state.helpErrors
-		let helptitleValid = this.state.helptitleValid
+		let enHelptitleValid = this.state.en.helptitleValid
 
 		switch (fieldName) {
 			case 'helptitle':
-				helptitleValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-				fieldValidationErrors.helptitle = helptitleValid ? '' : ' is invalid'
+				enHelptitleValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+				fieldValidationErrors.helptitle = enHelptitleValid ? '' : ' is invalid'
 				break
 			default:
 				break
@@ -96,7 +96,7 @@ class HelpNew extends Component {
 	}
 
 	validateHelp() {
-		this.setState({ helpValid: this.state.helptitleValid })
+		this.setState({ helpValid: this.state.en.helptitleValid })
 	}
 
 	errorClass(error) {
@@ -144,15 +144,15 @@ class HelpNew extends Component {
 							disabled={false}
 							onChange={this.handleChange}
 							innerRef={this.createRef}
-							color={!this.state.helptitleValid ? '#BE4F44' : undefined}
-							focusColor={!this.state.helptitleValid ? '#BE4F44' : undefined}
+							color={!this.state.en.helptitleValid ? '#BE4F44' : undefined}
+							focusColor={!this.state.en.helptitleValid ? '#BE4F44' : undefined}
 							onFocus={this.handleFocus}
 							onBlur={this.handleChange}
 							onMouseEnter={this.handleMouse('Enter')}
 							onMouseLeave={this.handleMouse('Leave')}
 						/>
 						<div>Danish</div>
-						<HelpTitle
+						{/* <HelpTitle
 							type={'helptitle'}
 							// required 
 							placeholder={'Help title'}
@@ -167,7 +167,7 @@ class HelpNew extends Component {
 							onBlur={this.handleChange}
 							onMouseEnter={this.handleMouse('Enter')}
 							onMouseLeave={this.handleMouse('Leave')}
-						/>
+						/> */}
 					</div>
 
 					<ButtonPanel justify={'left'} >
