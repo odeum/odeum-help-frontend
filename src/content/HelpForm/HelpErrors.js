@@ -1,7 +1,7 @@
 import React from 'react'
 
 const HelpErrors = ({ helpErrors }) =>
-	<div className='helpErrors'>
+	<div>
 		{Object.keys(helpErrors).map((fieldName, i) => {
 			if (helpErrors[fieldName].length > 0) {
 				return (
@@ -14,4 +14,3 @@ const HelpErrors = ({ helpErrors }) =>
 	</div>
 
 export default HelpErrors
-

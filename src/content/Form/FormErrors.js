@@ -14,4 +14,3 @@ const FormErrors = ({ formErrors }) =>
 	</div>
 
 export default FormErrors
-

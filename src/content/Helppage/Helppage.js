@@ -14,10 +14,8 @@ class HelpPage extends Component {
 				new: false,
 				edit: false
 			},
-
-			helpItems: []
+			model: []
 		}
-
 	}
 
 	componentDidMount() {
@@ -27,7 +25,7 @@ class HelpPage extends Component {
 	// Section: List items and accept new and edit
 
 	handleNew = () => {
-		this.setState({ mode: { new: true, list: false, edit: false } })
+		this.setState({ mode: { new: true, list: false, edit: false } })		
 	}
 
 	handleEdit = () => {
@@ -35,11 +33,13 @@ class HelpPage extends Component {
 	}
 
 	renderList = () => {
+		console.log('state: ', this.state.model)
 		return (
 			<div>
 				<HelpList 
 					handleNew={this.handleNew} 
 					handleEdit={this.handleEdit}
+					data={this.state.model}
 				/>
 			</div>
 		)
@@ -61,8 +61,13 @@ class HelpPage extends Component {
 	}
 
 	// Section: New help item 
-	handleOnSubmitNew = () => {
+	handleOnSubmitNew = (newModel) => {
 		this.setState({ mode: { new: false, list: true } })
+	
+		let newModelArray = [...this.state.model]
+		// newModelArray.push({ email: newModel.email, password: newModel.password })
+		newModelArray.push({ help_title: newModel.help_title })
+		this.setState({ model: newModelArray })
 	}
 
 	renderHelpNew = () => {
