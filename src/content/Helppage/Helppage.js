@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-import HelpFormEdit from '../HelpForm/HelpFormEdit'
-import HelpFormNew from '../HelpForm/HelpFormNew'
+import HelpEdit from '../HelpForm/HelpEdit'
+import HelpNew from '../HelpForm/HelpNew'
 import HelpList from './HelpList'
 
-class Helppage extends Component {
+class HelpPage extends Component {
 	constructor(props) {
 		super(props)
 
@@ -20,7 +20,6 @@ class Helppage extends Component {
 
 	}
 
-
 	componentDidMount() {
 		this.setState({ mode: { list: true } })
 	}
@@ -35,7 +34,7 @@ class Helppage extends Component {
 		this.setState({ mode: { new: false, list: false, edit: true } })
 	}
 
-	renderHelpList = () => {
+	renderList = () => {
 		return (
 			<div>
 				<HelpList 
@@ -51,10 +50,10 @@ class Helppage extends Component {
 		this.setState({ mode: { new: false, list: true } })
 	}
 	
-	renderHelpFormEdit = () => {
+	renderHelpEdit = () => {
 		return (
 			<div>
-				<HelpFormEdit
+				<HelpEdit
 					onSubmit={this.handleOnSubmitEdit}
 				/>
 			</div>
@@ -66,10 +65,10 @@ class Helppage extends Component {
 		this.setState({ mode: { new: false, list: true } })
 	}
 
-	renderHelpFormNew = () => {
+	renderHelpNew = () => {
 		return (
 			<div>
-				<HelpFormNew 
+				<HelpNew 
 					onSubmit={this.handleOnSubmitNew} 
 				/>
 			</div>
@@ -81,13 +80,13 @@ class Helppage extends Component {
 		return (
 			<div>
 				{
-					this.state.mode.list ? this.renderHelpList() : 
-						this.state.mode.edit ? this.renderHelpFormEdit() : 
-							this.state.mode.new ? this.renderHelpFormNew() : null
+					this.state.mode.list ? this.renderList() : 
+						this.state.mode.edit ? this.renderHelpEdit() : 
+							this.state.mode.new ? this.renderHelpNew() : null
 				}
 			</div>
 		)
 	}
 }
 
-export default Helppage
+export default HelpPage

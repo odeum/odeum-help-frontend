@@ -35,24 +35,80 @@ export const Account = Input.extend`
 	color: ${(props) => props.color ? props.color : '#13A085'};
 `
 
-export const Username = Input.extend`
+export const HelpTitle = Input.extend`
 	height: 10%; 
 	width: 100%;
 	margin-top: 15px; 
 	color: ${(props) => props.color ? props.color : '#13A085'};
 `
 
-export const Email = Input.extend`
+export const HelpDescription = Input.extend`
 	height: 10%; 
 	width: 100%;
 	margin-top: 15px; 
 	color: ${(props) => props.color ? props.color : '#13A085'};
 `
 
-export const Password = Input.extend`
+export const Text = Input.extend`
 	height: 10%; 
 	width: 100%;
 	margin-top: 15px; 
 	margin-bottom: 15px;
 	color: ${(props) => props.color ? props.color : '#13A085'};
+`
+
+export const HelpContent = Input.extend`
+height: 10%; 
+width: 100%;
+margin-top: 15px; 
+margin-bottom: 15px;
+color: ${(props) => props.color ? props.color : '#13A085'};
+`
+
+export const Image = Input.extend`
+height: 10%; 
+width: 100%;
+margin-top: 15px; 
+margin-bottom: 15px;
+color: ${(props) => props.color ? props.color : '#13A085'};
+`
+
+export const Video = Input.extend`
+height: 10%; 
+width: 100%;
+margin-top: 15px; 
+margin-bottom: 15px;
+color: ${(props) => props.color ? props.color : '#13A085'};
+`
+
+export const Link = Input.extend`
+height: 10%; 
+width: 100%;
+margin-top: 15px; 
+margin-bottom: 15px;
+color: ${(props) => props.color ? props.color : '#13A085'};
+`
+
+export const SVG = Input.extend`
+height: 10%; 
+width: 100%;
+margin-top: 15px; 
+margin-bottom: 15px;
+color: ${(props) => props.color ? props.color : '#13A085'};
+`
+
+export const PDF = Input.extend`
+height: 10%; 
+width: 100%;
+margin-top: 15px; 
+margin-bottom: 15px;
+color: ${(props) => props.color ? props.color : '#13A085'};
+`
+
+export const Document = Input.extend`
+height: 10%; 
+width: 100%;
+margin-top: 15px; 
+margin-bottom: 15px;
+color: ${(props) => props.color ? props.color : '#13A085'};
 `

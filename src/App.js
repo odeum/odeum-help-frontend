@@ -16,7 +16,7 @@ import { Page/* , Login , LoginTester */ } from './framework/TestComponents'
 
 // Content imports
 import Homepage from './content/Homepage/Homepage'
-import Helppage from './content/Helppage/Helppage'
+import HelpPage from './content/HelpPage/HelpPage'
 import FormPage from './content/Form/FormPage'
 import TutorialPage from './content/Tutorial/TutorialPage'
 import LoginPage from './content/Login/LoginPage'
@@ -55,7 +55,7 @@ class App extends Component {
 
 					<Menu icon={'help'} label={'Help'} route={'/help'}>
 						<Tab icon={'help'} label={'Help'} route={'/'} exact>
-							<Helppage />
+							<HelpPage />
 						</Tab>
 						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
 							<TutorialPage />
