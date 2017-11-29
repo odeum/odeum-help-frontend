@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { transparentize } from 'polished'
 
 export const Input = styled.input`    
-	font-size: 17px;
+	font-size: 16px;
 	font-weight: 200;
     padding: 1rem;
     color: ${(props) => props.color ? props.color : '#2C3E50'};
@@ -40,75 +40,4 @@ export const HelpTitle = Input.extend`
 	width: 100%;
 	margin-top: 15px; 
 	color: ${(props) => props.color ? props.color : '#13A085'};
-`
-
-export const HelpDescription = Input.extend`
-	height: 10%; 
-	width: 100%;
-	margin-top: 15px; 
-	color: ${(props) => props.color ? props.color : '#13A085'};
-`
-
-export const Text = Input.extend`
-	height: 10%; 
-	width: 100%;
-	margin-top: 15px; 
-	margin-bottom: 15px;
-	color: ${(props) => props.color ? props.color : '#13A085'};
-`
-
-export const HelpContent = Input.extend`
-height: 10%; 
-width: 100%;
-margin-top: 15px; 
-margin-bottom: 15px;
-color: ${(props) => props.color ? props.color : '#13A085'};
-`
-
-export const Image = Input.extend`
-height: 10%; 
-width: 100%;
-margin-top: 15px; 
-margin-bottom: 15px;
-color: ${(props) => props.color ? props.color : '#13A085'};
-`
-
-export const Video = Input.extend`
-height: 10%; 
-width: 100%;
-margin-top: 15px; 
-margin-bottom: 15px;
-color: ${(props) => props.color ? props.color : '#13A085'};
-`
-
-export const Link = Input.extend`
-height: 10%; 
-width: 100%;
-margin-top: 15px; 
-margin-bottom: 15px;
-color: ${(props) => props.color ? props.color : '#13A085'};
-`
-
-export const SVG = Input.extend`
-height: 10%; 
-width: 100%;
-margin-top: 15px; 
-margin-bottom: 15px;
-color: ${(props) => props.color ? props.color : '#13A085'};
-`
-
-export const PDF = Input.extend`
-height: 10%; 
-width: 100%;
-margin-top: 15px; 
-margin-bottom: 15px;
-color: ${(props) => props.color ? props.color : '#13A085'};
-`
-
-export const Document = Input.extend`
-height: 10%; 
-width: 100%;
-margin-top: 15px; 
-margin-bottom: 15px;
-color: ${(props) => props.color ? props.color : '#13A085'};
 `
