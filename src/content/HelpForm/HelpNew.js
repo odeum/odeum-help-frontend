@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ButtonPanel, Button } from 'odeum-ui'
 
-import { HelpContent, HelpTitle, HelpDescription, Text, Image, Video, Link, SVG, PDF, Document } from './HelpStyles'
+import { /* HelpContent,  */HelpTitle, HelpDescription, Text, Image, Video, Link, SVG, PDF, Document } from './HelpStyles'
 import HelpErrors from './HelpErrors'
 
 class HelpNew extends Component {
