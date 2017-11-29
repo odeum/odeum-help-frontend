@@ -12,10 +12,10 @@ class HelpNew extends Component {
 		this.state = {
 			locale_content: {
 				en: {
-					helptitle: 'english'
+					helptitle: ''
 				},
 				da: {
-					helptitle: 'dansk'
+					helptitle: ''
 				}
 			},
 			helpErrors: { helptitle: '' },
@@ -78,7 +78,7 @@ class HelpNew extends Component {
 
 	validateField(fieldName, value) {
 		let fieldValidationErrors = this.state.helpErrors
-		let helptitleValid = this.state.helptitlelValid
+		let helptitleValid = this.state.helptitleValid
 
 		switch (fieldName) {
 			case 'helptitle':
@@ -134,6 +134,7 @@ class HelpNew extends Component {
 				<p>Please enter your help item:</p>
 				<form>
 					<div>
+						<div>English</div>
 						<HelpTitle
 							type={'helptitle'}
 							// required 
@@ -150,6 +151,7 @@ class HelpNew extends Component {
 							onMouseEnter={this.handleMouse('Enter')}
 							onMouseLeave={this.handleMouse('Leave')}
 						/>
+						<div>Danish</div>
 						<HelpTitle
 							type={'helptitle'}
 							// required 
