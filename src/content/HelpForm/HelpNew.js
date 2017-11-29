@@ -35,7 +35,7 @@ class HelpNew extends Component {
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.onKeydown)
 	}
-	
+
 	onKeydown = ({ keyCode }) => {
 		switch (keyCode) {
 			case 27: // ESCAPE
@@ -70,7 +70,7 @@ class HelpNew extends Component {
 			() => { this.validateField(name, value) })
 	}
 
-	handleSubmit = (e) => {		
+	handleSubmit = (e) => {
 		e.preventDefault()
 		console.log('Help submitted ... ')
 		this.props.onSubmit(this.state)
@@ -88,7 +88,7 @@ class HelpNew extends Component {
 			default:
 				break
 		}
-		
+
 		this.setState({
 			helpErrors: fieldValidationErrors,
 			helptitleValid: helptitleValid,
@@ -104,7 +104,7 @@ class HelpNew extends Component {
 		// return (error.length === 0 ? false : true)
 	}
 
-	inputError(error) {		
+	inputError(error) {
 		return (error.length === 0 ? false : true)
 	}
 
@@ -112,7 +112,7 @@ class HelpNew extends Component {
 		this.helptitleInput = input
 	}
 
-	focusEmailInput = () => {
+	focusHelpTitleInput = () => {
 		this.helptitleInput.focus()
 	}
 
@@ -121,25 +121,25 @@ class HelpNew extends Component {
 
 	handleBlur = () => {
 	}
-	
+
 	handleMouse = (passage) => (e) => {
 		e.preventDefault()
 	}
 
 	render() {
-		const { helptitle  } = this.state.locale_content.en
+		const { en, da } = this.state.locale_content
 		return (
 			<div>
 				<h1>Help Demo</h1>
 				<p>Please enter your help item:</p>
 				<form>
 					<div>
-						<HelpTitle 
-							type={'helptitle'} 
+						<HelpTitle
+							type={'helptitle'}
 							// required 
-							placeholder={'Help title'} 
-							name={'helptitle'} 
-							value={this.state.helptitle}
+							placeholder={'Help title'}
+							name={'helptitle'}
+							value={en.helptitle}
 							disabled={false}
 							onChange={this.handleChange}
 							innerRef={this.createRef}
@@ -149,34 +149,50 @@ class HelpNew extends Component {
 							onBlur={this.handleChange}
 							onMouseEnter={this.handleMouse('Enter')}
 							onMouseLeave={this.handleMouse('Leave')}
-						/>						
-       				</div>
+						/>
+						<HelpTitle
+							type={'helptitle'}
+							// required 
+							placeholder={'Help title'}
+							name={'helptitle'}
+							value={da.helptitle}
+							disabled={false}
+							onChange={this.handleChange}
+							innerRef={this.createRef}
+							color={!this.state.helptitleValid ? '#BE4F44' : undefined}
+							focusColor={!this.state.helptitleValid ? '#BE4F44' : undefined}
+							onFocus={this.handleFocus}
+							onBlur={this.handleChange}
+							onMouseEnter={this.handleMouse('Enter')}
+							onMouseLeave={this.handleMouse('Leave')}
+						/>
+					</div>
 
 					<ButtonPanel justify={'left'} >
 
-						<Button 
-							label={'Save'} 
+						<Button
+							label={'Save'}
 							icon={'check'}
-							type={'submit'} 
-							onClick={this.handleSubmit} 
-							disabled={!this.state.helpValid} 
+							type={'submit'}
+							onClick={this.handleSubmit}
+							disabled={!this.state.helpValid}
 							isDisabled={!this.state.helpValid}
-							color={this.state.helpValid ? '#13A085' : ''}							
+							color={this.state.helpValid ? '#13A085' : ''}
 							onSubmit={this.handleOnSubmit}
 						/>
-						
-						<Button 
-							label={'Reset'} 
+
+						<Button
+							label={'Reset'}
 							icon={'close'}
-							type={'reset'} 
-							onClick={this.handleResetInput} 
-							color={'#BE4F44'}							
+							type={'reset'}
+							onClick={this.handleResetInput}
+							color={'#BE4F44'}
 						/>
 
 					</ButtonPanel>
 					<div>
 						<HelpErrors helpErrors={this.state.helpErrors} />
-						{`${this.errorClass(helptitle)}`}{' '}
+						{`${this.errorClass(en.helptitle)}`}{' '}
 					</div>
 				</form>
 			</div>
