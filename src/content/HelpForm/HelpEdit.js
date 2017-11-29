@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class HelpFormEdit extends Component {
+class HelpEdit extends Component {
 	render() {
 		return (
 			<div>
@@ -10,5 +10,4 @@ class HelpFormEdit extends Component {
 	}
 }
 
-export default HelpFormEdit
-
+export default HelpEdit
