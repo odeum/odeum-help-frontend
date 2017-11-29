@@ -5,17 +5,18 @@ import { Email, Password } from './FormStyles'
 import FormErrors from './FormErrors'
 
 class FormNew extends Component {
-
+	inputs = []
 	constructor(props) {
 		super(props)
 
 		this.state = {
 			email: '',
-			password: '',			
+			password: '',
 			formErrors: { email: '', password: '' },
 			emailValid: false,
 			passwordValid: false,
-			formValid: false
+			formValid: false,
+			id: 0
 		}
 	}
 
@@ -23,20 +24,23 @@ class FormNew extends Component {
 
 	componentDidMount() {
 		// this.handleResetInput()
-		this.focusEmailInput()
+		this.focusInput(0)
+		console.log(this.refs)
 		document.addEventListener('keydown', this.onKeydown)
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.onKeydown)
 	}
-	
+
 	onKeydown = ({ keyCode }) => {
 		switch (keyCode) {
 			case 27: // ESCAPE
 				this.handleResetInput()
 				break
 			case 13: // ENTER
+				this.focusInput(this.state.id)
+				this.setState({ id: this.state.id < this.inputs.length - 1 ? (this.state.id + 1) : 0 })
 				break
 			default:
 				break
@@ -56,16 +60,16 @@ class FormNew extends Component {
 	}
 
 	handleChange = (e) => {
-		console.log('Input changed')
+		// console.log('Input changed')
 		const name = e.target.name
 		const value = e.target.value
 		this.setState({ [name]: value },
 			() => { this.validateField(name, value) })
 	}
 
-	handleSubmit = (e) => {		
+	handleSubmit = (e) => {
 		e.preventDefault()
-		console.log('Form submitted ... ')
+		// console.log('Form submitted ... ')
 		this.props.onSubmit(this.state)
 	}
 
@@ -86,7 +90,7 @@ class FormNew extends Component {
 			default:
 				break
 		}
-		
+
 		this.setState({
 			formErrors: fieldValidationErrors,
 			emailValid: emailValid,
@@ -103,24 +107,38 @@ class FormNew extends Component {
 		// return (error.length === 0 ? false : true)
 	}
 
-	inputError(error) {		
+	inputError(error) {
 		return (error.length === 0 ? false : true)
 	}
 
 	createRef = (input) => {
-		this.emailInput = input
+		return this.inputs.push(input)
 	}
 
-	focusEmailInput = () => {
-		this.emailInput.focus()
+	focusInput = (index) => {
+		this.inputs[index].focus()
 	}
+	// createRef = (input) => {
+	// 	this.emailInput = input
+	// }
+
+	// focusEmailInput = () => {
+	// 	this.emailInput.focus()
+	// }
+	// createRefpass = (input) => {
+	// 	this.passInput = input
+	// }
+
+	// focusPassInput = () => {
+	// 	this.passInput.focus()
+	// }
 
 	handleFocus = () => {
 	}
 
 	handleBlur = () => {
 	}
-	
+
 	handleMouse = (passage) => (e) => {
 		e.preventDefault()
 	}
@@ -133,11 +151,11 @@ class FormNew extends Component {
 				<p>Please enter your e-mail and password:</p>
 				<form>
 					<div>
-						<Email 
-							type={'email'} 
+						<Email
+							type={'email'}
 							// required 
-							placeholder={'Mail address'} 
-							name={'email'} 
+							placeholder={'Mail address'}
+							name={'email'}
 							value={this.state.email}
 							disabled={false}
 							onChange={this.handleChange}
@@ -148,42 +166,43 @@ class FormNew extends Component {
 							onBlur={this.handleChange}
 							onMouseEnter={this.handleMouse('Enter')}
 							onMouseLeave={this.handleMouse('Leave')}
-						/>						
-       				</div>
+						/>
+					</div>
 					<div>
-						<Password 
-							type={'password' }
-							placeholder={'Password'} 
+						<Password
+							type={'password'}
+							placeholder={'Password'}
 							name={'password'}
 							value={this.state.password}
 							disabled={false}
+							innerRef={this.createRef}
 							onChange={this.handleChange}
 							color={!this.state.passwordValid ? '#BE4F44' : undefined}
 							focusColor={!this.state.passwordValid ? '#BE4F44' : undefined}
 							onFocus={this.handleFocus}
 							onBlur={this.handleChange}
 						/>
-       				</div>
+					</div>
 
 					<ButtonPanel justify={'left'} >
 
-						<Button 
-							label={'Save'} 
+						<Button
+							label={'Save'}
 							icon={'check'}
-							type={'submit'} 
-							onClick={this.handleSubmit} 
-							disabled={!this.state.formValid} 
+							type={'submit'}
+							onClick={this.handleSubmit}
+							disabled={!this.state.formValid}
 							isDisabled={!this.state.formValid}
-							color={this.state.formValid ? '#13A085' : ''}							
+							color={this.state.formValid ? '#13A085' : ''}
 							onSubmit={this.handleOnSubmit}
 						/>
-						
-						<Button 
-							label={'Reset'} 
+
+						<Button
+							label={'Reset'}
 							icon={'close'}
-							type={'reset'} 
-							onClick={this.handleResetInput} 
-							color={'#BE4F44'}							
+							type={'reset'}
+							onClick={this.handleResetInput}
+							color={'#BE4F44'}
 						/>
 
 					</ButtonPanel>

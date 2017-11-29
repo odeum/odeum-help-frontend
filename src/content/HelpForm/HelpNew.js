@@ -63,9 +63,20 @@ class HelpNew extends Component {
 	}
 
 	handleChange = (e) => {
-		console.log('Input changed')
+		// console.log('Input changed', e.target.name)
 		const name = e.target.name
 		const value = e.target.value
+		/* This is an example on how to go down to this.state.locale_content.en.helptitle that might help you or make you more confused
+		this.setState({
+			locale_content: {
+				...this.state.locale_content,
+				en: {
+					...this.state.en
+					[name]: value
+				}
+			}
+		})
+		*/
 		this.setState({ [name]: value },
 			() => { this.validateField(name, value) })
 	}
