@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { transparentize } from 'polished'
 
 export const Input = styled.input`    
-	font-size: 17px;
+	font-size: 16px;
 	font-weight: 200;
     padding: 1rem;
     color: ${(props) => props.color ? props.color : '#2C3E50'};

@@ -91,3 +91,24 @@ export const ContentBox = styled.section`
     position: relative;
     box-shadow: inset 0 4px 15px 2px rgba(0, 0, 0, 0.06);
 `
+
+export const GridWrapper = styled.div`
+	display: grid;
+	grid-template-columns: 200px 200px 200px;
+	grid-template-rows: 200px 100px;
+	grid-auto-rows: 100px;
+	grid-gap: 20px;
+	
+	div:nth-child(odd) {
+    	background: #3B97D3;
+	}
+`
+
+export const GridItem = styled.div`
+	border: 1px solid rgb(0, 95, 107);
+	border-radius: 3px;
+	background-color: #13A085;
+	padding: 0.2em;
+	color: #fff;
+	font-size: 120%;
+`

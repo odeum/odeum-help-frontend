@@ -13,7 +13,8 @@ class FormPage extends Component {
 				list: false,
 				new: false,
 				edit: false
-			}
+			},
+			model: []
 		}
 	}
 
@@ -24,7 +25,7 @@ class FormPage extends Component {
 	// Section: List items and accept new and edit
 
 	handleNew = () => {
-		this.setState({ mode: { new: true, list: false, edit: false } })
+		this.setState({ mode: { new: true, list: false, edit: false } })		
 	}
 
 	handleEdit = () => {
@@ -32,11 +33,13 @@ class FormPage extends Component {
 	}
 
 	renderList = () => {
+		console.log('state: ', this.state.model)
 		return (
 			<div>
 				<FormList 
 					handleNew={this.handleNew} 
 					handleEdit={this.handleEdit}
+					data={this.state.model}
 				/>
 			</div>
 		)
@@ -58,8 +61,12 @@ class FormPage extends Component {
 	}
 
 	// Section: New help item 
-	handleOnSubmitNew = () => {
+	handleOnSubmitNew = (newModel) => {
 		this.setState({ mode: { new: false, list: true } })
+	
+		let newModelArray = [...this.state.model]
+		newModelArray.push({ email: newModel.email, password: newModel.password })
+		this.setState({ model: newModelArray })
 	}
 
 	renderFormNew = () => {

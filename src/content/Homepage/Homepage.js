@@ -5,12 +5,13 @@ import {
 	HomepageHeader, 
 	HomepageTagLine, 
 	HomepageButonsContainer, 
-	// LinkTo, 
+	LinkTo, 
 	HomepageButtonSpacer,
 	HomepageFlexContainer,
 	HomepageBox, 
 	HomepageSectionHeader,
-	HomepageSection } from './HomepageStyles'
+	HomepageSection, 
+} from './HomepageStyles'
 
 const Homepage = () => {
 	return (
@@ -19,11 +20,13 @@ const Homepage = () => {
 				<HomepageHeader>ODEUM Code Help</HomepageHeader>
 				<HomepageTagLine>A NodeJS API and React components for building Help Indexes for ODEUM Code Apps</HomepageTagLine>
 				<HomepageButonsContainer>
-					<ButtonPanel>
+					<ButtonPanel wrap={'wrap'}>
 
-						<LinkButton label={'Get Help'} icon={'help'} route={'/help/gethelp'} color={'#13A085'}/>
+						<LinkButton label={'Get Help'} icon={'help'} route={'/help/'} color={'#13A085'}/>
 						<HomepageButtonSpacer />
-						<LinkButton label={'Tutorial'} icon={'star'} route={'/help/tutorial'}/>
+						<LinkButton label={'Form demo'} icon={'assignment'} route={'/form/formlist'}/>
+						<HomepageButtonSpacer />
+						<LinkButton label={'Tutorial'} icon={'code'} route={'/help/tutorial'} />
 
 					</ButtonPanel>
 				</HomepageButonsContainer>
@@ -32,23 +35,23 @@ const Homepage = () => {
 			
 			<HomepageFlexContainer>
 
-				<HomepageBox width={1 / 2} ml={40} mr={40}>					
+				<HomepageBox width={1 / 3} ml={40} mr={40}>					
 					<HomepageSectionHeader>Declarative API</HomepageSectionHeader>
 					<HomepageSection>ODEUM Code Help exhibits a simple NodeJS API for CRUD based persistance of help items and help indexes for an ODEUM Code App.</HomepageSection>
 					<HomepageSection>Create, Read, Update and Delete help items for a specific App ID and access the API through React components.</HomepageSection>
 				</HomepageBox>
 
-				<HomepageBox width={1 / 2} ml={40} mr={40}>					
+				<HomepageBox width={1 / 3} ml={40} mr={40}>					
 					<HomepageSectionHeader>React components</HomepageSectionHeader>
 					<HomepageSection>ODEUM Code Help implements React components for creating, listing, editing and deleting help items for a designated ODEUM Web App.</HomepageSection>
 					<HomepageSection>Get ODEUM Code Help before your neighbor calls for help somewhere else.</HomepageSection>
 				</HomepageBox>
 
-				{/* <HomepageBox width={1 / 3} ml={40} mr={40}>					
-					<HomepageSectionHeader>Fast Frontend Development</HomepageSectionHeader>
-					<HomepageSection>By introducing not only the basic framework of your Web App, but also a plethora of <LinkTo to={'/docs/installation'}>Ready-made UI components</LinkTo>, you can build frontends for Web Apps and websites pretty fast. Reuse existing React components and apply our responsive component model to ensure perfect rendering on all devices.</HomepageSection>
-					<HomepageSection>Through framework and visual UI primitives ODEUM Code is scaffolding your Web App with a quick launch in sight.</HomepageSection>
-				</HomepageBox> */}
+				<HomepageBox width={1 / 3} ml={40} mr={40}>					
+					<HomepageSectionHeader>Simple Form Setup</HomepageSectionHeader>
+					<HomepageSection>Using our simple Form component you'll be on track with creating forms in minutes. Check it out in this <LinkTo to={'/form/formdemo'}>Form Demo</LinkTo>. The Form component includes form field validation you configure very easily.</HomepageSection>
+					<HomepageSection>Creating fast and simple forms in React has never been easier.</HomepageSection>
+				</HomepageBox>
 				
 			</HomepageFlexContainer>
 		</div>

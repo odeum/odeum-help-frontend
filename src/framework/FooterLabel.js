@@ -7,11 +7,11 @@ export const handleLink = () => {
 
 
 
-export const RenderFooterLabel = () => {
+export const FooterLabel = () => {
 	const date = new Date()
 	return (
 		<div>
-			<strong>ODEUM Code</strong> v0.2.24 © Copyright
+			<strong>ODEUM Code</strong> v0.2.29 © Copyright
 			{' '}{date.getFullYear()}{' '}
 			<IdleState />{' '}
 		</div>

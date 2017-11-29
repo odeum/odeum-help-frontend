@@ -10,12 +10,15 @@ import {
 	Footer } from 'odeum-app'
 
 // Framework helper imports
-import { RenderFooterLabel, handleLink } from './framework/FooterLabel'
+import { FooterLabel, handleLink } from './framework/FooterLabel'
+import theme from './framework/theme'
 
 // Content imports
 import Homepage from './content/Homepage/Homepage'
 import Helppage from './content/Helppage/Helppage'
 import FormPage from './content/Form/FormPage'
+import TutorialPage from './content/Tutorial/TutorialPage'
+
 
 class App extends Component {
 
@@ -30,24 +33,24 @@ class App extends Component {
 	render() {
 		return (
 			<AppContainer>
-				<Header logo={'default'}/>
+				<Header logo={theme.logo} />
 				<MenuPanel>
 
 					<Menu route={'/'} exact>
 						<Homepage />
 					</Menu>
-				
+
 					<Menu icon={'help'} label={'Help'} route={'/help'}>
-						<Tab icon={'help'} label={'Help'} route={'/gethelp'}>
+						<Tab icon={'help'} label={'Help'} route={'/'} exact>
 							<Helppage />
 						</Tab>
 						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
-							Tutorial ...
+							<TutorialPage />
 						</Tab>						
 					</Menu>
 
 					<Menu icon={'assignment'} label={'Form'} route={'/form'}>
-						<Tab icon={'assignment'} label={'Form'} route={'/form'}>
+						<Tab icon={'assignment'} label={'Form List'} route={'/formlist'}>
 							<FormPage />
 						</Tab>
 						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
@@ -56,10 +59,11 @@ class App extends Component {
 					</Menu>
 
 				</MenuPanel>
-				<Footer label={RenderFooterLabel} labelLink={handleLink()} helpID={'Messages ...'} />
+				<Footer label={FooterLabel} labelLink={handleLink()} helpID={'Messages ...'} />
 			</AppContainer>
 		)
 	}
 }
 
 export default App
+

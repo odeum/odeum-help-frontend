@@ -19,6 +19,30 @@ class FormNew extends Component {
 		}
 	}
 
+	// Lifecycle Methods
+
+	componentDidMount() {
+		// this.handleResetInput()
+		this.focusEmailInput()
+		document.addEventListener('keydown', this.onKeydown)
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.onKeydown)
+	}
+	
+	onKeydown = ({ keyCode }) => {
+		switch (keyCode) {
+			case 27: // ESCAPE
+				this.handleResetInput()
+				break
+			case 13: // ENTER
+				break
+			default:
+				break
+		}
+	}
+
 	handleResetInput = () => {
 		this.setState({
 			email: '',
@@ -28,19 +52,21 @@ class FormNew extends Component {
 			passwordValid: false,
 			formValid: false
 		})
+		this.focusEmailInput()
 	}
 
-	handleUserInput = (e) => {
+	handleChange = (e) => {
+		console.log('Input changed')
 		const name = e.target.name
 		const value = e.target.value
 		this.setState({ [name]: value },
 			() => { this.validateField(name, value) })
 	}
 
-	handleSubmit = (e) => {
-		alert('Your mail address is: ' + this.state.email + ' and your password is: ********')
+	handleSubmit = (e) => {		
 		e.preventDefault()
-		this.props.onSubmit()
+		console.log('Form submitted ... ')
+		this.props.onSubmit(this.state)
 	}
 
 	validateField(fieldName, value) {
@@ -82,34 +108,30 @@ class FormNew extends Component {
 	}
 
 	createRef = (input) => {
-		this.textInput = input
+		this.emailInput = input
 	}
 
-	focusTextInput = () => {
-		this.textInput.focus()
+	focusEmailInput = () => {
+		this.emailInput.focus()
 	}
 
-	handleOnFocus = () => {
-		if (this.hasAttribute('readonly')) {
-			this.removeAttribute('readonly')
-			// fix for mobile safari to show virtual keyboard
-			this.blur() 
-			this.focus()
-		}
+	handleFocus = () => {
 	}
 
-	componentDidMount() {
-		this.handleResetInput()
-		this.focusTextInput()
+	handleBlur = () => {
 	}
 	
+	handleMouse = (passage) => (e) => {
+		e.preventDefault()
+	}
 
 	render() {
 		const { email, password } = this.state.formErrors
 		return (
 			<div>
-				<form autoComplete={'no'} >
-					<h1>Form Demo</h1>
+				<h1>Form Demo</h1>
+				<p>Please enter your e-mail and password:</p>
+				<form>
 					<div>
 						<Email 
 							type={'email'} 
@@ -117,12 +139,15 @@ class FormNew extends Component {
 							placeholder={'Mail address'} 
 							name={'email'} 
 							value={this.state.email}
-							onChange={this.handleUserInput}
+							disabled={false}
+							onChange={this.handleChange}
 							innerRef={this.createRef}
-							color={this.inputError(email) ? '#BE4F44' : undefined}
+							color={!this.state.emailValid ? '#BE4F44' : undefined}
 							focusColor={!this.state.emailValid ? '#BE4F44' : undefined}
-							readonly 
-							onfocus={this.handleOnFocus}
+							onFocus={this.handleFocus}
+							onBlur={this.handleChange}
+							onMouseEnter={this.handleMouse('Enter')}
+							onMouseLeave={this.handleMouse('Leave')}
 						/>						
        				</div>
 					<div>
@@ -131,43 +156,46 @@ class FormNew extends Component {
 							placeholder={'Password'} 
 							name={'password'}
 							value={this.state.password}
-							onChange={this.handleUserInput}
-							color={this.inputError(password) ? '#BE4F44' : undefined}
+							disabled={false}
+							onChange={this.handleChange}
+							color={!this.state.passwordValid ? '#BE4F44' : undefined}
 							focusColor={!this.state.passwordValid ? '#BE4F44' : undefined}
+							onFocus={this.handleFocus}
+							onBlur={this.handleChange}
 						/>
        				</div>
 
-					<ButtonPanel justify={'left'} margin={'0px'} style={{ margin: '0px' }}>
+					<ButtonPanel justify={'left'} >
 
 						<Button 
 							label={'Save'} 
+							icon={'check'}
 							type={'submit'} 
 							onClick={this.handleSubmit} 
 							disabled={!this.state.formValid} 
 							isDisabled={!this.state.formValid}
-							color={this.state.formValid ? '#13A085' : ''}
-							margin={'0px'}
+							color={this.state.formValid ? '#13A085' : ''}							
+							onSubmit={this.handleOnSubmit}
 						/>
 						
 						<Button 
 							label={'Reset'} 
+							icon={'close'}
 							type={'reset'} 
 							onClick={this.handleResetInput} 
-							color={'#BE4F44'}
-							margin={'0px'}
+							color={'#BE4F44'}							
 						/>
 
 					</ButtonPanel>
 					<div>
 						<FormErrors formErrors={this.state.formErrors} />
-						{`${this.errorClass(email)}`}
+						{`${this.errorClass(email)}`}{' '}
 						{`${this.errorClass(password)}`}
 					</div>
-     			</form>
+				</form>
 			</div>
 		)
 	}
 }
 
 export default FormNew
-

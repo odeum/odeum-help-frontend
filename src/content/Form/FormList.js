@@ -5,11 +5,17 @@ class FormList extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Form Data</h1>
+				<h1>Form List Data</h1>
 				<p>Rendering list of form data ... </p>
+				<ul>
+					{this.props.data.map((item, index) =>
+						<li key={index}>{item.email} - {item.password}</li>
+					)}
+				</ul>
 
 				<Button
 					label={'Create New'}
+					icon={'add_circle'}
 					onClick={this.props.handleNew}
 				/>
 			</div>
@@ -18,4 +24,3 @@ class FormList extends Component {
 }
 
 export default FormList
-
