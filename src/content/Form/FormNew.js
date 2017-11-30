@@ -26,7 +26,7 @@ class FormNew extends Component {
 	// Lifecycle Methods
 
 	componentDidMount() {
-		this.focusInput(0)		
+		// this.focusInput(0)		
 		document.addEventListener('keydown', this.onKeydown)
 	}
 
@@ -40,8 +40,8 @@ class FormNew extends Component {
 				this.handleResetInput()
 				break
 			case 13: // ENTER
-				this.focusInput(this.state.id)
-				this.setState({ id: this.state.id < this.inputs.length - 1 ? (this.state.id + 1) : 0 })
+				// this.focusInput(this.state.id)
+				// this.setState({ id: this.state.id < this.inputs.length - 1 ? (this.state.id + 1) : 0 })
 				break
 			default:
 				break
@@ -57,7 +57,6 @@ class FormNew extends Component {
 			passwordValid: false,
 			formValid: false
 		})
-		// this.focusEmailInput()
 		this.focusInput(0)
 	}
 
@@ -115,19 +114,46 @@ class FormNew extends Component {
 		return this.inputs.push(input)
 	}
 	
-	createInnerRef = (name) => (input) => {		
-		// let refObject = { name: name, input: input }
-		return this.inputs.push(inputRefs)
-		// return this.inputs.push(refObject)		
-	}
-	
 	focusInput = (index) => {
 		this.inputs[index].focus()
 	}
 
+	// THE NEW KIDS ON THE BLOCK ... 
+	createInnerRef = (name) => (input) => {				
+		return this.inputRefs[name] = input
+	}	
+
+	focusInputRef = (name) => {
+		this.inputRefs[name].focus()
+	}
+
+
 	handleFocus = () => {
-		console.log('Changing field focus')
-		console.log(this.inputs)
+		/* 
+		
+		Pseudo: 
+		- Need to update state with which field is currently in focus
+		- Need to know how many fields we have
+		- Need to know if focused field is first
+		- Need to know if focused field is last
+
+		let inFocus = document.activeElement
+		Iterate over object entries to find inFocus===entry
+		setState({ inFocus: })
+		if (this.state.inFocus === 'email') { ... }
+
+		*/
+
+		let inFocus = '' + document.activeElement.name
+		console.log(inFocus)
+
+		console.log('InnerRef: ', this.inputRefs['email'].name)
+		console.log('InnerRef: ', this.inputRefs['password'].name)
+		// console.log('InnerRef string: ', this.inputRefs[inFocus].name)
+
+		// console.log('object: ', this.inputRefs)
+		// console.log(document.activeElement)
+		// console.log(document.activeElement.name)
 	}
 
 	handleBlur = () => {
@@ -153,7 +179,7 @@ class FormNew extends Component {
 							value={this.state.email}
 							disabled={false}
 							onChange={this.handleChange}
-							innerRef={this.createRef}
+							innerRef={this.createInnerRef('email')}
 							color={!this.state.emailValid ? '#BE4F44' : undefined}
 							focusColor={!this.state.emailValid ? '#BE4F44' : undefined}
 							onFocus={this.handleFocus}
@@ -169,7 +195,7 @@ class FormNew extends Component {
 							name={'password'}
 							value={this.state.password}
 							disabled={false}
-							innerRef={this.createRef}
+							innerRef={this.createInnerRef('password')}
 							onChange={this.handleChange}
 							color={!this.state.passwordValid ? '#BE4F44' : undefined}
 							focusColor={!this.state.passwordValid ? '#BE4F44' : undefined}
