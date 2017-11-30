@@ -41,14 +41,15 @@ class FormNew extends Component {
 				this.handleResetInput()
 				break
 			case 13: // ENTER
-				if (document.activeElement.name === 'email') {
+				if (this.state.formValid) {
+					this.props.onSubmit(this.state)
+				}
+				else if (document.activeElement.name === 'email') {
 					this.focusInputRef('password')
 				}
-				else { 
-					if (document.activeElement.name === 'password') {
-						this.focusInputRef('email')
-					}
-				}
+				else if (document.activeElement.name === 'password') {
+					this.focusInputRef('email')
+				}				
 				// this.setState({ id: this.state.id < this.inputs.length - 1 ? (this.state.id + 1) : 0 })
 				break
 			default:
@@ -176,6 +177,7 @@ class FormNew extends Component {
 			<div>
 				<h1>Form Demo</h1>
 				<p>Please enter your e-mail and password:</p>
+
 				<form>
 					<div>
 						<Email
@@ -211,34 +213,36 @@ class FormNew extends Component {
 						/>
 					</div>
 
-					<ButtonPanel justify={'left'} >
-
-						<Button
-							label={'Save'}
-							icon={'check'}
-							type={'submit'}
-							onClick={this.handleSubmit}
-							disabled={!this.state.formValid}
-							isDisabled={!this.state.formValid}
-							color={this.state.formValid ? '#13A085' : ''}
-							onSubmit={this.handleOnSubmit}
-						/>
-
-						<Button
-							label={'Reset'}
-							icon={'close'}
-							type={'reset'}
-							onClick={this.handleResetInput}
-							color={'#BE4F44'}
-						/>
-
-					</ButtonPanel>
 					<div>
-						<FormErrors formErrors={this.state.formErrors} />
-						{`${this.errorClass(email)}`}{' '}
-						{`${this.errorClass(password)}`}
 					</div>
 				</form>
+				<ButtonPanel justify={'left'} >
+
+					<Button
+						label={'Save'}
+						icon={'check'}
+						type={'submit'}
+						onClick={this.handleSubmit}
+						disabled={!this.state.formValid}
+						isDisabled={!this.state.formValid}
+						color={this.state.formValid ? '#13A085' : ''}
+						onSubmit={this.handleOnSubmit}
+					/>
+
+					<Button
+						label={'Reset'}
+						icon={'close'}
+						type={'reset'}
+						onClick={this.handleResetInput}
+						color={'#BE4F44'}
+					/>
+
+				</ButtonPanel>
+				<div>
+					<FormErrors formErrors={this.state.formErrors} />
+					{`${this.errorClass(email)}`}{' '}
+					{`${this.errorClass(password)}`}
+				</div>
 			</div>
 		)
 	}
