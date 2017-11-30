@@ -4,6 +4,8 @@ import HelpEdit from '../HelpForm/HelpEdit'
 import HelpNew from '../HelpForm/HelpNew'
 import HelpList from './HelpList'
 
+//import HelpNew from '../HelpForm/HelpfortheHelp'
+
 class HelpPage extends Component {
 	constructor(props) {
 		super(props)

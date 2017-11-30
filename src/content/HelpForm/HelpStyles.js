@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { transparentize } from 'polished'
 
+
 export const Input = styled.input`    
 	font-size: 16px;
 	font-weight: 200;
@@ -41,3 +42,24 @@ export const HelpTitle = Input.extend`
 	margin-top: 15px; 
 	color: ${(props) => props.color ? props.color : '#13A085'};
 `
+
+/* Andrei's Styles */
+
+export const InputGreen = Input.extend`
+height: 9%; 
+width: 100%;
+margin-top: 40px;
+color: ${(props) => props.color ? props.color : '#13A085'};
+`
+export const DoublePanel = styled.div`
+display:grid;
+grid-template-rows: auto auto;
+grid-template-columns: auto auto;
+`
+export const Panel = styled.div`
+margin: 5px;
+padding:3px;
+border-radius: 5px;
+border: 1px solid #e1e1e1;
+`
+/* End Andrei's Styles */
