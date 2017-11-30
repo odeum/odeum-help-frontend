@@ -19,7 +19,7 @@ class FormNew extends Component {
 			emailValid: false,
 			passwordValid: false,
 			formValid: false,
-			id: 0
+			inFocus: ''
 		}
 	}
 
@@ -44,7 +44,11 @@ class FormNew extends Component {
 				if (document.activeElement.name === 'email') {
 					this.focusInputRef('password')
 				}
-				// this.focusInput(this.state.id)
+				else { 
+					if (document.activeElement.name === 'password') {
+						this.focusInputRef('email')
+					}
+				}
 				// this.setState({ id: this.state.id < this.inputs.length - 1 ? (this.state.id + 1) : 0 })
 				break
 			default:
@@ -136,8 +140,8 @@ class FormNew extends Component {
 		/* 
 		
 		Pseudo: 
-		- Need to update state with which field is currently in focus
-		- Need to know how many fields we have
+		- [V] Need to update state with which field is currently in focus
+		- [V] Need to know how many referenced fields we have
 		- Need to know if focused field is first
 		- Need to know if focused field is last
 
@@ -148,16 +152,15 @@ class FormNew extends Component {
 
 		*/
 
+		let refCount = Object.keys(this.inputRefs).length
 		let inFocus = '' + document.activeElement.name
+
 		console.log(inFocus)
+		this.setState({ inFocus: inFocus })
 
 		console.log('InnerRef: ', this.inputRefs['email'].name)
 		console.log('InnerRef: ', this.inputRefs['password'].name)
-		// console.log('InnerRef string: ', this.inputRefs[inFocus].name)
-
-		// console.log('object: ', this.inputRefs)
-		// console.log(document.activeElement)
-		// console.log(document.activeElement.name)
+		console.log(refCount)
 	}
 
 	handleBlur = () => {
