@@ -45,14 +45,23 @@ export const Username = Input.extend`
 export const Email = Input.extend`
 	height: 10%; 
 	width: 100%;
-	margin-top: 15px; 
+	/* margin-top: 15px;  */
+	margin-bottom: 15px;
 	color: ${(props) => props.color ? props.color : '#13A085'};
 `
 
 export const Password = Input.extend`
 	height: 10%; 
 	width: 100%;
-	margin-top: 15px; 
+	/* margin-top: 15px;  */
+	margin-bottom: 15px;
+	color: ${(props) => props.color ? props.color : '#13A085'};
+`
+
+export const StyledInput = Input.extend`
+	height: 10%; 
+	width: 100%;
+	/* margin-top: 15px;  */
 	margin-bottom: 15px;
 	color: ${(props) => props.color ? props.color : '#13A085'};
 `
