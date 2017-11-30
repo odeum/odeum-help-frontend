@@ -26,7 +26,8 @@ class FormNew extends Component {
 	// Lifecycle Methods
 
 	componentDidMount() {
-		// this.focusInput(0)		
+		// this.focusInput(0)
+		this.focusInputRef('email')
 		document.addEventListener('keydown', this.onKeydown)
 	}
 
@@ -57,7 +58,7 @@ class FormNew extends Component {
 			passwordValid: false,
 			formValid: false
 		})
-		this.focusInput(0)
+		this.focusInputRef('email')
 	}
 
 	handleChange = (e) => {
