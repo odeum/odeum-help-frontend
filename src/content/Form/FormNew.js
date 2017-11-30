@@ -41,6 +41,9 @@ class FormNew extends Component {
 				this.handleResetInput()
 				break
 			case 13: // ENTER
+				if (document.activeElement.name === 'email') {
+					this.focusInputRef('password')
+				}
 				// this.focusInput(this.state.id)
 				// this.setState({ id: this.state.id < this.inputs.length - 1 ? (this.state.id + 1) : 0 })
 				break
