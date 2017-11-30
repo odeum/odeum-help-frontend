@@ -17,7 +17,7 @@ export class Form extends Component {
 		return (
 			<div>
 				<form>
-					
+					{this.props.children}
 				</form>
 			</div>
 		)
@@ -26,17 +26,16 @@ export class Form extends Component {
 
 export class Email extends Component {
 	render() {
+		const { email, password } = this.state.formErrors
 		return (
 			<div>
 				<Field 
-					{...this.props} 
 					type={'email'}
-					// required 
-					placeholder={'Mail address'}
+					
 					name={'email'}
 					value={this.state.email}
 					disabled={false}
-					onChange={this.handleChange}
+					onChange={this.props.handleChange}
 					innerRef={this.createInnerRef('email')}
 					color={!this.state.emailValid ? '#BE4F44' : undefined}
 					focusColor={!this.state.emailValid ? '#BE4F44' : undefined}
@@ -44,6 +43,7 @@ export class Email extends Component {
 					onBlur={this.handleChange}
 					onMouseEnter={this.handleMouse('Enter')}
 					onMouseLeave={this.handleMouse('Leave')}
+					{...this.props} 
 				/>
 			</div>
 		)
@@ -55,7 +55,11 @@ class FormTester extends Component {
 		return (
 			<div>
 				<Form>
-					<Email label={''} validate={false} />
+					<Email 
+						label={''} 
+						validate={false} 
+						placeholder={'Mail address'} 
+					/>
 				</Form>
 			</div>
 		)

@@ -119,13 +119,13 @@ class FormNew extends Component {
 		return (error.length === 0 ? false : true)
 	}
 
-	createRef = (input) => {		
-		return this.inputs.push(input)
-	}
+	// createRef = (input) => {		
+	// 	return this.inputs.push(input)
+	// }
 	
-	focusInput = (index) => {
-		this.inputs[index].focus()
-	}
+	// focusInput = (index) => {
+	// 	this.inputs[index].focus()
+	// }
 
 	// THE NEW KIDS ON THE BLOCK ... 
 	createInnerRef = (name) => (input) => {				
@@ -154,13 +154,12 @@ class FormNew extends Component {
 		*/
 
 		let refCount = Object.keys(this.inputRefs).length
-		let inFocus = '' + document.activeElement.name
+		let inFocus = document.activeElement.name
 
 		console.log(inFocus)
 		this.setState({ inFocus: inFocus })
 
-		console.log('InnerRef: ', this.inputRefs['email'].name)
-		console.log('InnerRef: ', this.inputRefs['password'].name)
+		console.log('InnerRef: ', this.inputRefs[inFocus].name)		
 		console.log(refCount)
 	}
 
