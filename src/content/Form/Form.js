@@ -13,6 +13,9 @@ export class Field extends Component {
 }
 
 export class Form extends Component {
+
+	inputRefs = {}
+	
 	render() {
 		return (
 			<div>
@@ -25,13 +28,14 @@ export class Form extends Component {
 }
 
 export class Email extends Component {
-	render() {
-		const { email, password } = this.state.formErrors
+	
+	render() {		
 		return (
 			<div>
 				<Field 
 					type={'email'}
-					
+					// required 
+					// placeholder={'Mail address'}
 					name={'email'}
 					value={this.state.email}
 					disabled={false}
@@ -50,13 +54,28 @@ export class Email extends Component {
 	}
 }
 
+// App or other higher component using the form
 class FormTester extends Component {
+
+	constructor(props) {
+		super(props)
+		
+		this.state = {
+			values: {}
+		}
+	}
+	
+
+	handleOnSubmit = (data) => {
+	
+	}
+
 	render() {
+		const { email, } = this.state.formErrors
 		return (
 			<div>
 				<Form>
 					<Email 
-						label={''} 
 						validate={false} 
 						placeholder={'Mail address'} 
 					/>

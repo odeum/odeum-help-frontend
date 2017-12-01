@@ -6,11 +6,11 @@ import FormErrors from './FormErrors'
 
 class FormNew extends Component {
 	
-	inputs = []
-	inputRefs = {}
 	
 	constructor(props) {
 		super(props)
+		
+		this.inputRefs = {}
 		
 		this.state = {
 			email: '',
@@ -118,14 +118,6 @@ class FormNew extends Component {
 	inputError(error) {
 		return (error.length === 0 ? false : true)
 	}
-
-	// createRef = (input) => {		
-	// 	return this.inputs.push(input)
-	// }
-	
-	// focusInput = (index) => {
-	// 	this.inputs[index].focus()
-	// }
 
 	// THE NEW KIDS ON THE BLOCK ... 
 	createInnerRef = (name) => (input) => {				
