@@ -19,7 +19,7 @@ export class Form extends Component {
 	render() {
 		return (
 			<div>
-				<form>
+				<form onSubmit={this.props.handleSubmit} {...this.props}>
 					{this.props.children}
 				</form>
 			</div>
