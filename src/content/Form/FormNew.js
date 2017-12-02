@@ -26,7 +26,6 @@ class FormNew extends Component {
 	// Lifecycle Methods
 
 	componentDidMount() {
-		// this.focusInput(0)
 		this.focusInputRef('email')
 		document.addEventListener('keydown', this.onKeydown)
 	}
@@ -57,7 +56,8 @@ class FormNew extends Component {
 		}
 	}
 
-	handleResetInput = () => {
+	handleResetInput = (fields) => {
+		// if arg(fields) { this.setState({ fields, ... }) }
 		this.setState({
 			email: '',
 			password: '',

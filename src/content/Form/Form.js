@@ -14,7 +14,26 @@ export class Field extends Component {
 
 export class Form extends Component {
 
-	inputRefs = {}
+	constructor(props) {
+		super(props)
+		
+		this.inputRefs = {}
+	}
+
+	// Lifecycle Methods
+
+	componentDidMount() {
+		const { focus } = this.props
+		if (focus) {
+			this.focusInputRef(focus) // 'email'
+		}
+		document.addEventListener('keydown', this.onKeydown)
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.onKeydown)
+		this.inputRefs = {} // Reset input refs
+	}
 	
 	render() {
 		return (
@@ -54,7 +73,7 @@ export class Email extends Component {
 	}
 }
 
-// App or other higher component using the form
+// App or other higher level component using the form
 class FormTester extends Component {
 
 	constructor(props) {
@@ -66,7 +85,7 @@ class FormTester extends Component {
 	}
 	
 
-	handleOnSubmit = (data) => {
+	handleSubmit = (data) => {
 	
 	}
 
@@ -74,7 +93,7 @@ class FormTester extends Component {
 		const { email, } = this.state.formErrors
 		return (
 			<div>
-				<Form>
+				<Form focus={'email'}> {/* Set which field will have focus on initial render */}
 					<Email 
 						validate={false} 
 						placeholder={'Mail address'} 
