@@ -23,8 +23,6 @@ class FormNew extends Component {
 		}
 	}
 
-	// Lifecycle Methods
-
 	componentDidMount() {
 		this.focusInputRef('email')
 		document.addEventListener('keydown', this.onKeydown)
@@ -69,16 +67,16 @@ class FormNew extends Component {
 		this.focusInputRef('email')
 	}
 
+	handleSubmit = (e) => {
+		e.preventDefault()
+		this.props.onSubmit(this.state)
+	}
+	
 	handleChange = (e) => {
 		const name = e.target.name
 		const value = e.target.value
 		this.setState({ [name]: value },
 			() => { this.validateField(name, value) })
-	}
-
-	handleSubmit = (e) => {
-		e.preventDefault()
-		this.props.onSubmit(this.state)
 	}
 
 	validateField(fieldName, value) {
