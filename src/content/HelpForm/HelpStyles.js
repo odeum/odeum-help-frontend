@@ -48,7 +48,7 @@ export const HelpTitle = Input.extend`
 export const InputGreen = Input.extend`
 height: 9%; 
 width: 100%;
-margin-top: 40px;
+margin-top: 10px;
 color: ${(props) => props.color ? props.color : '#13A085'};
 `
 export const DoublePanel = styled.div`
