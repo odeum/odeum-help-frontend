@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { ButtonPanel, Button } from 'odeum-ui'
 import { DoublePanel, InputGreen, Panel } from './HelpStyles'
+import { postHelpItem } from './data'
+
 export default class HelpNew extends Component {
 	constructor(props) {
 		super(props)
@@ -35,6 +37,9 @@ export default class HelpNew extends Component {
 				}
 			}
 		}
+	}
+	componentWillMount = () => {
+		//   getAllHelpItems()
 	}
 
 	handleResetInput = (fields) => {
@@ -99,6 +104,10 @@ export default class HelpNew extends Component {
 
 		})
 	}
+	postHelp = () => {
+		postHelpItem({ locale_content: this.state.locale_content })
+	}
+
 	render() {
 		const { en, da } = this.state.locale_content
 
@@ -118,18 +127,18 @@ export default class HelpNew extends Component {
 						<InputGreen placeholder={'PDF'} value={da.help_content.pdf} name={'pdf'} onChange={this.handleContentChange} lang={'da'} />
 						<InputGreen placeholder={'Dokument'} value={da.help_content.document} name={'document'} onChange={this.handleContentChange} lang={'da'} />
 						<ButtonPanel justify={'left'} >
-						
+
 							<Button
 								label={'Save'}
 								icon={'check'}
 								type={'submit'}
-								onClick={this.handleSubmit}
+								onClick={this.postHelp}
 								disabled={!this.state.formValid}
 								isDisabled={!this.state.formValid}
 								color={this.state.formValid ? '#13A085' : ''}
-								onSubmit={this.handleOnSubmit}
+								
 							/>
-						
+
 							<Button
 								label={'Reset'}
 								icon={'close'}
@@ -137,7 +146,7 @@ export default class HelpNew extends Component {
 								onClick={this.handleResetInput}
 								color={'#BE4F44'}
 							/>
-						
+
 						</ButtonPanel>
 					</form>
 				</Panel>
@@ -157,7 +166,7 @@ export default class HelpNew extends Component {
 						<InputGreen placeholder={'Document'} value={en.help_content.document} name={'document'} onChange={this.handleContentChange} lang={'en'} />
 					</form>
 					<ButtonPanel justify={'left'} >
-					
+
 						<Button
 							label={'Save'}
 							icon={'check'}
@@ -168,7 +177,7 @@ export default class HelpNew extends Component {
 							color={this.state.formValid ? '#13A085' : ''}
 							onSubmit={this.handleOnSubmit}
 						/>
-					
+
 						<Button
 							label={'Reset'}
 							icon={'close'}
@@ -176,7 +185,7 @@ export default class HelpNew extends Component {
 							onClick={this.handleResetInput}
 							color={'#BE4F44'}
 						/>
-					
+
 					</ButtonPanel>
 				</Panel>
 				{/* End EN */}

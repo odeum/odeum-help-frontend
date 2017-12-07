@@ -8,7 +8,7 @@
   "dependencies": {
     "apisauce": "^0.14.2",
     "grid-styled": "^2.0.0-11",
-    "odeum-app": "^0.2.38",
+    "odeum-app": "^0.2.48",
     "odeum-ui": "^0.1.32",
     "polished": "^1.9.0",
     "react": "^16.1.0",
