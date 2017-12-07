@@ -6,6 +6,7 @@
   "author": "Christian Broberg",
   "license": "MIT",
   "dependencies": {
+    "apisauce": "^0.14.2",
     "grid-styled": "^2.0.0-11",
     "odeum-app": "^0.2.38",
     "odeum-ui": "^0.1.32",
@@ -23,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-	"test": "react-scripts test --env=jsdom",
-	"rebuild": "rm yarn.lock && yarn"
+    "test": "react-scripts test --env=jsdom",
+    "rebuild": "rm yarn.lock && yarn"
   }
 }

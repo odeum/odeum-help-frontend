@@ -107,6 +107,7 @@ export default class HelpNew extends Component {
 				{/* Start DA */}
 				<Panel>
 					<form>
+						<div>Dansk</div>
 						<InputGreen placeholder={'Hjælpe titel'} value={da.helptitle} name={'helptitle'} onChange={this.handleChange} lang={'da'} />
 						<InputGreen placeholder={'Beskrivelse'} value={da.helpdescription} name={'helpdescription'} onChange={this.handleChange} lang={'da'} />
 						<InputGreen placeholder={'Tekst'} value={da.help_content.text} name={'text'} onChange={this.handleContentChange} lang={'da'} />
@@ -144,6 +145,7 @@ export default class HelpNew extends Component {
 				{/* Start EN */}
 				<Panel>
 					<form>
+						<div>English</div>
 						<InputGreen placeholder={'Help title'} value={en.helptitle} name={'helptitle'} onChange={this.handleChange} lang={'en'} />
 						<InputGreen placeholder={'Description'} value={en.helpdescription} name={'helpdescription'} onChange={this.handleChange} lang={'en'} />
 						<InputGreen placeholder={'Text'} value={en.help_content.text} name={'text'} onChange={this.handleContentChange} lang={'en'} />
