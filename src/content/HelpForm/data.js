@@ -2,7 +2,7 @@ import { create } from 'apisauce'
 
 // define the api
 const api = create({
-	baseURL: 'http://localhost:3000',
+	baseURL: 'http://localhost:3001',
 	timeout: 10000,
 	headers: {
 		'Content-Type': 'application/json',
@@ -10,8 +10,6 @@ const api = create({
 	},
 	mode: 'no-cors'
 })
-
-
 
 //#region Get all Help Items
 export const getAllHelpItems = () => {

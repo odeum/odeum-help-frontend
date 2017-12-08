@@ -133,9 +133,9 @@ export default class HelpNew extends Component {
 								icon={'check'}
 								type={'submit'}
 								onClick={this.postHelp}
-								disabled={!this.state.formValid}
-								isDisabled={!this.state.formValid}
-								color={this.state.formValid ? '#13A085' : ''}
+								// disabled={!this.state.formValid}
+								// isDisabled={!this.state.formValid}
+								// color={this.state.formValid ? '#13A085' : ''}
 								
 							/>
 
@@ -172,9 +172,9 @@ export default class HelpNew extends Component {
 							icon={'check'}
 							type={'submit'}
 							onClick={this.handleSubmit}
-							disabled={!this.state.formValid}
-							isDisabled={!this.state.formValid}
-							color={this.state.formValid ? '#13A085' : ''}
+							// disabled={!this.state.formValid}
+							// isDisabled={!this.state.formValid}
+							// color={this.state.formValid ? '#13A085' : ''}
 							onSubmit={this.handleOnSubmit}
 						/>
 
