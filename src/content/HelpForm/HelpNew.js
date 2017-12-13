@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ButtonPanel, Button } from 'odeum-ui'
 import { DoublePanel, InputGreen, Panel } from './HelpStyles'
-import { postHelpItem } from './data'
+import { postHelpItem } from './HelpData'
 
 export default class HelpNew extends Component {
 	constructor(props) {
@@ -106,6 +106,7 @@ export default class HelpNew extends Component {
 	}
 	postHelp = () => {
 		postHelpItem({ locale_content: this.state.locale_content })
+		console.log('postHelp fired')
 	}
 
 	render() {
@@ -131,7 +132,6 @@ export default class HelpNew extends Component {
 							<Button
 								label={'Save'}
 								icon={'check'}
-								type={'submit'}
 								onClick={this.postHelp}
 								// disabled={!this.state.formValid}
 								// isDisabled={!this.state.formValid}

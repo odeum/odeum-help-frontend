@@ -1,8 +1,9 @@
+import React, { Component } from 'react'
 import { create } from 'apisauce'
 
-// define the api
+// Define the API
 const api = create({
-	baseURL: 'http://localhost:3001',
+	baseURL: 'http://localhost:4000',
 	timeout: 10000,
 	headers: {
 		'Content-Type': 'application/json',
@@ -11,20 +12,43 @@ const api = create({
 	mode: 'no-cors'
 })
 
-//#region Get all Help Items
-export const getAllHelpItems = () => {
-	return api.get('/helpitems').then((response => response.data))
-	// console.log(data)
-}
+export const getAllHelpItems = helpitems =>
+	`http://localhost:4000/helpitems/$(helpitems)`
 
-//#endregion
-
-//#region Post an Help Item
+// Post a Help Item
 export const postHelpItem = (helpItem) => {
 	var data = JSON.stringify(helpItem)
+	console.log(data)
 	api.post('/helpitems', data).then((response => console.log(response.status)))
 }
-//#endregion
+
+class HelpData extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {}
+	}
+
+	componentDidMount() {
+		fetch(getAllHelpItems(this.props.helpitems))
+			.then(d => d.json())
+			.then(d => {
+				this.setState({
+					helpdataData: d
+				})
+			})
+	}
+
+	render() {
+		if (!this.state.helpdataData) return <p>Rendering list...</p>
+		return (
+			<div>
+				<h2>{this.state.helpdataData.items}</h2>
+			</div>
+		)
+	}
+}
+
+export default HelpData
 
 // // start making (useless) calls (that are called on the moment you open the page)
 // api
