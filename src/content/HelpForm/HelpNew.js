@@ -10,8 +10,8 @@ export default class HelpNew extends Component {
 		this.state = {
 			locale_content: {
 				en: {
-					helptitle: '',
-					helpdescription: '',
+					help_title: '',
+					help_description: '',
 					help_content: {
 						text: '',
 						image: '',
@@ -23,8 +23,8 @@ export default class HelpNew extends Component {
 					}
 				},
 				da: {
-					helptitle: '',
-					helpdescription: '',
+					help_title: '',
+					help_description: '',
 					help_content: {
 						text: '',
 						image: '',
@@ -47,8 +47,8 @@ export default class HelpNew extends Component {
 		this.setState({
 			locale_content: {
 				en: {
-					helptitle: '',
-					helpdescription: '',
+					help_title: '',
+					help_description: '',
 					help_content: {
 						text: '',
 						image: '',
@@ -60,8 +60,8 @@ export default class HelpNew extends Component {
 					}
 				},
 				da: {
-					helptitle: '',
-					helpdescription: '',
+					help_title: '',
+					help_description: '',
 					help_content: {
 						text: '',
 						image: '',
@@ -106,7 +106,6 @@ export default class HelpNew extends Component {
 	}
 	postHelp = () => {
 		postHelpItem({ locale_content: this.state.locale_content })
-		console.log('postHelp fired')
 	}
 
 	render() {
@@ -118,8 +117,8 @@ export default class HelpNew extends Component {
 				<Panel>
 					<form>
 						<div>Dansk</div>
-						<InputGreen placeholder={'Hjælpe titel'} value={da.helptitle} name={'helptitle'} onChange={this.handleChange} lang={'da'} />
-						<InputGreen placeholder={'Beskrivelse'} value={da.helpdescription} name={'helpdescription'} onChange={this.handleChange} lang={'da'} />
+						<InputGreen placeholder={'Hjælpe titel'} value={da.help_title} name={'help_title'} onChange={this.handleChange} lang={'da'} />
+						<InputGreen placeholder={'Beskrivelse'} value={da.help_description} name={'help_description'} onChange={this.handleChange} lang={'da'} />
 						<InputGreen placeholder={'Tekst'} value={da.help_content.text} name={'text'} onChange={this.handleContentChange} lang={'da'} />
 						<InputGreen placeholder={'Billede'} value={da.help_content.image} name={'image'} onChange={this.handleContentChange} lang={'da'} />
 						<InputGreen placeholder={'Link'} value={da.help_content.link} name={'link'} onChange={this.handleContentChange} lang={'da'} />
@@ -155,8 +154,8 @@ export default class HelpNew extends Component {
 				<Panel>
 					<form>
 						<div>English</div>
-						<InputGreen placeholder={'Help title'} value={en.helptitle} name={'helptitle'} onChange={this.handleChange} lang={'en'} />
-						<InputGreen placeholder={'Description'} value={en.helpdescription} name={'helpdescription'} onChange={this.handleChange} lang={'en'} />
+						<InputGreen placeholder={'Help title'} value={en.help_title} name={'help_title'} onChange={this.handleChange} lang={'en'} />
+						<InputGreen placeholder={'Description'} value={en.help_description} name={'help_description'} onChange={this.handleChange} lang={'en'} />
 						<InputGreen placeholder={'Text'} value={en.help_content.text} name={'text'} onChange={this.handleContentChange} lang={'en'} />
 						<InputGreen placeholder={'Image'} value={en.help_content.image} name={'image'} onChange={this.handleContentChange} lang={'en'} />
 						<InputGreen placeholder={'Link'} value={en.help_content.link} name={'link'} onChange={this.handleContentChange} lang={'en'} />

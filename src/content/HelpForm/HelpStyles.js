@@ -63,4 +63,21 @@ padding: 3px;
 border-radius: 5px;
 border: 1px solid #e1e1e1;
 `
+
+export const TD = styled.td`
+border: 1px solid gray;
+padding: 15px;
+`
+export const Table = styled.table`
+border-collapse:collapse;
+border: 1px solid gray;
+`
+export const TR = styled.tr`
+border:1px solid gray;
+width: 100px;
+`
+export const TH = styled.thead`
+border:1px solid gray;
+width: 100px;
+`
 /* End Andrei's Styles */
