@@ -41,7 +41,7 @@ class App extends Component {
 	render() {
 		return (
 			<AppContainer>
-				<Header logo={''}/>
+				<Header />
 				<MenuPanel>
 
 					<Menu route={'/'} exact>
