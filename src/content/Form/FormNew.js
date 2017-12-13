@@ -6,11 +6,11 @@ import FormErrors from './FormErrors'
 
 class FormNew extends Component {
 	
-	inputs = []
-	inputRefs = {}
 	
 	constructor(props) {
 		super(props)
+		
+		this.inputRefs = {}
 		
 		this.state = {
 			email: '',
@@ -23,10 +23,7 @@ class FormNew extends Component {
 		}
 	}
 
-	// Lifecycle Methods
-
 	componentDidMount() {
-		// this.focusInput(0)
 		this.focusInputRef('email')
 		document.addEventListener('keydown', this.onKeydown)
 	}
@@ -57,7 +54,8 @@ class FormNew extends Component {
 		}
 	}
 
-	handleResetInput = () => {
+	handleResetInput = (fields) => {
+		// if arg(fields) { this.setState({ fields, ... }) }
 		this.setState({
 			email: '',
 			password: '',
@@ -69,16 +67,16 @@ class FormNew extends Component {
 		this.focusInputRef('email')
 	}
 
+	handleSubmit = (e) => {
+		e.preventDefault()
+		this.props.onSubmit(this.state)
+	}
+	
 	handleChange = (e) => {
 		const name = e.target.name
 		const value = e.target.value
 		this.setState({ [name]: value },
 			() => { this.validateField(name, value) })
-	}
-
-	handleSubmit = (e) => {
-		e.preventDefault()
-		this.props.onSubmit(this.state)
 	}
 
 	validateField(fieldName, value) {
@@ -119,14 +117,6 @@ class FormNew extends Component {
 		return (error.length === 0 ? false : true)
 	}
 
-	createRef = (input) => {		
-		return this.inputs.push(input)
-	}
-	
-	focusInput = (index) => {
-		this.inputs[index].focus()
-	}
-
 	// THE NEW KIDS ON THE BLOCK ... 
 	createInnerRef = (name) => (input) => {				
 		return this.inputRefs[name] = input
@@ -154,13 +144,12 @@ class FormNew extends Component {
 		*/
 
 		let refCount = Object.keys(this.inputRefs).length
-		let inFocus = '' + document.activeElement.name
+		let inFocus = document.activeElement.name
 
 		console.log(inFocus)
 		this.setState({ inFocus: inFocus })
 
-		console.log('InnerRef: ', this.inputRefs['email'].name)
-		console.log('InnerRef: ', this.inputRefs['password'].name)
+		console.log('InnerRef: ', this.inputRefs[inFocus].name)		
 		console.log(refCount)
 	}
 

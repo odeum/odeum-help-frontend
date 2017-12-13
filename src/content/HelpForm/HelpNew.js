@@ -1,186 +1,170 @@
 import React, { Component } from 'react'
 import { ButtonPanel, Button } from 'odeum-ui'
+import { DoublePanel, InputGreen, Panel } from './HelpStyles'
+import { postHelpItem } from './HelpData'
 
-import { HelpTitle } from './HelpStyles'
-import HelpErrors from './HelpErrors'
-
-class HelpNew extends Component {
-
+export default class HelpNew extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
 			locale_content: {
 				en: {
-					helptitle: ''
+					helptitle: '',
+					helpdescription: '',
+					help_content: {
+						text: '',
+						image: '',
+						video: '',
+						link: '',
+						svg: '',
+						pdf: '',
+						document: ''
+					}
 				},
 				da: {
-					helptitle: ''
+					helptitle: '',
+					helpdescription: '',
+					help_content: {
+						text: '',
+						image: '',
+						video: '',
+						link: '',
+						svg: '',
+						pdf: '',
+						document: ''
+					}
 				}
-			},
-			helpErrors: { helptitle: '' },
-			helptitlelValid: false,
-			formValid: false
+			}
 		}
 	}
-
-	// Lifecycle Methods
-
-	componentDidMount() {
-		// this.handleResetInput()
-		this.focusHelpTitleInput()
-		document.addEventListener('keydown', this.onKeydown)
+	componentWillMount = () => {
+		//   getAllHelpItems()
 	}
 
-	componentWillUnmount() {
-		document.removeEventListener('keydown', this.onKeydown)
-	}
-
-	onKeydown = ({ keyCode }) => {
-		switch (keyCode) {
-			case 27: // ESCAPE
-				this.handleResetInput()
-				break
-			case 13: // ENTER
-				break
-			default:
-				break
-		}
-	}
-
-	handleResetInput = () => {
+	handleResetInput = (fields) => {
+		// if arg(fields) { this.setState({ fields, ... }) }
 		this.setState({
 			locale_content: {
 				en: {
-					helptitle: 'english'
+					helptitle: '',
+					helpdescription: '',
+					help_content: {
+						text: '',
+						image: '',
+						video: '',
+						link: '',
+						svg: '',
+						pdf: '',
+						document: ''
+					}
 				},
 				da: {
-					helptitle: 'dansk'
+					helptitle: '',
+					helpdescription: '',
+					help_content: {
+						text: '',
+						image: '',
+						video: '',
+						link: '',
+						svg: '',
+						pdf: '',
+						document: ''
+					}
 				}
 			}
 		})
-		this.focusHelpTitleInput()
 	}
 
-	handleChange = (e) => {
-		// console.log('Input changed', e.target.name)
-		const name = e.target.name
-		const value = e.target.value
-		/* This is an example on how to go down to this.state.locale_content.en.helptitle that might help you or make you more confused
+	handleContentChange = (e) => {
 		this.setState({
 			locale_content: {
 				...this.state.locale_content,
-				en: {
-					...this.state.en
-					[name]: value
+				[e.target.lang]: {
+					...this.state.locale_content[e.target.lang],
+					help_content: {
+						...this.state.locale_content[e.target.lang].help_content,
+						[e.target.name]: e.target.value
+					}
 				}
 			}
 		})
-		*/
-		this.setState({ [name]: value },
-			() => { this.validateField(name, value) })
 	}
-
-	handleSubmit = (e) => {
-		e.preventDefault()
-		console.log('Help submitted ... ')
-		this.props.onSubmit(this.state)
-	}
-
-	validateField(fieldName, value) {
-		let fieldValidationErrors = this.state.helpErrors
-		let enHelptitleValid = this.state.en.helptitleValid
-
-		switch (fieldName) {
-			case 'helptitle':
-				enHelptitleValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-				fieldValidationErrors.helptitle = enHelptitleValid ? '' : ' is invalid'
-				break
-			default:
-				break
-		}
+	/* For Title and Description */
+	handleChange = (e) => {
 
 		this.setState({
-			helpErrors: fieldValidationErrors,
-			helptitleValid: enHelptitleValid,
-		}, this.validateHelp)
-	}
+			locale_content: {
+				...this.state.locale_content,
+				[e.target.lang]: {
+					...this.state.locale_content[e.target.lang],
+					[e.target.name]: e.target.value
+				}
+			}
 
-	validateHelp() {
-		this.setState({ helpValid: this.state.en.helptitleValid })
+		})
 	}
-
-	errorClass(error) {
-		return (error.length === 0 ? '' : 'has-error')
-		// return (error.length === 0 ? false : true)
-	}
-
-	inputError(error) {
-		return (error.length === 0 ? false : true)
-	}
-
-	createRef = (input) => {
-		this.helptitleInput = input
-	}
-
-	focusHelpTitleInput = () => {
-		this.helptitleInput.focus()
-	}
-
-	handleFocus = () => {
-	}
-
-	handleBlur = () => {
-	}
-
-	handleMouse = (passage) => (e) => {
-		e.preventDefault()
+	postHelp = () => {
+		postHelpItem({ locale_content: this.state.locale_content })
+		console.log('postHelp fired')
 	}
 
 	render() {
-		const { en, /* da */ } = this.state.locale_content
-		return (
-			<div>
-				<h1>Help Demo</h1>
-				<p>Please enter your help item:</p>
-				<form>
-					<div>
-						<div>English</div>
-						<HelpTitle
-							type={'helptitle'}
-							// required 
-							placeholder={'Help title'}
-							name={'helptitle'}
-							value={en.helptitle}
-							disabled={false}
-							onChange={this.handleChange}
-							innerRef={this.createRef}
-							color={!this.state.en.helptitleValid ? '#BE4F44' : undefined}
-							focusColor={!this.state.en.helptitleValid ? '#BE4F44' : undefined}
-							onFocus={this.handleFocus}
-							onBlur={this.handleChange}
-							onMouseEnter={this.handleMouse('Enter')}
-							onMouseLeave={this.handleMouse('Leave')}
-						/>
-						<div>Danish</div>
-						{/* <HelpTitle
-							type={'helptitle'}
-							// required 
-							placeholder={'Help title'}
-							name={'helptitle'}
-							value={da.helptitle}
-							disabled={false}
-							onChange={this.handleChange}
-							innerRef={this.createRef}
-							color={!this.state.helptitleValid ? '#BE4F44' : undefined}
-							focusColor={!this.state.helptitleValid ? '#BE4F44' : undefined}
-							onFocus={this.handleFocus}
-							onBlur={this.handleChange}
-							onMouseEnter={this.handleMouse('Enter')}
-							onMouseLeave={this.handleMouse('Leave')}
-						/> */}
-					</div>
+		const { en, da } = this.state.locale_content
 
+		return (
+			<DoublePanel>
+				{/* Start DA */}
+				<Panel>
+					<form>
+						<div>Dansk</div>
+						<InputGreen placeholder={'Hjælpe titel'} value={da.helptitle} name={'helptitle'} onChange={this.handleChange} lang={'da'} />
+						<InputGreen placeholder={'Beskrivelse'} value={da.helpdescription} name={'helpdescription'} onChange={this.handleChange} lang={'da'} />
+						<InputGreen placeholder={'Tekst'} value={da.help_content.text} name={'text'} onChange={this.handleContentChange} lang={'da'} />
+						<InputGreen placeholder={'Billede'} value={da.help_content.image} name={'image'} onChange={this.handleContentChange} lang={'da'} />
+						<InputGreen placeholder={'Link'} value={da.help_content.link} name={'link'} onChange={this.handleContentChange} lang={'da'} />
+						<InputGreen placeholder={'Video'} value={da.help_content.video} name={'video'} onChange={this.handleContentChange} lang={'da'} />
+						<InputGreen placeholder={'SVG'} value={da.help_content.svg} name={'svg'} onChange={this.handleContentChange} lang={'da'} />
+						<InputGreen placeholder={'PDF'} value={da.help_content.pdf} name={'pdf'} onChange={this.handleContentChange} lang={'da'} />
+						<InputGreen placeholder={'Dokument'} value={da.help_content.document} name={'document'} onChange={this.handleContentChange} lang={'da'} />
+						<ButtonPanel justify={'left'} >
+
+							<Button
+								label={'Save'}
+								icon={'check'}
+								onClick={this.postHelp}
+								// disabled={!this.state.formValid}
+								// isDisabled={!this.state.formValid}
+								// color={this.state.formValid ? '#13A085' : ''}
+								
+							/>
+
+							<Button
+								label={'Reset'}
+								icon={'close'}
+								type={'reset'}
+								onClick={this.handleResetInput}
+								color={'#BE4F44'}
+							/>
+
+						</ButtonPanel>
+					</form>
+				</Panel>
+				{/* End DA */}
+				{/* Start EN */}
+				<Panel>
+					<form>
+						<div>English</div>
+						<InputGreen placeholder={'Help title'} value={en.helptitle} name={'helptitle'} onChange={this.handleChange} lang={'en'} />
+						<InputGreen placeholder={'Description'} value={en.helpdescription} name={'helpdescription'} onChange={this.handleChange} lang={'en'} />
+						<InputGreen placeholder={'Text'} value={en.help_content.text} name={'text'} onChange={this.handleContentChange} lang={'en'} />
+						<InputGreen placeholder={'Image'} value={en.help_content.image} name={'image'} onChange={this.handleContentChange} lang={'en'} />
+						<InputGreen placeholder={'Link'} value={en.help_content.link} name={'link'} onChange={this.handleContentChange} lang={'en'} />
+						<InputGreen placeholder={'Video'} value={en.help_content.video} name={'video'} onChange={this.handleContentChange} lang={'en'} />
+						<InputGreen placeholder={'SVG'} value={en.help_content.svg} name={'svg'} onChange={this.handleContentChange} lang={'en'} />
+						<InputGreen placeholder={'PDF'} value={en.help_content.pdf} name={'pdf'} onChange={this.handleContentChange} lang={'en'} />
+						<InputGreen placeholder={'Document'} value={en.help_content.document} name={'document'} onChange={this.handleContentChange} lang={'en'} />
+					</form>
 					<ButtonPanel justify={'left'} >
 
 						<Button
@@ -188,9 +172,9 @@ class HelpNew extends Component {
 							icon={'check'}
 							type={'submit'}
 							onClick={this.handleSubmit}
-							disabled={!this.state.helpValid}
-							isDisabled={!this.state.helpValid}
-							color={this.state.helpValid ? '#13A085' : ''}
+							// disabled={!this.state.formValid}
+							// isDisabled={!this.state.formValid}
+							// color={this.state.formValid ? '#13A085' : ''}
 							onSubmit={this.handleOnSubmit}
 						/>
 
@@ -203,14 +187,9 @@ class HelpNew extends Component {
 						/>
 
 					</ButtonPanel>
-					<div>
-						<HelpErrors helpErrors={this.state.helpErrors} />
-						{`${this.errorClass(en.helptitle)}`}{' '}
-					</div>
-				</form>
-			</div>
+				</Panel>
+				{/* End EN */}
+			</DoublePanel>
 		)
 	}
 }
-
-export default HelpNew

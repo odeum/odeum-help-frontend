@@ -48,9 +48,10 @@ export const HelpTitle = Input.extend`
 export const InputGreen = Input.extend`
 height: 9%; 
 width: 100%;
-margin-top: 40px;
+margin-top: 10px;
 color: ${(props) => props.color ? props.color : '#13A085'};
 `
+
 export const DoublePanel = styled.div`
 display:grid;
 grid-template-rows: auto auto;
@@ -58,7 +59,7 @@ grid-template-columns: auto auto;
 `
 export const Panel = styled.div`
 margin: 5px;
-padding:3px;
+padding: 3px;
 border-radius: 5px;
 border: 1px solid #e1e1e1;
 `
