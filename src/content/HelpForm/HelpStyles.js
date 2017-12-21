@@ -43,13 +43,15 @@ export const HelpTitle = Input.extend`
 	color: ${(props) => props.color ? props.color : '#13A085'};
 `
 
-/* Andrei's Styles */
-
 export const InputGreen = Input.extend`
 height: 9%; 
 width: 100%;
 margin-top: 10px;
 color: ${(props) => props.color ? props.color : '#13A085'};
+`
+
+export const Modal = styled.div`
+
 `
 
 export const DoublePanel = styled.div`
@@ -80,4 +82,3 @@ export const TH = styled.thead`
 border:1px solid gray;
 width: 100px;
 `
-/* End Andrei's Styles */

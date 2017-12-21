@@ -113,7 +113,6 @@ export default class HelpNew extends Component {
 
 		return (
 			<DoublePanel>
-				{/* Start DA */}
 				<Panel>
 					<form>
 						<div>Dansk</div>
@@ -149,8 +148,6 @@ export default class HelpNew extends Component {
 						</ButtonPanel>
 					</form>
 				</Panel>
-				{/* End DA */}
-				{/* Start EN */}
 				<Panel>
 					<form>
 						<div>English</div>
@@ -187,7 +184,6 @@ export default class HelpNew extends Component {
 
 					</ButtonPanel>
 				</Panel>
-				{/* End EN */}
 			</DoublePanel>
 		)
 	}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Button } from 'odeum-ui'
+import { Button, ButtonPanel } from 'odeum-ui'
+import { DoublePanel, InputGreen, Panel } from '../HelpForm/HelpStyles'
 import { getAllHelpItems } from '../HelpForm/HelpData'
 import { TD, TR, TH, Table } from '../HelpForm/HelpStyles'
 class HelpList extends Component {
@@ -7,8 +8,13 @@ class HelpList extends Component {
 		super(props)
 
 		this.state = {
-			helpItems: []
+			helpItems: [],
+			showModal: false
 		}
+	}
+
+	openModal = () => {
+		this.setState({ showModal: ! this.state.showModal })
 	}
 
 	componentWillMount = async () => {
@@ -22,15 +28,18 @@ class HelpList extends Component {
 		return (
 			<div >
 				<h1>Help items list</h1>
+				<Button	label={'Create new'} onClick={this.props.handleNew}/>
+				<Button label={'Modal example'} onClick={this.openModal}></Button>{ this.state.showModal ? <div>Text</div> : null }
+				<br></br>
 				<Table>
 					<TH>
-						<TD>Title</TD>
-						<TD>Description</TD>
+						<TD style={{ fontWeight: "bold" }}>Hjælpe titel</TD>
+						<TD style={{ fontWeight: "bold" }}>Beskrivelse</TD>
 					</TH>
-					{this.state.helpItems.map((child, index) => {
-						// console.log(child)
+					{this.state.helpItems.reverse().map((child, index) => {
+					// console.log(child)
 						return <TR key={index}>
-							<TD>
+							<TD  onClick={this.openModal} >
 								{child.locale_content.da.help_title}
 							</TD>
 							<TD>
@@ -40,14 +49,25 @@ class HelpList extends Component {
 					}
 					)}
 				</Table>
-
-				<Button
-					label={'Create New'}
-					onClick={this.props.handleNew}
-				/>
+				<br></br>
+				<Table>
+					<TR>
+						<TD style={{ fontWeight: "bold" }} >Header 1</TD>
+						<TD>data</TD>
+					</TR>
+					<TR>
+						<TD style={{ fontWeight: "bold" }} >Header 2</TD>
+						<TD>data</TD>
+					</TR>
+					<TR>
+						<TD style={{ fontWeight: "bold" }} >Header 3</TD>
+						<TD>data</TD>
+					</TR>
+				</Table>
 			</div>
 		)
 	}
 }
+
 
 export default HelpList
