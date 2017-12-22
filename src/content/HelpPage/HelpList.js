@@ -9,12 +9,13 @@ class HelpList extends Component {
 
 		this.state = {
 			helpItems: [],
-			showModal: false
+			showModal: false,
+			openHelp: ''
 		}
 	}
 
-	openModal = () => {
-		this.setState({ showModal: ! this.state.showModal })
+	openModal = (helpItems) => (e) => {
+		this.setState({ showModal: !this.state.showModal, openHelp: helpItems })
 	}
 
 	componentWillMount = async () => {
@@ -26,15 +27,17 @@ class HelpList extends Component {
 
 	render() {
 		return (
-			<div >
+			<div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
 				<h1>Help items list</h1>
 				<Button	label={'Create new'} onClick={this.props.handleNew}/>
 				<Button label={'Modal example'} onClick={this.openModal}></Button>{ this.state.showModal ? <div>Text</div> : null }
 				<br></br>
 				<Table>
 					<TH>
-						<TD style={{ fontWeight: "bold" }}>Hjælpe titel</TD>
-						<TD style={{ fontWeight: "bold" }}>Beskrivelse</TD>
+						<TR>
+							<TD style={{ fontWeight: "bold" }}>Hjælpe titel</TD>
+							<TD style={{ fontWeight: "bold" }}>Beskrivelse</TD>
+						</TR>
 					</TH>
 					{this.state.helpItems.reverse().map((child, index) => {
 					// console.log(child)
