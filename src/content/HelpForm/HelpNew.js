@@ -39,6 +39,8 @@ export default class HelpNew extends Component {
 		}
 	}
 	componentWillMount = () => {
+		if (this.props.helpItem)
+			this.setState({ locale_content: this.props.helpItem.locale_content })
 		//   getAllHelpItems()
 	}
 
@@ -105,7 +107,10 @@ export default class HelpNew extends Component {
 		})
 	}
 	postHelp = () => {
-		postHelpItem({ locale_content: this.state.locale_content })
+		if (this.props.submit !== undefined)
+			postHelpItem({ locale_content: this.state.locale_content })
+		else
+			this.props.submit({ locale_content: this.state.locale_content })
 	}
 
 	render() {
@@ -161,28 +166,7 @@ export default class HelpNew extends Component {
 						<InputGreen placeholder={'PDF'} value={en.help_content.pdf} name={'pdf'} onChange={this.handleContentChange} lang={'en'} />
 						<InputGreen placeholder={'Document'} value={en.help_content.document} name={'document'} onChange={this.handleContentChange} lang={'en'} />
 					</form>
-					<ButtonPanel justify={'left'} >
-
-						<Button
-							label={'Save'}
-							icon={'check'}
-							type={'submit'}
-							onClick={this.handleSubmit}
-							// disabled={!this.state.formValid}
-							// isDisabled={!this.state.formValid}
-							// color={this.state.formValid ? '#13A085' : ''}
-							onSubmit={this.handleOnSubmit}
-						/>
-
-						<Button
-							label={'Reset'}
-							icon={'close'}
-							type={'reset'}
-							onClick={this.handleResetInput}
-							color={'#BE4F44'}
-						/>
-
-					</ButtonPanel>
+			
 				</Panel>
 			</DoublePanel>
 		)

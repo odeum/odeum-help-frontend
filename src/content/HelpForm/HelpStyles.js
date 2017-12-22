@@ -50,14 +50,23 @@ margin-top: 10px;
 color: ${(props) => props.color ? props.color : '#13A085'};
 `
 
-export const Modal = styled.div`
-
+export const ModalDiv = styled.div`
+position: absolute;
+min-width: 100vw;
+min-height: 100vh;
+z-index: 1;
+background: #000000AE;
+ top: 0;
+ left: 0;
+display:flex;
+align-items:center;
+justify-content:center;
 `
 
 export const DoublePanel = styled.div`
 display:grid;
-grid-template-rows: auto auto;
-grid-template-columns: auto auto;
+grid-auto-rows: max-content;
+grid-template-columns: 1fr 1fr;
 `
 export const Panel = styled.div`
 margin: 5px;
@@ -67,18 +76,29 @@ border: 1px solid #e1e1e1;
 `
 
 export const TD = styled.td`
-border: 1px solid gray;
-padding: 15px;
+padding: 8px;
+border: 1px solid #ddd;
 `
+
 export const Table = styled.table`
 border-collapse:collapse;
-border: 1px solid gray;
+border: 1px solid #ddd;
 `
 export const TR = styled.tr`
-border:1px solid gray;
+border: 1px solid #ddd;
+&:nth-child(odd){
+	background:#f2f2f2;
+}
 width: 100px;
+&:hover{
+	color:royalblue;
+	background: #ddd;
+}
+cursor:pointer;
 `
-export const TH = styled.thead`
-border:1px solid gray;
+export const TH = styled.th`
+border: 1px solid #ddd;
 width: 100px;
+font-weight: bold;
+padding: 8px;
 `
