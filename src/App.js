@@ -13,6 +13,8 @@ import {
 import { FooterLabel, handleLink } from './framework/FooterLabel'
 // import theme from './framework/theme'
 import { Page/* , Login , LoginTester */ } from './framework/TestComponents'
+import Protected from './content/Login/Protected'
+import AuthExample from './framework/AutoExample'
 
 // Content imports
 import Homepage from './content/Homepage/Homepage'
@@ -42,6 +44,7 @@ class App extends Component {
 		return (
 			<AppContainer>
 				<Header />
+
 				<MenuPanel>
 
 					<Menu route={'/'} exact>
@@ -67,11 +70,21 @@ class App extends Component {
 							<FormPage />
 						</Tab>
 						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
-							Tutorial ...
+								Tutorial ...
+						</Tab>
+					</Menu>
+
+					<Menu label={'Login'} icon={'lock_outline'} route={'/auth'}>
+						<Tab label={'Login'} icon={'lock_outline'} route={'/'}>
+							<AuthExample />
+							<Protected isLoggedIn={true}>
+								This is a protected area ... 
+							</Protected>
 						</Tab>
 					</Menu>
 
 				</MenuPanel>
+				
 				<Footer label={FooterLabel} labelLink={handleLink()} helpID={'Logged in: ' + this.state.isLoggedIn} />
 			</AppContainer>
 		)
