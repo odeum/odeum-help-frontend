@@ -38,6 +38,7 @@ export default class HelpNew extends Component {
 			}
 		}
 	}
+
 	componentWillMount = () => {
 		if (this.props.helpItem)
 			this.setState({ locale_content: this.props.helpItem.locale_content })
