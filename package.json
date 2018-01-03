@@ -8,8 +8,8 @@
   "dependencies": {
     "apisauce": "^0.14.2",
     "grid-styled": "^2.0.0-11",
-    "odeum-app": "^0.2.48",
-    "odeum-ui": "^0.1.32",
+    "odeum-app": "^0.2.52",
+    "odeum-ui": "^0.1.42",
     "polished": "^1.9.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.4.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.10"
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.12"
   },
   "scripts": {
     "start": "react-scripts start",
