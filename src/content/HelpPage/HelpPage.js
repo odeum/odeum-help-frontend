@@ -64,6 +64,7 @@ class HelpPage extends Component {
 
 	// Section: New help item 
 	handleOnSubmitNew = (newModel) => {
+		console.log('hello')
 		this.setState({ mode: { new: false, list: true } })
 	
 		let newModelArray = [...this.state.model]

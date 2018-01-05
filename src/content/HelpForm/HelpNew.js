@@ -108,10 +108,10 @@ export default class HelpNew extends Component {
 		})
 	}
 	postHelp = () => {
-		if (this.props.submit !== undefined)
+		if (!this.props.submit)
 			postHelpItem({ locale_content: this.state.locale_content })
 		else
-			this.props.submit({ locale_content: this.state.locale_content })
+			 this.props.submit({ locale_content: this.state.locale_content })
 	}
 
 	render() {

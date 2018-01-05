@@ -5,6 +5,7 @@ import { getAllHelpItems } from '../HelpForm/HelpData'
 import { TD, TR, TH, Table } from '../HelpForm/HelpStyles'
 import HelpModal from '../HelpForm/HelpModal'
 import HelpNew from '../HelpForm/HelpNew'
+
 class HelpList extends Component {
 	constructor(props) {
 		super(props)
@@ -17,6 +18,7 @@ class HelpList extends Component {
 	}
 
 	openModal = (helpItem) => (e) => {
+		e.stopPropagation()
 		this.setState({ showModal: !this.state.showModal, openHelp: helpItem })
 	}
 
@@ -26,7 +28,7 @@ class HelpList extends Component {
 		this.setState({ helpItems: data.reverse() })
 
 	}
-	// updateHelpItem = async (helpItem) => {
+	updateHelpItem = async (helpItem) => {
 	// 	//Here you call the server to update your helpItem
 	// 	//PS: You are still not handling or setting any kind of ID, so the server will not know what or which item to update
 	// 	//PS2: you have 2 options:
@@ -52,7 +54,8 @@ class HelpList extends Component {
 	// 		4. Go back to HelpData, make the PUT function inside HelpData ( api.put( etc...) )
 	// 		5. Now call it from here 
 	// 	*/
-	// }
+		console.log('Leo FFS')
+	}
 	render() {
 		// var helpItems = this.state.helpItems.reverse()
 		const { helpItems } = this.state
