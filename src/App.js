@@ -1,27 +1,28 @@
 import React, { Component } from 'react'
 
 // Framework imports
-import { 
+import {
 	AppContainer,
-	Header, 
-	MenuPanel, 
+	Header,
+	MenuPanel,
 	Menu,
 	Tab,
-	Footer } from 'odeum-app'
+	Footer, Protected, LoginForm
+} from 'odeum-app'
 
 // Framework helper imports
 import { FooterLabel, handleLink } from './framework/FooterLabel'
 // import theme from './framework/theme'
-import { Page/* , Login , LoginTester */ } from './framework/TestComponents'
-import Protected from './content/Login/Protected'
-import AuthExample from './framework/AutoExample'
+// import { Page/* , Login , LoginTester */ } from './framework/TestComponents'
+// import Protected from './content/Login/Protected'
+// import AuthExample from './framework/AutoExample'
 
-// Content imports
-import Homepage from './content/Homepage/Homepage'
-import HelpPage from './content/HelpPage/HelpPage'
-import FormPage from './content/Form/FormPage'
-import TutorialPage from './content/Tutorial/TutorialPage'
-import LoginPage from './content/Login/LoginPage'
+// // Content imports
+import Homepage from './content/Home/Homepage'
+import HelpForm from './content/Help/HelpForm'
+// import HelpPage from './content/HelpPage/HelpPage'
+// import FormPage from './content/Form/FormPage'
+// import TutorialPage from './content/Tutorial/TutorialPage'
 
 
 
@@ -36,55 +37,39 @@ class App extends Component {
 		}
 	}
 
-	handleLogin = (loginState) => {
-		this.setState({ isLoggedIn: loginState })
+	handleLogin = () => {
+		this.setState({ isLoggedIn: true })
 	}
 
 	render() {
+		const { isLoggedIn } = this.state
 		return (
 			<AppContainer>
 				<Header />
 
-				<MenuPanel>
+				<MenuPanel
+					login={true}
+					isLoggedIn={isLoggedIn}
+					redirectTo={'/login'}
+					arrows={true}
+				>
 
-					<Menu route={'/'} exact>
+					<Menu route={'/'}>
 						<Homepage />
 					</Menu>
-
-					<Page route={'/login'}>
-						{/* <LoginTester /> */}
-						<LoginPage onLogin={this.handleLogin} loggedIn={this.state.isLoggedIn} />
-					</Page>
-
-					<Menu icon={'help'} label={'Help'} route={'/help'}>
-						<Tab icon={'help'} label={'Help'} route={'/'} exact>
-							<HelpPage />
-						</Tab>
-						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
-							<TutorialPage />
-						</Tab>						
-					</Menu>
-
-					<Menu icon={'assignment'} label={'Form'} route={'/form'}>
-						<Tab icon={'assignment'} label={'Form List'} route={'/formlist'}>
-							<FormPage />
-						</Tab>
-						<Tab icon={'code'} label={'Tutorial'} route={'/tutorial'}>
-								Tutorial ...
-						</Tab>
-					</Menu>
-
-					<Menu label={'Login'} icon={'lock_outline'} route={'/auth'}>
-						<Tab label={'Login'} icon={'lock_outline'} route={'/'}>
-							<AuthExample />
-							<Protected isLoggedIn={true}>
-								This is a protected area ... 
-							</Protected>
-						</Tab>
-					</Menu>
-
+					{LoginForm(isLoggedIn, this.handleLogin)}
+					<Protected>
+						<Menu icon={'help'} label={'Help'} route={'/help'}>
+							<Tab icon={'help'} label={'Help Items'} route={'/'} exact>
+								Test
+							</Tab>
+							<Tab icon={'add_circle'} label={'Add new Help Item'} route={'/add-help-item'}>
+								<HelpForm />
+							</Tab>
+						</Menu>
+					</Protected>
 				</MenuPanel>
-				
+
 				<Footer label={FooterLabel} labelLink={handleLink()} helpID={'Logged in: ' + this.state.isLoggedIn} />
 			</AppContainer>
 		)
