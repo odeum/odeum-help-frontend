@@ -48,9 +48,9 @@ class App extends Component {
 				<Header />
 
 				<MenuPanel
-					login={true}
-					isLoggedIn={isLoggedIn}
-					redirectTo={'/login'}
+					// login={true}
+					// isLoggedIn={isLoggedIn}
+					// redirectTo={'/login'}
 					arrows={true}
 				>
 
