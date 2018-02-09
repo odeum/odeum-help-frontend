@@ -87,11 +87,15 @@ class MyEditor extends React.Component {
 		)
 	}
 }
+// this is custom Styling buttons, this is what we need badly
 const styleMap = {
+	BOLD: {
+		fontWeight: 700,
+	},
 	CODE: {
 		backgroundColor: 'rgba(0, 0, 0, 0.05)',
 		fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-		fontSize: 16,
+		fontSize: 40,
 		padding: 2,
 	},
 }
@@ -100,7 +104,10 @@ function getBlockStyle(block) {
 		case 'blockquote': return 'RichEditor-blockquote'
 		default: return null
 	}
-} class StyleButton extends React.Component {
+}
+// Move to a New class
+
+class StyleButton extends React.Component {
 	constructor() {
 		super()
 		this.onToggle = (e) => {
@@ -114,13 +121,14 @@ function getBlockStyle(block) {
 			className += ' RichEditor-activeButton'
 		}
 		return (
-			<span className={className} onMouseDown={this.onToggle}>
+			<span style={{ border: '1px solid black', borderRadius: '3px', padding: '3px', margin: '0px 1px' }} className={className} onMouseDown={this.onToggle}>
 				{this.props.label}
 			</span>
 		)
 	}
 }
 
+//Move to a new class
 
 const BLOCK_TYPES = [
 	{ label: 'H1', style: 'header-one' },
@@ -142,7 +150,7 @@ const BlockStyleControls = (props) => {
 		.getBlockForKey(selection.getStartKey())
 		.getType()
 	return (
-		<div className="RichEditor-controls">
+		<div className="RichEditor-controls" style={{ display: 'flex', flexFlow: 'row nowrap', margin: '3px' }}>
 			{BLOCK_TYPES.map((type) =>
 				<StyleButton
 					key={type.label}
@@ -155,16 +163,18 @@ const BlockStyleControls = (props) => {
 		</div>
 	)
 }
+//Move to a new class
+
 var INLINE_STYLES = [
 	{ label: 'Bold', style: 'BOLD' },
 	{ label: 'Italic', style: 'ITALIC' },
 	{ label: 'Underline', style: 'UNDERLINE' },
-	{ label: 'Monospace', style: 'CODE' },
+	{ label: 'Monospace', style: 'CODE' }, //tied to styleMap
 ]
 const InlineStyleControls = (props) => {
 	var currentStyle = props.editorState.getCurrentInlineStyle()
 	return (
-		<div className="RichEditor-controls">
+		<div className="RichEditor-controls" style={{ display: 'flex', flexFlow: 'row nowrap', margin: '3px' }}>
 			{INLINE_STYLES.map(type =>
 				<StyleButton
 					key={type.label}
