@@ -4,10 +4,10 @@ import { ButtonContainer } from './HelpEditorStyles'
 import Dropdown from './DropDown.js'
 
 const BLOCK_TYPES = [
-	{ label: 'Blockquote', style: 'blockquote' },
-	{ label: 'UL', style: 'unordered-list-item' },
-	{ label: 'OL', style: 'ordered-list-item' },
-	{ label: 'Code Block', style: 'code-block' },
+	{ label: 'Blockquote', style: 'blockquote', icon: 'format_quote' },
+	{ label: 'UL', style: 'unordered-list-item', icon: 'format_list_bullet' },
+	{ label: 'OL', style: 'ordered-list-item', icon: 'format_list_number' },
+	{ label: 'Code Block', style: 'code-block', icon: 'code' },
 ]
 export const BlockStyleControls = (props) => {
 	const { editorState } = props
@@ -26,6 +26,7 @@ export const BlockStyleControls = (props) => {
 						label={type.label}
 						onToggle={props.onToggle}
 						style={type.style}
+						icon={type.icon}
 					/>
 				)}
 			</Dropdown>

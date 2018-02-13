@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { OptionButton } from './HelpEditorStyles'
+import { Icon } from 'odeum-ui'
 
 class EditorButton extends PureComponent {
 
@@ -9,8 +10,8 @@ class EditorButton extends PureComponent {
 	}
 	render() {
 		return (
-			<OptionButton active={this.props.active} onMouseDown={this.onToggle}>
-				{this.props.label}
+			<OptionButton size={this.props.size} active={this.props.active} onMouseDown={this.onToggle}>
+				<Icon icon={this.props.icon} iconSize={this.props.size ? this.props.size : '24' } active={true} color={'#fff'} />{this.props.label}
 			</OptionButton>
 		)
 	}

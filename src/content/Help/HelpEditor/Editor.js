@@ -3,6 +3,8 @@ import { Editor as Draft, EditorState, RichUtils, getDefaultKeyBinding } from 'd
 import { InlineStyleControls } from './InlineStyleControls'
 import { BlockStyleControls } from './BlockStyleControls'
 import { HeaderBlockControls } from './HeaderBlockControls'
+import { EditorArea } from './HelpEditorStyles'
+
 class Editor extends React.Component {
 	constructor(props) {
 		super(props)
@@ -70,6 +72,10 @@ class Editor extends React.Component {
 		return (
 			<div className="RichEditor-root" style={{ borderRadius: '3px', border: '1px solid #ddd' }}>
 				<div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', borderRadius: '3px', marginTop: '10px', marginBottom: '10px' }}>
+					<InlineStyleControls
+						editorState={editorState}
+						onToggle={this._toggleInlineStyle}
+					/>
 					<HeaderBlockControls
 						editorState={editorState}
 						onToggle={this._toggleBlockType}
@@ -78,12 +84,9 @@ class Editor extends React.Component {
 						editorState={editorState}
 						onToggle={this._toggleBlockType}
 					/>
-					<InlineStyleControls
-						editorState={editorState}
-						onToggle={this._toggleInlineStyle}
-					/>
+
 				</div>
-				<div onClick={this.focus} style={{ margin: '3px', paddingTop: '10px', borderTop: '1px solid #ddd' }}>
+				<EditorArea onClick={this.focus}>
 					<Draft
 						blockStyleFn={getBlockStyle}
 						customStyleMap={styleMap}
@@ -91,11 +94,11 @@ class Editor extends React.Component {
 						handleKeyCommand={this._handleKeyCommand}
 						keyBindingFn={this._mapKeyToEditorCommand}
 						onChange={this.onChange}
-						placeholder="Tell a story..."
+						placeholder=""
 						ref="editor"
 						spellCheck={true}
 					/>
-				</div>
+				</EditorArea>
 			</div>
 		)
 	}

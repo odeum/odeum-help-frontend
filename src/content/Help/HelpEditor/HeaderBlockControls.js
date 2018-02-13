@@ -3,12 +3,12 @@ import EditorButton from './EditorButton'
 import { ButtonContainer } from './HelpEditorStyles'
 import Dropdown from './DropDown'
 const BLOCK_TYPES = [
-	{ label: 'Header 1', style: 'header-one' },
-	{ label: 'Header 2', style: 'header-two' },
-	{ label: 'Header 3', style: 'header-three' },
-	{ label: 'Header 4', style: 'header-four' },
-	{ label: 'Header 5', style: 'header-five' },
-	{ label: 'Header 6', style: 'header-six' }
+	{ label: 'Header 1', style: 'header-one', size: '32px' },
+	{ label: 'Header 2', style: 'header-two', size: '24px' },
+	{ label: 'Header 3', style: 'header-three', size: '18px' },
+	{ label: 'Header 4', style: 'header-four', size: '15px' },
+	// { label: 'Header 5', style: 'header-five', size: '13px' },
+	// { label: 'Header 6', style: 'header-six', size: '9px' }
 	// { label: 'Blockquote', style: 'blockquote' },
 	// { label: 'UL', style: 'unordered-list-item' },
 	// { label: 'OL', style: 'ordered-list-item' },
@@ -36,6 +36,8 @@ export const HeaderBlockControls = (props) => {
 							label={type.label}
 							onToggle={props.onToggle}
 							style={type.style}
+							size={type.size}
+							icon={'format_header'}
 						/>
 					)}
 				</Dropdown>
