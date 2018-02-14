@@ -88,7 +88,7 @@ class Editor extends React.Component {
 					/>
 					<TextAlignmentControls
 						editorState={editorState}
-						onToggle={this._toggleBlockType}
+						onToggle={this._toggleInlineStyle}
 					/>
 					<BlockStyleControls
 						editorState={editorState}

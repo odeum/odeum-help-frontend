@@ -32,6 +32,18 @@ const styleMap = {
 		backgroundColor: 'rgba(0, 0, 0, 0.05)',
 		fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
 		padding: 2,
+	},
+	LEFT: {
+		display: 'flex',
+		justifyContent: 'left'
+	},
+	RIGHT: {
+		display: 'flex',
+		justifyContent: 'right'
+	},
+	CENTER: {
+		display: 'flex',
+		justifyContent: 'center'
 	}
 }
 

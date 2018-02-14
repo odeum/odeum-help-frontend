@@ -4,10 +4,10 @@ import { ButtonContainer } from '../HelpEditorStyles'
 import Dropdown from '../DropDown'
 
 const BLOCK_TYPES = [
-	{ label: 'Blockquote', style: 'blockquote', icon: 'format_quote' },
-	{ label: 'UL', style: 'unordered-list-item', icon: 'format_list_bullet' },
-	{ label: 'OL', style: 'ordered-list-item', icon: 'format_list_number' },
-	{ label: 'Code Block', style: 'CODE_BLOCK', icon: 'code' },
+	// { label: 'Blockquote', style: 'blockquote', icon: 'format_quote' },
+	{ label: 'Bullets', style: 'unordered-list-item', icon: 'format_list_bullet' },
+	{ label: 'Numbered List', style: 'ordered-list-item', icon: 'format_list_number' },
+	// { label: 'Code Block', style: 'CODE_BLOCK', icon: 'code' },
 ]
 export const BlockStyleControls = (props) => {
 	const { editorState } = props
@@ -18,7 +18,7 @@ export const BlockStyleControls = (props) => {
 		.getType()
 	return (
 		<ButtonContainer>
-			<Dropdown icon={'format_quote'} label={'Lists & Blocks/Quotes'}>
+			<Dropdown icon={'format_quote'} label={'Lists'}>
 				{BLOCK_TYPES.map((type) =>
 					<DropdownOption
 						key={type.label}
