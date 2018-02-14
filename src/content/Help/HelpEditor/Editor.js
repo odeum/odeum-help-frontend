@@ -1,9 +1,12 @@
 import React from 'react'
-import { Editor as Draft, EditorState, RichUtils, getDefaultKeyBinding } from 'draft-js'
-import { InlineStyleControls } from './InlineStyleControls'
-import { BlockStyleControls } from './BlockStyleControls'
-import { HeaderBlockControls } from './HeaderBlockControls'
+import { Editor as DraftEdtor, EditorState, RichUtils, getDefaultKeyBinding } from 'draft-js'
+import { InlineStyleControls } from './EditorControls/InlineStyleControls'
+import { BlockStyleControls } from './EditorControls/BlockStyleControls'
+import { HeaderBlockControls } from './EditorControls/HeaderBlockControls'
 import { EditorArea } from './HelpEditorStyles'
+import { TextAlignmentControls } from './EditorControls/TextAlignmentControls'
+import EditorSettings from './EditorSettings'
+
 
 class Editor extends React.Component {
 	constructor(props) {
@@ -15,7 +18,7 @@ class Editor extends React.Component {
 		if (nextState !== this.state)
 			return true
 		else
-			return true
+			return false
 	}
 	_handleKeyCommand(command, editorState) {
 		const newState = RichUtils.handleKeyCommand(editorState, command)
@@ -70,13 +73,20 @@ class Editor extends React.Component {
 		// }
 		// }
 		return (
-			<div className="RichEditor-root" style={{ borderRadius: '3px', border: '1px solid #ddd' }}>
+			<div className="RichEditor-root" style={{ borderRadius: '3px', border: '1px solid #ddd', display: 'flex', flexFlow: 'column nowrap' }}>
+				<input placeholder="Help Title" style={{ margin: '4px', width: '300px' }} />
+				<br /><label style={{ marginTop: '10px', marginLeft: '10px' }}> Help Content</label>
 				<div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', borderRadius: '3px', marginTop: '10px', marginBottom: '10px' }}>
+
 					<InlineStyleControls
 						editorState={editorState}
 						onToggle={this._toggleInlineStyle}
 					/>
 					<HeaderBlockControls
+						editorState={editorState}
+						onToggle={this._toggleBlockType}
+					/>
+					<TextAlignmentControls
 						editorState={editorState}
 						onToggle={this._toggleBlockType}
 					/>
@@ -87,9 +97,9 @@ class Editor extends React.Component {
 
 				</div>
 				<EditorArea onClick={this.focus}>
-					<Draft
-						blockStyleFn={getBlockStyle}
-						customStyleMap={styleMap}
+					<DraftEdtor
+						blockRenderMap={EditorSettings.extendedBlockRenderMap}
+						customStyleMap={EditorSettings.styleMap}
 						editorState={editorState}
 						handleKeyCommand={this._handleKeyCommand}
 						keyBindingFn={this._mapKeyToEditorCommand}
@@ -101,27 +111,6 @@ class Editor extends React.Component {
 				</EditorArea>
 			</div>
 		)
-	}
-}
-// this is custom Styling buttons, this is what we need badly
-const styleMap = {
-	ATOMIC: {
-		backgroundColor: 'red'
-	},
-	BOLD: {
-		fontWeight: 700,
-	},
-	CODE: {
-		backgroundColor: 'rgba(0, 0, 0, 0.05)',
-		fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-		fontSize: 40,
-		padding: 2,
-	},
-}
-function getBlockStyle(block) {
-	switch (block.getType()) {
-		case 'blockquote': return 'RichEditor-blockquote'
-		default: return null
 	}
 }
 

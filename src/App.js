@@ -79,7 +79,7 @@ class App extends Component {
 export default App
 
 
-if (process.env.NODE_ENV !== 'production') {
-	const { whyDidYouUpdate } = require('why-did-you-update')
-	whyDidYouUpdate(React, { groupByComponent: true, collapseComponentGroups: true })
-}
+// if (process.env.NODE_ENV !== 'production') {
+// 	const { whyDidYouUpdate } = require('why-did-you-update')
+// 	whyDidYouUpdate(React, { groupByComponent: true, collapseComponentGroups: true })
+// }

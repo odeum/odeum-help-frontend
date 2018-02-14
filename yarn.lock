@@ -3255,7 +3255,7 @@ ignore@^3.3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
-immutable@^3.8.1:
+immutable@^3.8.1, immutable@^3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
 
@@ -4602,8 +4602,8 @@ odeum-app@^0.2.73:
     styled-theming "^2.2.0"
 
 odeum-ui@^0.1.47:
-  version "0.1.49"
-  resolved "https://registry.yarnpkg.com/odeum-ui/-/odeum-ui-0.1.49.tgz#f2d658edb970882d799d99d0317aca1514173700"
+  version "0.1.50"
+  resolved "https://registry.yarnpkg.com/odeum-ui/-/odeum-ui-0.1.50.tgz#70cec935d3d9c820746622bf1e824e77de6cb33f"
   dependencies:
     polished "^1.9.2"
     react "^16.2.0"

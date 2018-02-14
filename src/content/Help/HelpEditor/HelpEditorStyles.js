@@ -1,5 +1,20 @@
 import styled from 'styled-components'
 
+export const CodeBlock = styled.div`
+background-color: rgba(0, 0, 0, 0.05);
+font-family: Inconsolata, Menlo, Consolas, monospace;
+padding: 2px;
+`
+
+export const TextLeft = styled.div`
+text-align:left;
+`
+export const TextRight = styled.div`
+text-align:right;
+`
+export const TextCenter = styled.div`
+text-align:center;
+`
 export const DropdownButton = styled.div`
 color:${p => p.theme.button.color};
 border-radius: 5px;
@@ -20,11 +35,11 @@ export const SingleOptionButton = DropdownButton.extend`
 display:flex;
 align-items:center;
 `
-export const OptionButton = styled.span`
+export const OptionButton = styled.div`
 display:flex;
 flex-flow:row nowrap;
 align-items:center;
-font-size:${p => p.size};
+font-size:${p => p.size ? p.size.toString() + 'px' : 'inherit'};
 color:${p => p.theme.button.color};
 background: ${p => p.active ? p.theme.button.selected : p.theme.button.background};
 padding:5px;
@@ -47,8 +62,6 @@ export const ButtonContainer = styled.div`
 `
 
 export const EditorArea = styled.div`
-/* margin: 3px; */
-/* margin-right: 10px; */
 margin: 15px 10px;
 border-top: 1px solid #ddd;
 padding-top: 10px;

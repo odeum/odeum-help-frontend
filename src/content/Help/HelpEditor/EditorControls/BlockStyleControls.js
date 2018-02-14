@@ -1,13 +1,13 @@
 import React from 'react'
-import EditorButton from './EditorButton'
-import { ButtonContainer } from './HelpEditorStyles'
-import Dropdown from './DropDown.js'
+import { DropdownOption } from '../EditorButton'
+import { ButtonContainer } from '../HelpEditorStyles'
+import Dropdown from '../DropDown'
 
 const BLOCK_TYPES = [
 	{ label: 'Blockquote', style: 'blockquote', icon: 'format_quote' },
 	{ label: 'UL', style: 'unordered-list-item', icon: 'format_list_bullet' },
 	{ label: 'OL', style: 'ordered-list-item', icon: 'format_list_number' },
-	{ label: 'Code Block', style: 'code-block', icon: 'code' },
+	{ label: 'Code Block', style: 'CODE_BLOCK', icon: 'code' },
 ]
 export const BlockStyleControls = (props) => {
 	const { editorState } = props
@@ -20,7 +20,7 @@ export const BlockStyleControls = (props) => {
 		<ButtonContainer>
 			<Dropdown icon={'format_quote'} label={'Lists & Blocks/Quotes'}>
 				{BLOCK_TYPES.map((type) =>
-					<EditorButton
+					<DropdownOption
 						key={type.label}
 						active={type.style === blockType}
 						label={type.label}
