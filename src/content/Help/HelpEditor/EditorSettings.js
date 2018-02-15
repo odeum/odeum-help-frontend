@@ -1,6 +1,8 @@
 import Immutable from 'immutable'
 import Draft from 'draft-js'
 import { TextLeft, TextRight, TextCenter, CodeBlock } from './HelpEditorStyles'
+import createStyles from 'draft-js-custom-styles'
+
 
 
 const blockRenderMap = Immutable.Map({
@@ -46,5 +48,6 @@ const styleMap = {
 		justifyContent: 'center'
 	}
 }
+const { styles, customStyleFn, exporter } = createStyles(['font-size', 'color'], 'STYLES_', styleMap)
 
-export default { extendedBlockRenderMap, styleMap }
+export default { extendedBlockRenderMap, styleMap, styles, customStyleFn, exporter }

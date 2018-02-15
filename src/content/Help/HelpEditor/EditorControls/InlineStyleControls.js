@@ -7,11 +7,10 @@ var INLINE_STYLES = [
 	{ label: 'Bold', style: 'BOLD', icon: 'format_bold' },
 	{ label: 'Italic', style: 'ITALIC', icon: 'format_italic' },
 	{ label: 'Underline', style: 'UNDERLINE', icon: 'format_underline' },
-	{ label: 'Code', style: 'CODE', icon: 'code' },
-	// { label: 'Atomic', style: 'ATOMIC', icon: 'star' },
-	// { label: 'Align Right', style: 'ALIGN_LEFT', icon: 'code' }
+	{ label: 'Code', style: 'CODE', icon: 'code' }
 	//tied to styleMap
 ]
+
 export const InlineStyleControls = (props) => {
 	var currentStyle = props.editorState.getCurrentInlineStyle()
 	return (
