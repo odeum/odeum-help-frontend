@@ -19,7 +19,7 @@ export default class DropdownOption extends Component {
 		const { showOptions } = this.state
 		const { icon, label } = this.props
 		return (
-			<DropdownButton onMouseEnter={this.onMouseHover} onMouseLeave={this.handleMouseLeave}>
+			<DropdownButton style={this.props.style} onMouseEnter={this.onMouseHover} onMouseLeave={this.handleMouseLeave}>
 				<div style={{ display: 'flex', alignItems: 'center' }}><Icon icon={icon} iconSize={20} active={true} color={'#fff'} style={{ marginRight: "3px" }} /> <label style={{ marginRight: '4px' }}>{label}</label></div>
 				{showOptions === true ? <div style={{ position: 'absolute', display: 'flex', flexFlow: 'column nowrap', zIndex: 2, borderRadius: '4px', overflow: 'hidden' }}>
 					{this.props.children}

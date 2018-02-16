@@ -1,14 +1,15 @@
 import React from 'react'
-import { Editor as DraftEdtor, EditorState, RichUtils, getDefaultKeyBinding, Modifier, convertToRaw } from 'draft-js'
+import { stateToHTML } from 'draft-js-export-html'
+import { Editor as DraftEdtor, EditorState, RichUtils, getDefaultKeyBinding, convertToRaw } from 'draft-js'
+
+import { EditorArea } from './HelpEditorStyles'
+import EditorSettings from './EditorSettings'
 import { InlineStyleControls } from './EditorControls/InlineStyleControls'
 import { BlockStyleControls } from './EditorControls/BlockStyleControls'
 import { HeaderBlockControls } from './EditorControls/HeaderBlockControls'
-import { EditorArea } from './HelpEditorStyles'
 import { TextAlignmentControls } from './EditorControls/TextAlignmentControls'
-import EditorSettings from './EditorSettings'
-import { stateToHTML } from 'draft-js-export-html'
-
-var _ = require('lodash')
+import ColorPicker from './EditorControls/TextColorControls'
+import TextSizeControls from './EditorControls/TextSizeControls'
 
 class Editor extends React.Component {
 	constructor(props) {
@@ -24,16 +25,6 @@ class Editor extends React.Component {
 			return true
 		else
 			return false
-	}
-	toggleFontSize = fontSize => {
-		const newEditorState = EditorSettings.styles.fontSize.toggle(this.state.editorState, fontSize)
-
-		return this.onChange(newEditorState)
-	}
-	toggleColor = color => {
-		const newEditorState = EditorSettings.styles.color.toggle(this.state.editorState, color)
-
-		return this.onChange(newEditorState)
 	}
 	_handleKeyCommand(command, editorState) {
 		const newState = RichUtils.handleKeyCommand(editorState, command)
@@ -69,6 +60,18 @@ class Editor extends React.Component {
 		}
 		return getDefaultKeyBinding(e)
 	}
+	//#region Text Controls
+
+	toggleFontSize = fontSize => {
+		const newEditorState = EditorSettings.styles.fontSize.toggle(this.state.editorState, fontSize)
+
+		return this.onChange(newEditorState)
+	}
+	toggleColor = color => {
+		const newEditorState = EditorSettings.styles.color.toggle(this.state.editorState, color)
+
+		return this.onChange(newEditorState)
+	}
 	_toggleBlockType = (blockType) => {
 		this.onChange(
 			RichUtils.toggleBlockType(
@@ -86,26 +89,8 @@ class Editor extends React.Component {
 			)
 		)
 	}
-	_toggleInlineStyleOverride = (inlineStyle) => {
-		const styles = [
-			'RIGHT',
-			'LEFT',
-			'CENTER'
-		]
-		const { editorState } = this.state
-		const contentWithoutStyles = _.reduce(styles, (newContentState, style) => (
-			Modifier.removeInlineStyle(
-				newContentState,
-				editorState.getSelection(),
-				style
-			)
-		), editorState.getCurrentContent())
-		return this.onChange(EditorState.push(
-			editorState,
-			contentWithoutStyles,
-			'change-inline-style'
-		))
-	}
+	//#endregion
+
 	onEditorFocus = () => {
 		this.setState({ edit: false })
 	}
@@ -114,13 +99,9 @@ class Editor extends React.Component {
 	}
 	onSaveSubmit = () => {
 		console.log(JSON.stringify((convertToRaw(this.state.editorState.getCurrentContent()))))
-		// e.preventDefault()
 	}
 	render() {
 		const { editorState } = this.state
-		const options = x => x.map(child => {
-			return <option key={child} value={child}>{child}</option>
-		  })
 		const inlineStyles = EditorSettings.exporter(this.state.editorState)
 		const html = stateToHTML(this.state.editorState.getCurrentContent(), { inlineStyles })
 		return (
@@ -128,15 +109,15 @@ class Editor extends React.Component {
 				<input placeholder="Help Title" style={{ margin: '4px', width: '300px' }} />
 				<br /><label style={{ marginTop: '10px', marginLeft: '10px' }}> Help Content</label>
 				<div style={{ display: 'flex', flexFlow: 'row wrap', alignItems: 'center', borderRadius: '3px', marginTop: '10px', marginBottom: '10px' }}>
-					<select onChange={e => this.toggleFontSize(e.target.value)}>
-						{options(['12px', '24px', '36px', '50px', '72px'])}
-					</select>
-					<select onChange={e => this.toggleColor(e.target.value)}>
-						{options(['red', 'blue', 'green'])}
-					</select>
 					<InlineStyleControls
 						editorState={editorState}
 						onToggle={this._toggleInlineStyle}
+					/>
+					<TextSizeControls
+						toggleSize={this.toggleFontSize}
+					/>
+					<ColorPicker
+						toggleColor={this.toggleColor}
 					/>
 					<HeaderBlockControls
 						editorState={editorState}
@@ -154,7 +135,7 @@ class Editor extends React.Component {
 						Save
 					</button>
 				</div>
-				<EditorArea onClick={this.onEditorFocus} >
+				<EditorArea /* onClick={this.onEditorFocus} */ >
 					<DraftEdtor
 						blockRenderMap={EditorSettings.extendedBlockRenderMap}
 						customStyleMap={EditorSettings.styleMap}
@@ -166,8 +147,8 @@ class Editor extends React.Component {
 						placeholder=""
 						ref="editor"
 						spellCheck={true}
-						readOnly={this.state.edit}
-						onBlur={this.onEditorExit}
+					// readOnly={this.state.edit}
+					// onBlur={this.onEditorExit}
 					/>
 				</EditorArea>
 				<div dangerouslySetInnerHTML={{ __html: html }} />

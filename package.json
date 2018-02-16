@@ -18,6 +18,7 @@
     "odeum-ui": "^0.1.47",
     "polished": "^1.9.2",
     "react": "^16.2.0",
+    "react-color": "^2.13.8",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-rte": "^0.16.0",
