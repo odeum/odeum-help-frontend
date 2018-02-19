@@ -29,7 +29,7 @@ A Web App developed with ODEUM Code can be any arbitrary web app written in Reac
 
 ```js
 - locale: string (help content locale)
-	- app_id: number (uuid for the app using the index/help dictionary)
+	- app_id: string (label for the app using the index/help dictionary)
 	- help_id: number (uuid)
 	- help_title: string (short)
 	- help_description: string (long)
@@ -44,9 +44,9 @@ A Web App developed with ODEUM Code can be any arbitrary web app written in Reac
 ```js
 
 {
-	'1234': {
-		app_id: 1,
-		help_id: 1234,
+	'friendly_name': {
+		app_id: report,
+		help_id: friendly_name,
 		locale_content: {
 			'en': {
 				help_title: 'This is the title of the help entry',
