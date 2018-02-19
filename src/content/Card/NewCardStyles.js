@@ -1,6 +1,13 @@
 import styled from "styled-components"
 
 
+export const CardListContainer = styled.div`
+display:flex;
+flex-flow: row;
+overflow:${p => p.active !== -1 ? 'hidden' : ''};
+width:100%;
+height:100%;
+`
 export const FormContainer = styled.div`
 border: 1px solid;
 border-color: #e5e6e9 #dfe0e4 #d0d1d5;
@@ -13,14 +20,12 @@ margin: 10px;
 /* padding:5px; */
 overflow:hidden;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-/* position: ${ p => p.expand ? 'absolute' : 'relative'}; */
-position: ${ p => p.expand ? 'relative' : 'relative'};
+position: relative;
 z-index: ${ p => p.expand ? '99' : '0'};
 height: ${ p => p.expand ? '96%' : '350px'};
 width: ${ p => p.expand ? ' 96%' : '300px'};
 left:${p => p.expand ? '-' + p.id * 323 + 'px' : '0'};
-transition: all 300ms ease-in-out;
-/* outline: 2px dashed #f00 !important; */
+transition: all 500ms ease;
 `
 
 export const FormImg = styled.div`

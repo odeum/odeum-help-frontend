@@ -92,7 +92,7 @@ export const Paragraf = styled.p`
 `
 export const ProgressContent = styled.div`
     margin-top: 24px;
-` 
+`
 export const Progress = styled.label`
     padding-left: 39%;
 `
@@ -108,7 +108,7 @@ export const ProgressMeter = styled.span`
     display: block;
     height: 100%;
     background-color: rgb(43,194,83);
-    width: ${( props ) => props.progress || '25%'};
+    width: ${(props) => props.progress || '25%'};
     font-family: sans-serif;
     color: white;
     text-align: -webkit-right;

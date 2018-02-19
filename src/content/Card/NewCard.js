@@ -11,7 +11,13 @@ export default class NewFormCard extends Component {
 		}
 	}
 	handleExpand = (e) => {
-		this.setState({ expand: !this.state.expand })
+		if (this.state.expand) {
+			this.setState({ expand: false }, this.props.handleExpand(-1))
+
+		}
+		else {
+			this.setState({ expand: true }, this.props.handleExpand(this.props.id))
+		}
 	}
 	render() {
 		const { label, date, regs, resp } = this.props
@@ -22,7 +28,7 @@ export default class NewFormCard extends Component {
 					<img src='' alt='projectimg' />
 				</FormImg>
 				<Header>
-					<Icon icon={'info'} iconSize={22} style={{ marginRight: 5 }} />{label}</Header>
+					<Icon icon={'info'} iconSize={22} style={{ marginRight: '5px' }} />{label}</Header>
 				<ProjectInfo>
 					<ProjectInfoCategory>
 						<Title>Date</Title>

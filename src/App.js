@@ -26,7 +26,7 @@ import NewFormCard from './content/Card/NewCard'
 // import HelpPage from './content/HelpPage/HelpPage'
 // import FormPage from './content/Form/FormPage'
 // import TutorialPage from './content/Tutorial/TutorialPage'
-
+import CardList from './content/Card/CardComponents/CardList'
 
 
 class App extends Component {
@@ -64,28 +64,35 @@ class App extends Component {
 					<Protected>
 						<Menu icon={'help'} label={'Help'} route={'/help'}>
 							<Tab icon={'help'} label={'Help Items'} route={'/'} exact>
-								<div style={{ overflow: 'hidden', display: 'flex', flexFlow: 'row nowrap', width: '100%', height: '100%' }}>
+								{/* <div style={{ display: 'flex', flexFlow: 'row nowrap', width: '100%', height: '100%' }}> */}
+								<CardList>
 									<NewFormCard
 										label={'Andrei'}
 										resp={'Christian'}
 										date={'18.02.2018'}
 										regs={100}
-										id={0}
+
 									/>
 									<NewFormCard
 										label={'Dom'}
 										resp={'Christian'}
 										date={'18.02.2018'}
 										regs={100}
-										id={1} />
+									/>
 									<NewFormCard
 										label={'Andrei'}
 										resp={'Christian'}
 										date={'18.02.2018'}
 										regs={100}
-										id={2}
 									/>
-								</div>
+									<NewFormCard
+										label={'Dom'}
+										resp={'Christian'}
+										date={'18.02.2018'}
+										regs={100}
+									/>
+								</CardList>
+								{/* </div> */}
 								{/* <FormCard icon1={'add_circle_outline'}
 									icon2={'mode_edit'}
 									icon3={'share'}
