@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { InputGreen, DoublePanel, Panel } from './HelpStyles'
-import { ButtonPanel, Button } from 'odeum-ui'
+// import { ButtonPanel, Button } from 'odeum-ui'
 import { getAllHelpItems } from './HelpData'
 
 export default class HelpNew extends Component {
@@ -44,7 +44,7 @@ export default class HelpNew extends Component {
 		if (this.props.helpItem)
 			this.setState({ locale_content: this.props.helpItem.locale_content })
 		console.log(data)
-		this.setState({ data: data })
+		this.setState({ data: data, locale_content: data['test'].localeContents })
 	}
 
 	handleResetInput = (fields) => {
@@ -118,14 +118,15 @@ export default class HelpNew extends Component {
 	}
 
 	render() {
-		const { en, da } = this.state.locale_content
+		// const { en, da } = this.state.locale_content
 
 		return (
 			<DoublePanel>
-				<Panel>
-					{this.state.data ? this.state.data['test'].localeContents[0].da.helpContents.map((c, index) => {
-						return <InputGreen placeholder={c.type} name={c.type} onChange={this.handleChange} />
-					}) : null}
+				<Panel> {/* this.state.data['test'].localeContents.da.helpContents */}
+					{this.state.data ?
+						this.state.locale_content.en.helpContents.map((c, index) => {
+							return <InputGreen placeholder={c.type} name={c.type} onChange={this.handleChange} />
+						}) : null}
 					{/* <form>
 						<div>Dansk</div>
 						<InputGreen placeholder={'Hjælpe titel'} value={da.help_title} name={'help_title'} onChange={this.handleChange} lang={'da'} />
