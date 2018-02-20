@@ -43,7 +43,7 @@ export default class HelpNew extends Component {
 		var data = await getAllHelpItems()
 		if (this.props.helpItem)
 			this.setState({ locale_content: this.props.helpItem.locale_content })
-		console.log(data)
+		console.log('NewHelpForm', data)
 		this.setState({ data: data, locale_content: data['test'].localeContents })
 	}
 

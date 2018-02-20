@@ -9,10 +9,11 @@ const api = create({
 	},
 	mode: 'no-cors'
 })
-const appID = GetAppID()
 
 export const getAllHelpItems = async () => {
-	console.log(appID)
-	var data = await api.get('/help')
-	return data.data
+	const appID = GetAppID()
+	var data = api.get('/' + appID).then(
+		(result) => result.data
+	)
+	return data
 }
