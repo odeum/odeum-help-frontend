@@ -7,7 +7,7 @@ import {
 	MenuPanel,
 	Menu,
 	Tab,
-	Footer, Protected, LoginForm
+	Footer, Protected, LoginForm, SetAppID, GetAppID
 } from 'odeum-app'
 
 // Framework helper imports
@@ -22,6 +22,7 @@ import Homepage from './content/Home/Homepage'
 import HelpForm from './content/Help/HelpForm'
 // import FormCard from './content/Card/FormCard'
 import NewFormCard from './content/Card/NewCard'
+import HelpNew from './content/HelpInputFields/NewHelpItemForm'
 // import { Content } from 'content/Card/Content'
 // import HelpPage from './content/HelpPage/HelpPage'
 // import FormPage from './content/Form/FormPage'
@@ -38,6 +39,11 @@ class App extends Component {
 			helpID: 0,
 			isLoggedIn: false
 		}
+	}
+	componentWillMount = () => {
+		SetAppID('help')
+		console.log(GetAppID())
+
 	}
 
 	handleLogin = () => {
@@ -121,6 +127,9 @@ class App extends Component {
 							</Tab>
 							<Tab icon={'add_circle'} label={'Add new Help Item'} route={'/add-help-item'}>
 								<HelpForm />
+							</Tab>
+							<Tab icon={'add_circle'} label={'Add New Help Item Form'} route={'/add-new-item'}>
+								<HelpNew />
 							</Tab>
 						</Menu>
 					</Protected>

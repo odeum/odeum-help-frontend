@@ -152,8 +152,11 @@ class Editor extends React.Component {
 					/>
 				</EditorArea>
 				<div dangerouslySetInnerHTML={{ __html: html }} />
-				<pre>
+				{/* <pre>
 					{JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()), null, 2)}
+				</pre> */}
+				<pre>
+					{html}
 				</pre>
 			</div>
 		)
