@@ -4,31 +4,38 @@ import styled from "styled-components"
 export const CardListContainer = styled.div`
 display:flex;
 flex-flow: row;
-overflow:${p => p.active !== -1 ? 'hidden' : ''};
-width:100%;
-height:100%;
+flex:1;
+position: relative;
 `
+
 export const FormContainer = styled.div`
 border: 1px solid;
 border-right: 0px;
 border-bottom:0px;
 border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 border-radius: ${p => p.horizOpen ? '10px 10px 0px 0px' : '10px'};
-min-width: ${p => p.expand ? 'calc( 100% - 20px)' : '230px'};
+min-width: 230px;
 min-height: 300px;
 display:flex;
 flex-flow: column nowrap;
 /* padding:5px; */
 overflow:hidden;
 box-shadow: 0px -2px 10px 0px rgba(0,0,0,0.2);
-position: ${p => p.expand ? 'absolute' : 'relative'};
-z-index: ${ p => p.expand ? '99' : '0'};
+position:relative;
+z-index: 0;
 /* height: ${ p => p.expand ? '96%' : '350px'}; */
 /* width: ${ p => p.expand ? ' 96%' : '300px'}; */
 /* left:${p => p.expand ? '-' + p.id * 323 + 'px' : '0'}; */
 transition: all 100ms linear;
 `
 
+export const FormContainerExpanded = FormContainer.extend`
+	position: absolute;
+	z-index: 30;
+	flex: 1;
+	width: calc(100% - 120px);
+	height: calc(100% - 120px);
+`
 export const FormImg = styled.div`
 background: gray;
 width: 100%;

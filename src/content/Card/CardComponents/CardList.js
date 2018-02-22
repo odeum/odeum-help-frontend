@@ -14,12 +14,16 @@ export default class CardList extends Component {
 	}
 	render() {
 		return (
-			<CardListContainer active={this.state.active}>
-				{React.Children.toArray(this.props.children).map((c, index) => {
-					return React.cloneElement(c, { id: parseInt(index, 10), key: index, handleExpand: this.handleExpand, active: this.state.active })
-				}
-				)}
-			</CardListContainer>
+			<React.Fragment>
+
+				<CardListContainer active={this.state.active}>
+					{React.Children.toArray(this.props.children).map((c, index) => {
+						return React.cloneElement(c, { id: parseInt(index, 10), key: index, handleExpand: this.handleExpand, active: this.state.active })
+					}
+					)}
+				</CardListContainer>
+
+			</React.Fragment>
 		)
 	}
 }

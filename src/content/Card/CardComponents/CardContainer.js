@@ -12,7 +12,7 @@ export default class CardContainer extends Component {
 	render() {
 		console.log(this.props.children, this.context)
 		return (
-			<div style={{ position: 'relative', width: '100%', height: '100%' }}>
+			<div style={{ position: 'relative', flex: '1', display: 'flex', flexFlow: 'column' }}>
 				{this.props.children}
 			</div>
 		)

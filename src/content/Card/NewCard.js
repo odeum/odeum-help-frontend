@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { FormContainer, FormImg, Header, ProjectInfo, Title, ProjectInfoCategory, ButtonContainer, Button, ControlsContainer, ExpandButtonContainer, VerticalButtonContainer } from './NewCardStyles'
 import { Icon } from 'odeum-ui'
-
+import CardExpanded from './CardComponents/CardExpanded'
 export default class NewFormCard extends Component {
 	constructor(props, context) {
 		super(props, context)
@@ -13,11 +13,11 @@ export default class NewFormCard extends Component {
 	}
 	handleExpand = (e) => {
 		if (this.state.expand) {
-			// this.setState({ expand: false }, this.props.handleExpand(-1))
+			this.setState({ expand: false }, this.props.handleExpand(-1))
 			// this.context.handleExpand()
 		}
 		else {
-			// this.setState({ expand: true }, this.props.handleExpand(this.props.id))
+			this.setState({ expand: true }, this.props.handleExpand(this.props.id))
 			// this.context.handleExpand()
 
 		}
@@ -79,10 +79,16 @@ export default class NewFormCard extends Component {
 						</ControlsContainer>
 
 					</div>
-					<VerticalButtonContainer horizOpen={false} onClick={this.expandHoriz}>
+					<VerticalButtonContainer horizOpen={false} onClick={this.handleExpand}>
 						<Icon icon={'more_vert'} iconSize={23} />
 					</VerticalButtonContainer>
 				</div>
+				{expand ? <CardExpanded
+					regs={regs}
+					label={label}
+					date={date}
+					resp={resp}
+				/> : null}
 			</Fragment>
 		)
 	}
