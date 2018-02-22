@@ -20,12 +20,13 @@ import { FooterLabel, handleLink } from './framework/FooterLabel'
 // // Content imports
 import Homepage from './content/Home/Homepage'
 import HelpForm from './content/Help/HelpForm'
-// import NewFormCard from './content/Card/NewCard'
+import NewFormCard from './content/Card/NewCard'
 import HelpNew from './content/HelpInputFields/NewHelpItemForm'
 // import { Content } from 'content/Card/Content'
-// import CardList from './content/Card/CardComponents/CardList'
+import CardList from './content/Card/CardComponents/CardList'
 import HelpList from './content/HelpInputFields/HelpList'
-
+import Icon from 'odeum-ui/lib/components/Icon/Icon'
+import CardContainer from './content/Card/CardComponents/CardContainer'
 
 class App extends Component {
 
@@ -52,7 +53,6 @@ class App extends Component {
 		return (
 			<AppContainer>
 				<Header />
-
 				<MenuPanel
 					// login={true}
 					// isLoggedIn={isLoggedIn}
@@ -62,6 +62,38 @@ class App extends Component {
 
 					<Menu route={'/'}>
 						<Homepage />
+					</Menu>
+					<Menu label={'Card'}>
+						<CardContainer>
+							<Icon icon="search" />
+							<CardList>
+								<NewFormCard
+									label={'Andrei'}
+									resp={'Christian'}
+									date={'18.02.2018'}
+									regs={100}
+
+								/>
+								<NewFormCard
+									label={'Dom'}
+									resp={'Christian'}
+									date={'18.02.2018'}
+									regs={100}
+								/>
+								<NewFormCard
+									label={'Andrei'}
+									resp={'Christian'}
+									date={'18.02.2018'}
+									regs={100}
+								/>
+								<NewFormCard
+									label={'Dom'}
+									resp={'Christian'}
+									date={'18.02.2018'}
+									regs={100}
+								/>
+							</CardList>
+						</CardContainer>
 					</Menu>
 					{LoginForm(isLoggedIn, this.handleLogin)}
 					<Protected>
@@ -95,7 +127,7 @@ class App extends Component {
 										regs={100}
 									/>
 								</CardList> */}
-								<HelpList/>
+								<HelpList />
 							</Tab>
 							<Tab icon={'add_circle'} label={'Add new Help Item'} route={'/add-help-item'}>
 								<HelpForm />

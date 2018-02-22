@@ -9,6 +9,7 @@ export default class CardList extends Component {
 		}
 	}
 	handleExpand = (id) => {
+		console.log('CardList', this.context)
 		this.setState({ active: id })
 	}
 	render() {
