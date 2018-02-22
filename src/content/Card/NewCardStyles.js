@@ -9,6 +9,7 @@ position: relative;
 `
 
 export const FormContainer = styled.div`
+/* filter:${p => p.expand ? 'blur(5px)' : ''}; */
 border: 1px solid;
 border-right: 0px;
 border-bottom:0px;
@@ -28,13 +29,28 @@ z-index: 0;
 /* left:${p => p.expand ? '-' + p.id * 323 + 'px' : '0'}; */
 transition: all 100ms linear;
 `
-
-export const FormContainerExpanded = FormContainer.extend`
+export const ExpandedFormDiv = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	position: absolute;
+   	z-index: 3;
+   	width: 100%;
+    height: 100%;
+	background: #3e3e3e3e;
+	/* &:before{
+		filter:blur("5px");
+		content:'';
+		width:100%;
+		height:100%;
+	} */
+`
+export const FormContainerExpanded = FormContainer.extend`
+	position: relative;
 	z-index: 30;
-	flex: 1;
 	width: calc(100% - 120px);
 	height: calc(100% - 120px);
+
 `
 export const FormImg = styled.div`
 background: gray;

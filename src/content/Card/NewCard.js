@@ -30,10 +30,8 @@ export default class NewFormCard extends Component {
 		const { expand, horizOpen } = this.state
 		return (
 			<Fragment>
-				<div style={{ display: 'flex', flexFlow: 'row nowrap', margin: '10px' }}>
-
+				<div style={{ display: 'flex', flexFlow: 'row nowrap', margin: '10px', filter: expand ? 'blur(5px)' : null }}>
 					<div style={{ display: 'flex', flexFlow: 'column nowrap', alignItems: 'center' }}>
-
 						<FormContainer expand={expand} id={this.props.id} horizOpen={horizOpen}>
 							<FormImg>
 								<img src='' alt='projectimg' />
@@ -54,9 +52,6 @@ export default class NewFormCard extends Component {
 									{resp}
 								</ProjectInfoCategory>
 							</ProjectInfo>
-							{/* <div style={{ background: 'green', margin: 10, padding: 3 }}> progressBar here</div> */}
-
-							{/* {expand ? <div>Lorem Ipsum </div> : null} */}
 						</FormContainer>
 						<ControlsContainer>
 							<Fragment>
