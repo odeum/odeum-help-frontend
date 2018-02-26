@@ -7,6 +7,7 @@ export default class CardExpanded extends PureComponent {
 	render() {
 		const { transitionState, date, regs, resp, label, innerRef } = this.props
 		return (<ExpandedFormDiv style={{ ...overlayTransition[transitionState] }}>
+			{/* ContainerWHorizControls */}
 			<FormContainerExpanded style={{ ...transitionStyles[transitionState] }} innerRef={innerRef}>
 				<FormImg>
 					<img src='' alt='projectimg' />
