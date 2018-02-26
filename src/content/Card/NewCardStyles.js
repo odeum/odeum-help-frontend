@@ -37,19 +37,28 @@ export const ExpandedFormDiv = styled.div`
    	z-index: 3;
    	width: 100%;
     height: 100%;
-	background: #3e3e3e3e;
-	/* &:before{
-		filter:blur("5px");
-		content:'';
-		width:100%;
-		height:100%;
-	} */
+	background: #ffffff9a;
+	transition: all 300ms ease-out;
 `
+export const overlayTransition = {
+	entering: { visibility: 'visible', opacity: 1 },
+	entered: { opacity: 1 },
+	exiting: { opacity: 0 },
+	exited: { opacity: 0, visibility: 'hidden' }
+}
+export const transitionStyles = {
+	entering: { opacity: 1, width: '10%' },
+	entered: { opacity: 1, width: 'calc(100% - 120px)' },
+	exiting: { opacity: 1, width: '10%' },
+	exited: { opacity: 1, width: '10%' }
+}
+
 export const FormContainerExpanded = FormContainer.extend`
 	position: relative;
 	z-index: 30;
-	width: calc(100% - 120px);
+	/* width: calc(100% - 120px); */
 	height: calc(100% - 120px);
+	transition: all 300ms ease-out;
 
 `
 export const FormImg = styled.div`

@@ -1,8 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import { FormContainer, FormImg, Header, ProjectInfo, Title, ProjectInfoCategory, ButtonContainer, Button, ControlsContainer, ExpandButtonContainer, VerticalButtonContainer } from './NewCardStyles'
 import { Icon } from 'odeum-ui'
 import CardExpanded from './CardComponents/CardExpanded'
-export default class NewFormCard extends Component {
+import { Transition } from 'react-transition-group'
+
+export default class NewFormCard extends PureComponent {
 	constructor(props, context) {
 		super(props, context)
 
@@ -11,12 +13,27 @@ export default class NewFormCard extends Component {
 			horizOpen: false
 		}
 	}
+	setExpandedCardRef = (node) => {
+		this.node = node
+	}
+	onClickOutside = (e) => {
+		if (this.state.expand) {
+			if (this.node !== null && this.node !== undefined)
+				if (!this.node.contains(e.target)) {
+					this.setState({ expand: false })
+					document.removeEventListener('click', this.onClickOutside, false)
+				}
+		}
+	}
+
 	handleExpand = (e) => {
 		if (this.state.expand) {
+			document.removeEventListener('click', this.onClickOutside, false)
 			this.setState({ expand: false }, this.props.handleExpand(-1))
 			// this.context.handleExpand()
 		}
 		else {
+			document.addEventListener('click', this.onClickOutside, false)
 			this.setState({ expand: true }, this.props.handleExpand(this.props.id))
 			// this.context.handleExpand()
 
@@ -30,7 +47,7 @@ export default class NewFormCard extends Component {
 		const { expand, horizOpen } = this.state
 		return (
 			<Fragment>
-				<div style={{ display: 'flex', flexFlow: 'row nowrap', margin: '10px', filter: expand ? 'blur(5px)' : null }}>
+				<div style={{ display: 'flex', flexFlow: 'row nowrap', margin: '10px' }}>
 					<div style={{ display: 'flex', flexFlow: 'column nowrap', alignItems: 'center' }}>
 						<FormContainer expand={expand} id={this.props.id} horizOpen={horizOpen}>
 							<FormImg>
@@ -78,12 +95,23 @@ export default class NewFormCard extends Component {
 						<Icon icon={'more_vert'} iconSize={23} />
 					</VerticalButtonContainer>
 				</div>
-				{expand ? <CardExpanded
-					regs={regs}
-					label={label}
-					date={date}
-					resp={resp}
-				/> : null}
+				<Transition in={this.state.expand} timeout={300}>
+					{state => {
+						console.log(state)
+						return  <CardExpanded
+							regs={regs}
+							label={label}
+							date={date}
+							resp={resp}
+							innerRef={this.setExpandedCardRef}
+							handleExpand={this.handleExpand}
+							expand={this.state.expand}
+							transitionState={state}
+						/>
+
+					}}
+				</Transition>
+
 			</Fragment>
 		)
 	}
