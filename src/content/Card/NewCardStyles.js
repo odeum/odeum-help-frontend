@@ -17,26 +17,28 @@ export const overlayTransition = {
 }
 
 export const transitionStyles = {
-	entering: { width: '10%', },
-	entered: { width: 'calc(100% - 120px)' },
-	exiting: { width: '20%' },
-	exited: {}
+	entering: { width: '230px', height: '300px' },
+	entered: { width: 'calc(100% - 120px)', height: 'calc(100% - 120px)' },
+	exiting: { width: '230px', height: '300px' },
+	exited: { width: '230px', height: '300px' }
 }
 export const transitionStyles2 = {
-	entering: { width: '10%', },
-	entered: { width: '100%' },
-	exiting: { width: '10%' },
-	exited: {}
+	entering: { width: '230px', height: '300px' },
+	entered: { width: '100%', height: '100%' },
+	exiting: { width: '230px', height: '300px' },
+	exited: { width: '230px', height: '300px' }
+}
+export const transitionStyles3 = {
+	entering: { width: '230px', height: '300px', alignItems: 'center', justifyContent: 'center' },
+	entered: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
+	exiting: { width: '230px', height: '300px', alignItems: 'center', justifyContent: 'center' },
+	exited: { width: '230px', height: '300px' }
 }
 export const CompleteContainer = styled.div`
 	display: flex;
 	flex-flow:row nowrap;
 	margin: ${p => p.expand ? '0px' : '10px'};
-	${p => p.expand ?
-		`
-		z-index:5;
-	` : ''}
-	transition: all 300ms ease-out;
+	transition: all 250ms ease;
 `
 
 export const ExpandedFormDiv = CompleteContainer.extend`
@@ -49,18 +51,14 @@ export const ExpandedFormDiv = CompleteContainer.extend`
    	width: 100%;
     height: 100%;
 	background: #ffffff9a;
-	transition: all 300ms ease-out;
+	transition: all 250ms ease;
 `
 export const ContainerWHorizControls = styled.div`
 	display:flex;
 	flex-flow: column nowrap;
 	align-items:center;
 	margin:0;
-	${p => p.expand ? `
-	width:calc(100% - 120px);
-	height:calc(100% - 120px);
-	` : ''}
-	transition: all 300ms ease;
+	transition: all 250ms ease;
 `
 
 export const CardListContainer = styled.div`
@@ -86,15 +84,14 @@ export const FormContainer = styled.div`
 	box-shadow: 0px -2px 10px 0px rgba(0,0,0,0.2);
 	position:relative;
 	z-index: 0;
-	height: ${ p => p.expand ? '100%' : '300px'};
- 	width: ${ p => p.expand ? ' 100%' : '230px'};
+	/* height: ${ p => p.expand ? '100%' : '300px'};
+ 	width: ${ p => p.expand ? ' 100%' : '230px'}; */
 /* left:${p => p.expand ? '-' + p.id * 323 + 'px' : '0'}; */
 	/* ${p => p.expand ? `
 	width:100%;
 	height:100%;
 	` : ''} */
-	transition: all 300ms ease;
-
+	transition: all 250ms ease;
 `
 
 
@@ -104,7 +101,7 @@ export const FormContainerExpanded = FormContainer.extend`
 	z-index: 30;
 	/* width: calc(100% - 120px); */
 	height: calc(100% - 120px);
-	transition: all 300ms ease-out;
+	transition: all 250ms ease;
 
 `
 export const FormImg = styled.div`
@@ -149,7 +146,7 @@ export const ControlsContainer = styled.div`
 	justify-content: space-around;
 	width: 100%;
 	max-width: 290px;
-	/* transition: all 100ms linear; */
+	transition: all 250ms ease;
 	border-radius: ${p => p.horizOpen ? '0px 0px 10px 10px' : '0px 0px 300px 300px'};
 `
 export const ExpandButtonContainer = styled.div`
@@ -173,6 +170,7 @@ export const VerticalButtonContainer = ExpandButtonContainer.extend`
 	width: 15px;
 	height: 100px;
 	margin-top: 40px;
+	transition: all 250ms ease;
 `
 
 export const ButtonContainer = styled.div`
