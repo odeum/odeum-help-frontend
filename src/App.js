@@ -72,7 +72,24 @@ class App extends Component {
 									resp={'Christian'}
 									date={'18.02.2018'}
 									regs={100}
-
+								/>
+								<NewFormCard
+									label={'Andrei'}
+									resp={'Christian'}
+									date={'18.02.2018'}
+									regs={100}
+								/>
+								<NewFormCard
+									label={'Andrei'}
+									resp={'Christian'}
+									date={'18.02.2018'}
+									regs={100}
+								/>
+								<NewFormCard
+									label={'Andrei'}
+									resp={'Christian'}
+									date={'18.02.2018'}
+									regs={100}
 								/>
 								<NewFormCard
 									label={'Dom'}

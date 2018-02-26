@@ -1,29 +1,15 @@
 import React, { Component } from 'react'
 import { CardListContainer } from '../NewCardStyles'
 export default class CardList extends Component {
-	constructor(props) {
-		super(props)
 
-		this.state = {
-			active: -1
-		}
-	}
-	handleExpand = (id) => {
-		// console.log('CardList', this.context)
-		this.setState({ active: id })
-	}
 	render() {
 		return (
-			<React.Fragment>
-
-				<CardListContainer active={this.state.active}>
-					{React.Children.toArray(this.props.children).map((c, index) => {
-						return React.cloneElement(c, { id: parseInt(index, 10), key: index, handleExpand: this.handleExpand, active: this.state.active })
-					}
-					)}
-				</CardListContainer>
-
-			</React.Fragment>
+			<CardListContainer>
+				{React.Children.toArray(this.props.children).map((c, index) => {
+					return React.cloneElement(c, { id: parseInt(index, 10), key: index })
+				}
+				)}
+			</CardListContainer>
 		)
 	}
 }

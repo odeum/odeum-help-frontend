@@ -16,24 +16,27 @@ export const overlayTransition = {
 	exited: { position: 'relative', background: '#ffffff00' }
 }
 
-export const transitionStyles = {
+export const ContainerWHorizControlsTransitions = {
 	entering: { width: '230px', height: '300px' },
-	entered: { width: 'calc(100% - 120px)', height: 'calc(100% - 120px)' },
+	entered: { width: 'calc(100% - 120px)', height: '100%' },
 	exiting: { width: '230px', height: '300px' },
 	exited: { width: '230px', height: '300px' }
 }
-export const transitionStyles2 = {
+
+export const FormContainerTransitions = {
 	entering: { width: '230px', height: '300px' },
-	entered: { width: '100%', height: '100%' },
+	entered: { width: '100%', height: 'calc(100% - 60px)' },
 	exiting: { width: '230px', height: '300px' },
 	exited: { width: '230px', height: '300px' }
 }
-export const transitionStyles3 = {
+
+export const CompleteContainerTransitions = {
 	entering: { width: '230px', height: '300px', alignItems: 'center', justifyContent: 'center' },
 	entered: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
 	exiting: { width: '230px', height: '300px', alignItems: 'center', justifyContent: 'center' },
 	exited: { width: '230px', height: '300px' }
 }
+
 export const CompleteContainer = styled.div`
 	display: flex;
 	flex-flow:row nowrap;
@@ -41,18 +44,6 @@ export const CompleteContainer = styled.div`
 	transition: all 250ms ease;
 `
 
-export const ExpandedFormDiv = CompleteContainer.extend`
-	/* display: flex; */
-	margin:0;
-	align-items: center;
-	justify-content: center;
-	position: absolute;
-   	z-index: 3;
-   	width: 100%;
-    height: 100%;
-	background: #ffffff9a;
-	transition: all 250ms ease;
-`
 export const ContainerWHorizControls = styled.div`
 	display:flex;
 	flex-flow: column nowrap;
@@ -63,47 +54,28 @@ export const ContainerWHorizControls = styled.div`
 
 export const CardListContainer = styled.div`
 	display:flex;
-	flex-flow: row;
+	flex-flow: row wrap;
 	flex:1;
 	position: relative;
 `
 
 export const FormContainer = styled.div`
-/* filter:${p => p.expand ? 'blur(5px)' : ''}; */
 	border: 1px solid;
 	border-right: 0px;
 	border-bottom:0px;
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-	border-radius: ${p => p.horizOpen ? '10px 10px 0px 0px' : '10px'};
+	border-radius: 10px;
 	min-width: 230px;
 	min-height: 300px;
 	display:flex;
 	flex-flow: column nowrap;
-/* padding:5px; */
 	overflow:hidden;
 	box-shadow: 0px -2px 10px 0px rgba(0,0,0,0.2);
 	position:relative;
 	z-index: 0;
-	/* height: ${ p => p.expand ? '100%' : '300px'};
- 	width: ${ p => p.expand ? ' 100%' : '230px'}; */
-/* left:${p => p.expand ? '-' + p.id * 323 + 'px' : '0'}; */
-	/* ${p => p.expand ? `
-	width:100%;
-	height:100%;
-	` : ''} */
 	transition: all 250ms ease;
 `
 
-
-
-export const FormContainerExpanded = FormContainer.extend`
-	position: relative;
-	z-index: 30;
-	/* width: calc(100% - 120px); */
-	height: calc(100% - 120px);
-	transition: all 250ms ease;
-
-`
 export const FormImg = styled.div`
 	background: gray;
 	width: 100%;
@@ -116,7 +88,6 @@ export const Header = styled.div`
 	align-items: center;
 	font-size: 20px;
 	padding: 5px;
-	/* margin-left:15px; */
 `
 
 export const ProjectInfo = styled.div`
@@ -138,17 +109,19 @@ export const ProjectInfoCategory = styled.div`
 	flex-flow: column nowrap;
 	align-items: center;
 `
+
 export const ControlsContainer = styled.div`
 	align-self: bottom;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: space-around;
-	width: 100%;
-	max-width: 290px;
+	width: 80%;
+	max-width: 80%;
 	transition: all 250ms ease;
-	border-radius: ${p => p.horizOpen ? '0px 0px 10px 10px' : '0px 0px 300px 300px'};
+	border-radius: 0px 0px 300px 300px;
 `
+
 export const ExpandButtonContainer = styled.div`
 	cursor:pointer;
 	align-self: bottom;
@@ -158,17 +131,17 @@ export const ExpandButtonContainer = styled.div`
 	justify-content: space-around;
 	background: #D5D5D5;
 	width: 40%;
-	max-width: 290px;
-	/* transition: all 100ms linear; */
-	border-radius: ${p => p.horizOpen ? '0px 0px 10px 10px' : '0px 0px 150px 150px'};
+	/* width: ${p => p.horizOpen ? '100%' : '40%'}; */
+	border-radius: 0px 0px 10px 10px;
 	height: 15px;
+	transition: all 300ms ease;
 `
 
 export const VerticalButtonContainer = ExpandButtonContainer.extend`
 	max-height:200px;
 	border-radius: ${p => p.vertOpen ? '0px 0px 10px 10px' : '0px 50px 50px 0px'};
 	width: 15px;
-	height: 100px;
+	height: 80%;
 	margin-top: 40px;
 	transition: all 250ms ease;
 `
@@ -181,12 +154,9 @@ export const ButtonContainer = styled.div`
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: space-around;
-	/* padding: ${p => p.horizOpen ? '5px' : '0px'}; */
 	background: #D5D5D5;
-	/* width: ${p => p.horizOpen ? '100%' : '30%'}; */
 	width: 100%;
-	max-width: 225px;
-	/* transition: all 400ms cubic-bezier(1, 1, 0, 1.5); */
+	/* max-width: 200px; */
 	transition: all 250ms cubic-bezier(.87,-.41,.19,1.44);
 	border-radius: 0px 0px 10px 10px;
 	overflow:hidden;
@@ -201,6 +171,5 @@ export const Button = styled.div`
 		background: #E6E6E6;
 		border: 1px solid #E6E6E6;
 	}
-	/* transition: all ${p => p.horizOpen ? '40ms' : '300ms'} cubic-bezier(1, 1, 0, 2.5); */
 	transition: opacity 0.1s cubic-bezier(.87,-.41,.19,1.44);
 `
