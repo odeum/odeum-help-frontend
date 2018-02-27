@@ -76,11 +76,19 @@ export const FormContainer = styled.div`
 	z-index: 0;
 	transition: all 250ms ease;
 `
+export const Img = styled.img`
+	width:100%;
+`
 
 export const FormImg = styled.div`
+	display:flex;
+	align-items:center;
+	justify-content:center;
 	background: gray;
 	width: 100%;
 	height: 150px;
+	position:relative;
+	overflow:hidden;
 `
 
 export const Header = styled.div`

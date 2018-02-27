@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react'
 import {
 	FormContainer, FormImg, Header, ProjectInfo, Title, ProjectInfoCategory, ButtonContainer, Button, ControlsContainer,
 	ExpandButtonContainer, VerticalButtonContainer, CompleteContainer, ContainerWHorizControls,
-	ContainerWHorizControlsTransitions, overlayTransition, FormContainerTransitions, CompleteContainerTransitions
+	ContainerWHorizControlsTransitions, overlayTransition, FormContainerTransitions, CompleteContainerTransitions, Img
 } from './NewCardStyles'
 import { Icon } from 'odeum-ui'
 import { Transition } from 'react-transition-group'
@@ -13,7 +13,8 @@ export default class NewFormCard extends PureComponent {
 
 		this.state = {
 			expand: false,
-			horizOpen: false
+			horizOpen: false,
+			imgLoad: 'Loading'
 		}
 	}
 
@@ -46,9 +47,12 @@ export default class NewFormCard extends PureComponent {
 	expandHoriz = (e) => {
 		this.setState({ horizOpen: !this.state.horizOpen })
 	}
-
+	handleImg = (load) => (e) => {
+		e.preventDefault()
+		this.setState({ imgLoad: load })
+	}
 	render() {
-		const { label, date, /* regs, */ resp } = this.props
+		const { label, date, /* regs, */ resp, img } = this.props
 		const { expand, horizOpen } = this.state
 		return (
 			<Transition in={this.state.expand} timeout={300}>
@@ -57,11 +61,18 @@ export default class NewFormCard extends PureComponent {
 						<ContainerWHorizControls expand={expand} style={{ ...ContainerWHorizControlsTransitions[state] }} innerRef={this.setExpandedCardRef}>
 							<FormContainer style={{ ...FormContainerTransitions[state] }} expand={expand} id={this.props.id} horizOpen={horizOpen}>
 								<FormImg>
-									<img src='' alt='projectimg' />
+									{this.state.imgLoad === 'loading' ? <div style={{ position: 'absolute', zIndex: 3, color: '#fff' }}>Loading</div> :
+										this.state.imgLoad === 'Error' ? <div style={{ position: 'absolute', zIndex: 3, color: '#fff' }}>Error</div> : null
+									}
+									<Img src={img}
+										// alt='projectimg'
+										onLoad={this.handleImg('Loaded')}
+										onError={this.handleImg('Error')}
+									/>
 								</FormImg>
 								<Header>
 									<Icon icon={'info'} iconSize={22} style={{ marginRight: '5px' }} />{label}</Header>
-								<ProjectInfo>
+								<ProjectInfo style={{ color: '#000' }}>
 									<ProjectInfoCategory>
 										<Title>Date</Title>
 										{date}

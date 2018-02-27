@@ -7,7 +7,7 @@ import {
 	MenuPanel,
 	Menu,
 	Tab,
-	Footer, Protected, LoginForm, SetAppID, GetAppID
+	Footer, Protected, LoginForm/* , SetAppID, GetAppID */
 } from 'odeum-app'
 
 // Framework helper imports
@@ -27,7 +27,7 @@ import CardList from './content/Card/CardComponents/CardList'
 import HelpList from './content/HelpInputFields/HelpList'
 import Icon from 'odeum-ui/lib/components/Icon/Icon'
 import CardContainer from './content/Card/CardComponents/CardContainer'
-
+import mockData from './framework/Data'
 var _ = require('lodash')
 class App extends Component {
 
@@ -37,13 +37,14 @@ class App extends Component {
 		this.state = {
 			helpID: 0,
 			isLoggedIn: false,
-			pageSize: 8
+			pageSize: 8,
+			mockData: null
 		}
 	}
-	componentDidMount = () => {
-		SetAppID('help')
-		console.log(GetAppID())
-
+	componentDidMount = async () => {
+		// SetAppID('help')
+		// console.log(GetAppID())
+		this.setState({ mockData: await mockData })
 	}
 
 	handleLogin = () => {
@@ -74,12 +75,12 @@ class App extends Component {
 								<Icon icon="search" />
 								<select onChange={this.handlePageSize} value={this.state.pageSize}>
 									{_.range(2, 13).map(i =>
-										<option value={i}>{i}</option>
+										<option key={i} value={i}>{i}</option>
 									)}
 								</select>
 							</div>
 							<CardList pageSize={this.state.pageSize}>
-								{_.range(1, 151).map(i => {
+								{/* {_.range(1, 151).map(i => {
 									return <NewFormCard
 										key={i}
 										label={i}
@@ -88,7 +89,18 @@ class App extends Component {
 										regs={i}
 									/>
 								})
+								} */}
+								{this.state.mockData !== null ? this.state.mockData.map((c, i) => {
+									// console.log(c)
+									return <NewFormCard
+										key={i}
+										img={'https://picsum.photos/1920/1404/?random=' + i}
+										label={c.name}
+										resp={c.responsible}
+										date={c.date.toLocaleDateString()}
+									/>
 								}
+								) : null}
 							</CardList>
 						</CardContainer>
 					</Menu>

@@ -23,7 +23,7 @@ export default class CardList extends Component {
 					)}
 
 				</CardListContainer>
-				<Pagination items={this.props.children} onChangePage={this.onChangePage} pageSize={this.props.pageSize}/>
+				 <Pagination items={this.props.children} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />
 			</React.Fragment>
 		)
 	}
