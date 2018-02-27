@@ -17,7 +17,7 @@ export default class CardList extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<CardListContainer>
+				<CardListContainer pageSize={this.props.pageSize}>
 					{this.state.pageOfItems.map((item, index) =>
 						<React.Fragment key={index}>{item}</React.Fragment>
 					)}

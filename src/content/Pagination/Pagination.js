@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { PageButton, PageNumberButton, PageNumberContainer } from './PaginationStyles'
+import { PageButton, PageNumberButton, PageNumberContainer, PaginationContainer } from './PaginationStyles'
 var _ = require('lodash')
 
 const propTypes = {
@@ -113,21 +113,20 @@ class Pagination extends React.Component {
 		}
 
 		return (
-			<div className="pagination" style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center' }}>
-
+			// <div className="pagination" style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center' }}>
+			<PaginationContainer>
 				<PageButton onClick={() => this.setPage(1)}>First</PageButton>
 				<PageButton onClick={() => this.setPage(pager.currentPage - 1)}>Previous</PageButton>
 				<PageNumberContainer>
-					{pager.pages.map((page, index) => /* <li key={index} className={pager.currentPage === page ? 'active' : ''}> */
+					{pager.pages.map((page, index) =>
 						<PageNumberButton key={index} active={pager.currentPage === page ? true : false} onClick={() => this.setPage(page)}>{page}</PageNumberButton>
 					)}
 				</PageNumberContainer>
-
 				<PageButton onClick={() => this.setPage(pager.currentPage + 1)}>Next</PageButton>
-				{/*<li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>*/}
 				<PageButton onClick={() => this.setPage(pager.totalPages)}>Last</PageButton>
+			</PaginationContainer>
 
-			</div>
+			// </div>
 		)
 	}
 }

@@ -31,3 +31,13 @@ overflow:hidden;
 border: 1px solid gray;
 padding:5px 0px;
 `
+
+export const PaginationContainer = styled.div`
+display:flex;
+/* grid-template-columns: ${p => 'repeat(1fr,' + p.pageSize / 2 + ')'}; */
+/* grid-template-rows: 1fr 1fr; */
+flex-flow:row nowrap;
+justify-content:center;
+align-items:center;
+margin-top:5px;
+`

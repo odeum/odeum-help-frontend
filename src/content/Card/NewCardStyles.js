@@ -53,11 +53,11 @@ export const ContainerWHorizControls = styled.div`
 `
 
 export const CardListContainer = styled.div`
-	display:flex;
-	flex-flow: row wrap;
-	flex:1;
+	display:grid;
+	/* display:-ms-grid; */
+	grid-template-columns: ${p => 'repeat(' + Math.round(p.pageSize / 2) + ',1fr)'};
+	grid-template-rows: 1fr 1fr;
 	position: relative;
-	/* overflow: hidden; */
 `
 
 export const FormContainer = styled.div`

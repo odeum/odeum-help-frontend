@@ -69,12 +69,15 @@ class App extends Component {
 					</Menu>
 					<Menu label={'Card'}>
 						<CardContainer>
-							<Icon icon="search" />
-							<select onChange={this.handlePageSize} value={this.state.pageSize}>
-								{_.range(2, 13).map(i =>
-									<option value={i}>{i}</option>
-								)}
-							</select>
+							<div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center' }}>
+
+								<Icon icon="search" />
+								<select onChange={this.handlePageSize} value={this.state.pageSize}>
+									{_.range(2, 13).map(i =>
+										<option value={i}>{i}</option>
+									)}
+								</select>
+							</div>
 							<CardList pageSize={this.state.pageSize}>
 								{_.range(1, 151).map(i => {
 									return <NewFormCard
