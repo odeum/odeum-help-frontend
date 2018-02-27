@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-//TODO: Understand how this works and adapt it to our needs
-// Also connect it with react-router?
+import { PageButton, PageNumberButton, PageNumberContainer } from './PaginationStyles'
 var _ = require('lodash')
 
 const propTypes = {
@@ -60,7 +59,7 @@ class Pagination extends React.Component {
 		currentPage = currentPage || 1
 
 		// default page size is 10
-		pageSize = pageSize || 10
+		pageSize = pageSize || 8
 
 		// calculate total pages
 		var totalPages = Math.ceil(totalItems / pageSize)
@@ -114,25 +113,21 @@ class Pagination extends React.Component {
 		}
 
 		return (
-			<ul className="pagination">
-				<li className={pager.currentPage === 1 ? 'disabled' : ''}>
-					<a onClick={() => this.setPage(1)}>First</a>
-				</li>
-				<li className={pager.currentPage === 1 ? 'disabled' : ''}>
-					<a onClick={() => this.setPage(pager.currentPage - 1)}>Previous</a>
-				</li>
-				{pager.pages.map((page, index) =>
-					<li key={index} className={pager.currentPage === page ? 'active' : ''}>
-						<a onClick={() => this.setPage(page)}>{page}</a>
-					</li>
-				)}
-				<li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-					<a onClick={() => this.setPage(pager.currentPage + 1)}>Next</a>
-				</li>
-				<li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-					<a onClick={() => this.setPage(pager.totalPages)}>Last</a>
-				</li>
-			</ul>
+			<div className="pagination" style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center' }}>
+
+				<PageButton onClick={() => this.setPage(1)}>First</PageButton>
+				<PageButton onClick={() => this.setPage(pager.currentPage - 1)}>Previous</PageButton>
+				<PageNumberContainer>
+					{pager.pages.map((page, index) => /* <li key={index} className={pager.currentPage === page ? 'active' : ''}> */
+						<PageNumberButton key={index} active={pager.currentPage === page ? true : false} onClick={() => this.setPage(page)}>{page}</PageNumberButton>
+					)}
+				</PageNumberContainer>
+
+				<PageButton onClick={() => this.setPage(pager.currentPage + 1)}>Next</PageButton>
+				{/*<li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>*/}
+				<PageButton onClick={() => this.setPage(pager.totalPages)}>Last</PageButton>
+
+			</div>
 		)
 	}
 }

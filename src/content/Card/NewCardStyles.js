@@ -120,6 +120,7 @@ export const ControlsContainer = styled.div`
 	max-width: 80%;
 	transition: all 250ms ease;
 	border-radius: 0px 0px 300px 300px;
+	z-index:2;
 `
 
 export const ExpandButtonContainer = styled.div`

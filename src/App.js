@@ -28,6 +28,7 @@ import HelpList from './content/HelpInputFields/HelpList'
 import Icon from 'odeum-ui/lib/components/Icon/Icon'
 import CardContainer from './content/Card/CardComponents/CardContainer'
 
+var _ = require('lodash')
 class App extends Component {
 
 	constructor(props) {
@@ -67,48 +68,16 @@ class App extends Component {
 						<CardContainer>
 							<Icon icon="search" />
 							<CardList>
-								<NewFormCard
-									label={'Andrei'}
-									resp={'Christian'}
-									date={'18.02.2018'}
-									regs={100}
-								/>
-								<NewFormCard
-									label={'Andrei'}
-									resp={'Christian'}
-									date={'18.02.2018'}
-									regs={100}
-								/>
-								<NewFormCard
-									label={'Andrei'}
-									resp={'Christian'}
-									date={'18.02.2018'}
-									regs={100}
-								/>
-								<NewFormCard
-									label={'Andrei'}
-									resp={'Christian'}
-									date={'18.02.2018'}
-									regs={100}
-								/>
-								<NewFormCard
-									label={'Dom'}
-									resp={'Christian'}
-									date={'18.02.2018'}
-									regs={100}
-								/>
-								<NewFormCard
-									label={'Andrei'}
-									resp={'Christian'}
-									date={'18.02.2018'}
-									regs={100}
-								/>
-								<NewFormCard
-									label={'Dom'}
-									resp={'Christian'}
-									date={'18.02.2018'}
-									regs={100}
-								/>
+								{_.range(1, 151).map(i => {
+									return <NewFormCard
+										key={i}
+										label={i}
+										resp={'Christian'}
+										date={'18.02.2018'}
+										regs={100}
+									/>
+								})
+								}
 							</CardList>
 						</CardContainer>
 					</Menu>
