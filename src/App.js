@@ -36,7 +36,8 @@ class App extends Component {
 
 		this.state = {
 			helpID: 0,
-			isLoggedIn: false
+			isLoggedIn: false,
+			pageSize: 8
 		}
 	}
 	componentDidMount = () => {
@@ -48,7 +49,9 @@ class App extends Component {
 	handleLogin = () => {
 		this.setState({ isLoggedIn: true })
 	}
-
+	handlePageSize = (e) => {
+		this.setState({ pageSize: parseInt(e.target.value, 10) })
+	}
 	render() {
 		const { isLoggedIn } = this.state
 		return (
@@ -67,14 +70,19 @@ class App extends Component {
 					<Menu label={'Card'}>
 						<CardContainer>
 							<Icon icon="search" />
-							<CardList>
+							<select onChange={this.handlePageSize} value={this.state.pageSize}>
+								{_.range(2, 13).map(i =>
+									<option value={i}>{i}</option>
+								)}
+							</select>
+							<CardList pageSize={this.state.pageSize}>
 								{_.range(1, 151).map(i => {
 									return <NewFormCard
 										key={i}
 										label={i}
-										resp={'Christian'}
-										date={'18.02.2018'}
-										regs={100}
+										resp={i}
+										date={i}
+										regs={i}
 									/>
 								})
 								}
@@ -85,34 +93,6 @@ class App extends Component {
 					<Protected>
 						<Menu icon={'help'} label={'Help'} route={'/help'}>
 							<Tab icon={'help'} label={'Help Items'} route={'/'} exact>
-								{/* <div style={{ display: 'flex', flexFlow: 'row nowrap', width: '100%', height: '100%' }}> */}
-								{/* <CardList>
-									<NewFormCard
-										label={'Andrei'}
-										resp={'Christian'}
-										date={'18.02.2018'}
-										regs={100}
-
-									/>
-									<NewFormCard
-										label={'Dom'}
-										resp={'Christian'}
-										date={'18.02.2018'}
-										regs={100}
-									/>
-									<NewFormCard
-										label={'Andrei'}
-										resp={'Christian'}
-										date={'18.02.2018'}
-										regs={100}
-									/>
-									<NewFormCard
-										label={'Dom'}
-										resp={'Christian'}
-										date={'18.02.2018'}
-										regs={100}
-									/>
-								</CardList> */}
 								<HelpList />
 							</Tab>
 							<Tab icon={'add_circle'} label={'Add new Help Item'} route={'/add-help-item'}>

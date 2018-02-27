@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 export const PageButton = styled.a`
 background: ${p => p.theme.tab.selected};
-padding: 5px;
+padding: 5px 10px;
 color: ${p => p.theme.tab.activeColor};
 border-radius: 5px;
 margin:5px;

@@ -17,24 +17,24 @@ export const overlayTransition = {
 }
 
 export const ContainerWHorizControlsTransitions = {
-	entering: { width: '230px', height: '300px' },
+	entering: { width: '200px', height: '300px' },
 	entered: { width: 'calc(100% - 120px)', height: '100%' },
-	exiting: { width: '230px', height: '300px' },
-	exited: { width: '230px', height: '300px' }
+	exiting: { width: '200px', height: '300px' },
+	exited: { width: '200px', height: '300px' }
 }
 
 export const FormContainerTransitions = {
-	entering: { width: '230px', height: '300px' },
+	entering: { width: '200px', height: '300px' },
 	entered: { width: '100%', height: 'calc(100% - 60px)' },
-	exiting: { width: '230px', height: '300px' },
-	exited: { width: '230px', height: '300px' }
+	exiting: { width: '200px', height: '300px' },
+	exited: { width: '200px', height: '300px' }
 }
 
 export const CompleteContainerTransitions = {
-	entering: { width: '230px', height: '300px', alignItems: 'center', justifyContent: 'center' },
+	entering: { width: '200px', height: '300px', alignItems: 'center', justifyContent: 'center' },
 	entered: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
-	exiting: { width: '230px', height: '300px', alignItems: 'center', justifyContent: 'center' },
-	exited: { width: '230px', height: '300px' }
+	exiting: { width: '200px', height: '300px', alignItems: 'center', justifyContent: 'center' },
+	exited: { width: '200px', height: '300px' }
 }
 
 export const CompleteContainer = styled.div`
@@ -57,6 +57,7 @@ export const CardListContainer = styled.div`
 	flex-flow: row wrap;
 	flex:1;
 	position: relative;
+	/* overflow: hidden; */
 `
 
 export const FormContainer = styled.div`
@@ -65,7 +66,7 @@ export const FormContainer = styled.div`
 	border-bottom:0px;
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 	border-radius: 10px;
-	min-width: 230px;
+	min-width: 200px;
 	min-height: 300px;
 	display:flex;
 	flex-flow: column nowrap;

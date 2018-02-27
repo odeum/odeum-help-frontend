@@ -48,7 +48,7 @@ export default class NewFormCard extends PureComponent {
 	}
 
 	render() {
-		const { label, date, regs, resp } = this.props
+		const { label, date, /* regs, */ resp } = this.props
 		const { expand, horizOpen } = this.state
 		return (
 			<Transition in={this.state.expand} timeout={300}>
@@ -66,10 +66,10 @@ export default class NewFormCard extends PureComponent {
 										<Title>Date</Title>
 										{date}
 									</ProjectInfoCategory>
-									<ProjectInfoCategory>
+									{/* <ProjectInfoCategory>
 										<Title>Reg.</Title>
 										{regs}
-									</ProjectInfoCategory>
+									</ProjectInfoCategory> */}
 									<ProjectInfoCategory>
 										<Title>Responsible</Title>
 										{resp}
