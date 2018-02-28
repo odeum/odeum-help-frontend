@@ -11,6 +11,7 @@
     "draft-js": "^0.10.5",
     "draft-js-custom-styles": "^2.0.3",
     "draft-js-export-html": "^1.2.0",
+    "faker": "^4.1.0",
     "grid-styled": "^2.0.0-11",
     "immutable": "^3.8.2",
     "lodash": "^4.17.5",
@@ -28,7 +29,6 @@
   "devDependencies": {
     "babel-plugin-styled-components": "^1.4.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.12",
-    "mocker-data-generator": "^2.5.2",
     "why-did-you-update": "^0.1.0"
   },
   "scripts": {

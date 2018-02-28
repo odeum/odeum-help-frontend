@@ -28,6 +28,9 @@ import HelpList from './content/HelpInputFields/HelpList'
 import Icon from 'odeum-ui/lib/components/Icon/Icon'
 import CardContainer from './content/Card/CardComponents/CardContainer'
 import mockData from './framework/Data'
+
+// import ViewContainer from './content/Views/ViewContainer'
+
 var _ = require('lodash')
 class App extends Component {
 
@@ -38,13 +41,20 @@ class App extends Component {
 			helpID: 0,
 			isLoggedIn: false,
 			pageSize: 8,
-			mockData: null
+			mockData: mockData
 		}
 	}
+	componentDidUpdate = (prevProps, prevState) => {
+		console.log('bing')
+		console.log(prevState)
+		console.log(prevProps)
+	}
+
 	componentDidMount = async () => {
 		// SetAppID('help')
 		// console.log(GetAppID())
-		this.setState({ mockData: await mockData })
+		// if (this.state.mockData === null)
+		// this.setState({ mockData: mockData })
 	}
 
 	handleLogin = () => {
@@ -67,9 +77,19 @@ class App extends Component {
 
 					<Menu route={'/'}>
 						<Homepage />
+						{/* <ViewContainer pageSize={this.state.pageSize} children={this.state.mockData !== null ? this.state.mockData : undefined}>
+							{/* {this.state.mockData !== null ? this.state.mockData.map((c, i) => {
+								return <NewFormCard
+									key={i}
+									label={c.name}
+									resp={c.responsible}
+									date={c.date.toLocaleDateString()}
+								/>
+							}) : null}
+						</ViewContainer> */}
 					</Menu>
 					<Menu label={'Card'}>
-						<CardContainer>
+						<CardContainer> {/* Rename to ViewContainer */}
 							<div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center' }}>
 
 								<Icon icon="search" />
