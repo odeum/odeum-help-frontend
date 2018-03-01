@@ -25,13 +25,42 @@ class Pagination extends React.Component {
 			this.setPage(this.props.initialPage)
 		}
 	}
+	componentWillUpdate = (nextProps, nextState) => {
+		//Page size related -  if last page with 8 items on page (ex: page 17), user changes to show 12 items,
+		// pages reduce their numbers(page 17 dissapears) and it will be set the last existing page
+		if (this.state.pager.currentPage > nextState.pager.endPage)
+			this.setPage(nextState.pager.endPage)
+	}
 
 	componentDidUpdate(prevProps, prevState) {
+		if (this.props.pageSize !== prevProps.pageSize) {
+			if (this.state.pager.currentPage < this.state.pager.endPage) {
+				console.log(this.state.pager.currentPage, this.state.pager.endPage)
+				this.setPage(this.state.pager.currentPage)
+			}
+			else {
+				console.log(this.state.pager.currentPage, this.state.pager.endPage)
+				this.setPage(this.state.pager.endPage)
+			}
+		}
+
 		// reset page if items array has changed
 		if (this.props.items !== prevProps.items) {
-			this.setPage(this.props.initialPage)
+			// this.setPage(this.props.initialPage)
+			// console.log(this.props.items !== prevProps.items)
 		}
 	}
+	// shouldComponentUpdate(prevProps) {
+	// 	if (this.props.pageSize !== prevProps.pageSize) {
+	// 		this.setPage(this.state.pager.currentPage)
+	// 		return true
+	// 	}
+	// 	else {
+	// 		if (this.props.items.length !== prevProps.items.length)
+	// 			return true
+	// 		else return false
+	// 	}
+	// }
 
 	setPage(page) {
 		var items = this.props.items
@@ -42,7 +71,7 @@ class Pagination extends React.Component {
 		}
 
 		// get new pager object for specified page
-		pager = this.getPager(items.length, page)
+		pager = this.getPager(items.length, page, this.props.pageSize)
 
 		// get new page of items from items array
 		var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1)
@@ -60,7 +89,7 @@ class Pagination extends React.Component {
 
 		// default page size is 10
 		pageSize = pageSize || this.props.pageSize || 10
-
+		// console.log('Bing', this.props.pageSize)
 		// calculate total pages
 		var totalPages = Math.ceil(totalItems / pageSize)
 

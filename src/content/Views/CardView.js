@@ -12,20 +12,25 @@ export default class CardView extends Component {
 		}
 	}
 	renderChildren = () => {
-		return this.props.children ? this.props.children.map((c, i) => {
+		const arr = this.props.children.map((c, i) => {
 			return <NewFormCard
 				key={i}
 				resp={c.responsible}
 				label={c.name}
 				date={c.date.toLocaleDateString()}
 			/>
-		}) : null
+		})
+		return arr
 	}
 	onChangePage = (pageOfItems) => {
+		// console.log('onChangePage', pageOfItems)
 		// update state with new page of items
-		this.setState({ pageOfItems: pageOfItems })
+		if (this.state.pageOfItems !== pageOfItems)
+			this.setState({ pageOfItems: pageOfItems })
 	}
 	render() {
+		// console.log('CardView', this.props.pageSize)
+		const arr = this.renderChildren()
 		return (
 			<React.Fragment>
 				<CardListContainer pageSize={this.props.pageSize}>
@@ -34,7 +39,7 @@ export default class CardView extends Component {
 					)}
 
 				</CardListContainer>
-				<Pagination items={this.renderChildren()} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />
+				<Pagination items={arr} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />
 			</React.Fragment>
 		)
 	}

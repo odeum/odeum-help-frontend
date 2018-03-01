@@ -29,7 +29,7 @@ import Icon from 'odeum-ui/lib/components/Icon/Icon'
 import CardContainer from './content/Card/CardComponents/CardContainer'
 import mockData from './framework/Data'
 
-// import ViewContainer from './content/Views/ViewContainer'
+import ViewContainer from './content/Views/ViewContainer'
 
 var _ = require('lodash')
 class App extends Component {
@@ -77,16 +77,18 @@ class App extends Component {
 
 					<Menu route={'/'}>
 						<Homepage />
-						{/* <ViewContainer pageSize={this.state.pageSize} children={this.state.mockData !== null ? this.state.mockData : undefined}>
-							{/* {this.state.mockData !== null ? this.state.mockData.map((c, i) => {
+						<div style={{ position: 'relative', flex: '1', display: 'flex', flexFlow: 'column' }}>
+							<ViewContainer pageSize={this.state.pageSize} items={this.state.mockData}>
+								{/* 	{this.state.mockData !== null ? this.state.mockData.map((c, i) => {
 								return <NewFormCard
 									key={i}
 									label={c.name}
 									resp={c.responsible}
 									date={c.date.toLocaleDateString()}
 								/>
-							}) : null}
-						</ViewContainer> */}
+							}) : null} */}
+							</ViewContainer>
+						</div>
 					</Menu>
 					<Menu label={'Card'}>
 						<CardContainer> {/* Rename to ViewContainer */}
