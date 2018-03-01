@@ -18,6 +18,8 @@ export default class CardView extends Component {
 				resp={c.responsible}
 				label={c.name}
 				date={c.date.toLocaleDateString()}
+				img={c.img}
+				progress={c.progress}
 			/>
 		})
 		return arr

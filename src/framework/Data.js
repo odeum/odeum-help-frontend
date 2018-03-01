@@ -33,9 +33,9 @@
 import faker from 'faker'
 var _ = require('lodash')
 var Projects = []
-_.range(0, 150).map((p, i) => {
+_.range(0, 150).map(p => {
 
-	return Projects.push({ id: p, date: faker.date.between("2015-01-01", "2020-12-31"), responsible: faker.name.lastName() })
+	return Projects.push({ id: p, name: faker.address.city(), progress: faker.random.number({ min: 0, max: 100 }), date: faker.date.between("2015-01-01", "2020-12-31"), responsible: faker.name.lastName(), img: 'https://picsum.photos/1920/1404/?random=' + p })
 
 })
 

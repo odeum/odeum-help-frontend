@@ -20,18 +20,18 @@ import { FooterLabel, handleLink } from './framework/FooterLabel'
 // // Content imports
 import Homepage from './content/Home/Homepage'
 import HelpForm from './content/Help/HelpForm'
-import NewFormCard from './content/Card/NewCard'
+// import NewFormCard from './content/Card/NewCard'
 import HelpNew from './content/HelpInputFields/NewHelpItemForm'
 // import { Content } from 'content/Card/Content'
-import CardList from './content/Card/CardComponents/CardList'
+// import CardList from './content/Card/CardComponents/CardList'
 import HelpList from './content/HelpInputFields/HelpList'
-import Icon from 'odeum-ui/lib/components/Icon/Icon'
-import CardContainer from './content/Card/CardComponents/CardContainer'
+// import Icon from 'odeum-ui/lib/components/Icon/Icon'
+// import CardContainer from './content/Card/CardComponents/CardContainer'
 import mockData from './framework/Data'
 
 import ViewContainer from './content/Views/ViewContainer'
 
-var _ = require('lodash')
+// var _ = require('lodash')
 class App extends Component {
 
 	constructor(props) {
@@ -77,54 +77,11 @@ class App extends Component {
 
 					<Menu route={'/'}>
 						<Homepage />
-						<div style={{ position: 'relative', flex: '1', display: 'flex', flexFlow: 'column' }}>
-							<ViewContainer pageSize={this.state.pageSize} items={this.state.mockData}>
-								{/* 	{this.state.mockData !== null ? this.state.mockData.map((c, i) => {
-								return <NewFormCard
-									key={i}
-									label={c.name}
-									resp={c.responsible}
-									date={c.date.toLocaleDateString()}
-								/>
-							}) : null} */}
-							</ViewContainer>
-						</div>
 					</Menu>
 					<Menu label={'Card'}>
-						<CardContainer> {/* Rename to ViewContainer */}
-							<div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center' }}>
-
-								<Icon icon="search" />
-								<select onChange={this.handlePageSize} value={this.state.pageSize}>
-									{_.range(2, 13).map(i =>
-										<option key={i} value={i}>{i}</option>
-									)}
-								</select>
-							</div>
-							<CardList pageSize={this.state.pageSize}>
-								{/* {_.range(1, 151).map(i => {
-									return <NewFormCard
-										key={i}
-										label={i}
-										resp={i}
-										date={i}
-										regs={i}
-									/>
-								})
-								} */}
-								{this.state.mockData !== null ? this.state.mockData.map((c, i) => {
-									// console.log(c)
-									return <NewFormCard
-										key={i}
-										img={'https://picsum.photos/1920/1404/?random=' + i}
-										label={c.name}
-										resp={c.responsible}
-										date={c.date.toLocaleDateString()}
-									/>
-								}
-								) : null}
-							</CardList>
-						</CardContainer>
+						<div style={{ position: 'relative', flex: '1', display: 'flex', flexFlow: 'column' }}>
+							<ViewContainer pageSize={this.state.pageSize} items={this.state.mockData}/>
+						</div>
 					</Menu>
 					{LoginForm(isLoggedIn, this.handleLogin)}
 					<Protected>
