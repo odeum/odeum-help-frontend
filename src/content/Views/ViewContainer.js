@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import CardView from './CardView'
 import ListView from './ListView'
 import MapView from './MapView'
-import { HeaderContainer } from './ViewStyles'
+import { HeaderContainer, /* ChangeViewButton */ChangeViewButtonCard, ChangeViewButtonMap, ChangeViewButtonList } from './ViewStyles'
 import { Icon } from 'odeum-ui'
 // var _ = require('lodash')
 
@@ -11,7 +11,7 @@ export default class ViewContainer extends Component {
 		super(props)
 
 		this.state = {
-			view: 0,
+			view: 1,
 			pageSize: 8
 		}
 		this.listPageSizes = [10, 20, 30, 40, 50, 80, 100]
@@ -55,22 +55,29 @@ export default class ViewContainer extends Component {
 		// console.log(this.state.pageSize)
 	}
 	render() {
+		const { view } = this.state
 		return (
-			<div>
+			<React.Fragment>
 				<HeaderContainer>
 					<Icon icon="search" style={{ margin: 3 }} />
-					<input width={100} style={{ margin: 3 }}/>
+					<input width={100} style={{ margin: 3 }} />
 					<select onChange={this.handlePageSize} value={this.state.pageSize}>
 						{this.renderPageSizes()}
 					</select>
-					<div style={{ display: 'flex', flex: 1, justifyContent: 'right', flexFlow: 'row', alignItems: 'center', margin:3 }}>
-						<div style={{cursor:'pointer'}} onClick={this.changeView(0)}><Icon iconSize={25} icon={'view_module'} /></div>
-						<div style={{cursor:'pointer'}} onClick={this.changeView(1)}><Icon iconSize={25} icon={'list'} /></div>
-						<div style={{cursor:'pointer'}} onClick={this.changeView(2)}><Icon iconSize={25} icon={'location'} /></div>
+					<div style={{ display: 'flex', flex: 1, justifyContent: 'right', flexFlow: 'row', alignItems: 'center', margin: 3 }}>
+						<ChangeViewButtonCard view={view} onClick={this.changeView(0)}>
+							<Icon iconSize={25} icon={'view_module'} color={'#FFFFFF'} active={view === 0 ? true : false} />
+						</ChangeViewButtonCard>
+						<ChangeViewButtonList view={view} onClick={this.changeView(1)}>
+							<Icon iconSize={25} icon={'list'} color={'#FFFFFF'} active={view === 1 ? true : false} />
+						</ChangeViewButtonList>
+						<ChangeViewButtonMap view={view} onClick={this.changeView(2)}>
+							<Icon iconSize={25} icon={'location'} color={'#FFFFFF'} active={view === 2 ? true : false} />
+						</ChangeViewButtonMap>
 					</div>
 				</HeaderContainer>
 				{this.renderView()}
-			</div>
+			</React.Fragment>
 		)
 	}
 }

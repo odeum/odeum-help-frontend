@@ -34,7 +34,7 @@ export default class ListView extends Component {
 	render() {
 		var arr = this.renderChildren()
 		return (
-			<ListContainer>
+			<ListContainer pageSize={this.props.pageSize}>
 				{this.state.pageOfItems.map((item, index) =>
 					<React.Fragment key={index}>{item}</React.Fragment>
 				)}
