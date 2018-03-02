@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { StyledCheckbox, CheckMarkIco } from './CheckboxStyles'
 
-class Checkbox extends Component {
+class Checkbox extends PureComponent {
 
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			isChecked: props.checked
+			isChecked: false
 		}
 	}
 
@@ -21,12 +21,12 @@ class Checkbox extends Component {
 
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.checked !== this.props.checked) {
-			this.setState({ isChecked: nextProps.checked })
-		}
-		this.setState({ isChecked: nextProps.checked })
-	}
+	// componentWillReceiveProps(nextProps) {
+	// 	if (nextProps.checked !== this.props.checked) {
+	// 		this.setState({ isChecked: nextProps.checked })
+	// 	}
+	// 	this.setState({ isChecked: nextProps.checked })
+	// }
 
 
 	render() {

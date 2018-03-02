@@ -21,8 +21,9 @@ export const ListCardItem = styled.div`
 export const ListItemContainer = styled.div`
 	display:grid;
 	grid-template-columns: repeat(5, 1fr);
-	border: 1px solid #e3e3e3;
-	background: #e3e3e3;
+	color: ${p => p.selected ? p.theme.tab.activeColor : p.theme.tab.color};
+	border: 1px solid ${p => p.selected ? p.theme.tab.selected : p.theme.tab.unselected};
+	background: ${p => p.selected ? p.theme.tab.selected : p.theme.tab.unselected};
 	border-radius: 5px;
 	margin: 3px;
 	height: 25px;
@@ -45,12 +46,11 @@ export const ExpandButtonContainer = styled.div`
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: space-around;
-	background: #b3b3b3;
-	/* width: ${p => p.horizOpen ? '100%' : '40%'}; */
+	background: ${p => p.selected ? p.theme.tab.selected : p.theme.tab.unselected};
 	border-radius: 0px 5px 5px 0px;
 	width: 15px;
 	height:25px;
-	transition: all 250ms ease;
+	/* transition: all 250ms ease; */
 	justify-self:end;
 `
 export const ButtonContainer = styled.div`
@@ -61,17 +61,21 @@ export const ButtonContainer = styled.div`
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: space-around;
-	background: #ccc;
+	background: #d5d5d5;
 	height: 100%;
 	/* max-width: 200px; */
 	transition: all 250ms cubic-bezier(.87,-.41,.19,1.44);
-	/* border-radius: 0px 0px 10px 10px; */
+	border-radius: 3px;
 	overflow:hidden;
 `
-
+export const ControlsContainer = styled.div`
+	display:flex;
+	flex-flow:row nowrap;
+	justify-self: end;
+	justify-content: right;
+`
 export const Button = styled.div`
 	opacity: ${p => p.horizOpen ? '1' : '0'};
-	/* border: 1px solid #D5D5D5; */
 	border-radius: 100px;
 	cursor: pointer;
 	&:hover{

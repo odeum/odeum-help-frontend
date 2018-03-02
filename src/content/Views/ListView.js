@@ -24,8 +24,9 @@ export default class ListView extends PureComponent {
 	onChangePage = (pageOfItems) => {
 		// console.log('onChangePage', pageOfItems)
 		// update state with new page of items
+		// Empty Checked items
 		if (this.state.pageOfItems !== pageOfItems)
-			this.setState({ pageOfItems: pageOfItems })
+			this.setState({ pageOfItems: pageOfItems, checkedItems: [] })
 	}
 	renderChildren = () => {
 		const arr = this.props.children.map((c, i) => {

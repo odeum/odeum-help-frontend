@@ -26,10 +26,12 @@ class Pagination extends React.Component {
 		}
 	}
 	componentWillUpdate = (nextProps, nextState) => {
-		//Page size related -  if last page with 8 items on page (ex: page 17), user changes to show 12 items,
+		// Page size related -  if last page with 8 items on page (ex: page 17), user changes to show 12 items,
 		// pages reduce their numbers(page 17 dissapears) and it will be set the last existing page
-		if (this.state.pager.currentPage > nextState.pager.endPage)
+		if (this.state.pager.currentPage > nextState.pager.endPage && nextState.pager.currentPage !== 1) {
 			this.setPage(nextState.pager.endPage)
+
+		}
 	}
 
 	componentDidUpdate(prevProps, prevState) {

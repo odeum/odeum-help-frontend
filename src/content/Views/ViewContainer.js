@@ -14,7 +14,7 @@ export default class ViewContainer extends Component {
 			view: 1,
 			pageSize: 8
 		}
-		this.listPageSizes = [10, 20, 30, 40, 50, 80, 100]
+		this.listPageSizes = [1, 10, 20, 30, 40, 50, 80, 100]
 		this.cardPageSizes = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 	}
 	renderPageSizes() {
@@ -45,7 +45,7 @@ export default class ViewContainer extends Component {
 		e.preventDefault()
 		this.setState({ view: int })
 		return int === 0 ? this.setState({ pageSize: 8 }) :
-			int === 1 ? this.setState({ pageSize: 30 })
+			int === 1 ? this.setState({ pageSize: 1 })
 				: null
 	}
 	handlePageSize = (e) => {
