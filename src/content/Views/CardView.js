@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { CardListContainer } from './ViewStyles'
 import Pagination from '../Pagination/Pagination'
-import NewFormCard from '../Card/NewCard'
+import FormCard from '../Card/FormCard'
 
 export default class CardView extends Component {
 	constructor(props) {
@@ -13,7 +13,7 @@ export default class CardView extends Component {
 	}
 	renderChildren = () => {
 		const arr = this.props.children.map((c, i) => {
-			return <NewFormCard
+			return <FormCard
 				key={i}
 				resp={c.responsible}
 				label={c.name}

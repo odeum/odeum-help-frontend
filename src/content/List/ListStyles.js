@@ -12,6 +12,11 @@ export const Text = styled.div`
 	white-space:nowrap;
 	overflow:hidden;
 `
+export const ListCardItem = styled.div`
+	display:flex;
+	flex-flow:row nowrap;
+	align-items:center;
+`
 
 export const ListItemContainer = styled.div`
 	display:grid;
@@ -22,6 +27,7 @@ export const ListItemContainer = styled.div`
 	margin: 3px;
 	height: 25px;
 	align-content: center;
+	width: 100%;
 `
 
 export const Label = Cell.extend`

@@ -3,11 +3,11 @@ import {
 	FormContainer, FormImg, Header, ProjectInfo, Title, ProjectInfoCategory, ButtonContainer, Button, ControlsContainer,
 	ExpandButtonContainer, VerticalButtonContainer, CompleteContainer, ContainerWHorizControls,
 	ContainerWHorizControlsTransitions, overlayTransition, FormContainerTransitions, CompleteContainerTransitions, Img
-} from './NewCardStyles'
+} from './FormCardStyles'
 import { Icon } from 'odeum-ui'
 import { Transition } from 'react-transition-group'
 
-export default class NewFormCard extends PureComponent {
+export default class FormCard extends PureComponent {
 	constructor(props, context) {
 		super(props, context)
 
