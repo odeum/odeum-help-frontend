@@ -30,7 +30,6 @@ export default class ViewContainer extends Component {
 		}
 	}
 	renderView() {
-		// console.log('Updating?')
 		switch (this.state.view) {
 			case 0:
 				return <CardView pageSize={this.state.pageSize}>{this.props.items}</CardView>

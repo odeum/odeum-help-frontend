@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react'
+import React, { PureComponent } from 'react'
 import {
 	FormContainer, FormImg, Header, ProjectInfo, Title, ProjectInfoCategory, ButtonContainer, Button, ControlsContainer,
 	ExpandButtonContainer, VerticalButtonContainer, CompleteContainer, ContainerWHorizControls,
@@ -88,22 +88,20 @@ export default class FormCard extends PureComponent {
 								</ProjectInfo>
 							</FormContainer>
 							<ControlsContainer>
-								<Fragment>
-									<ButtonContainer horizOpen={this.state.horizOpen} style={{ flexFlow: 'row nowrap' }}>
-										<Button horizOpen={this.state.horizOpen} onClick={this.handleExpand}>
-											<Icon color={'#5E5E5E'} icon={'mode_edit'} iconSize={23} />
-										</Button>
-										<Button horizOpen={this.state.horizOpen}>
-											<Icon color={'#5E5E5E'} icon={'share'} iconSize={23} />
-										</Button>
-										<Button horizOpen={this.state.horizOpen}>
-											<Icon color={'#5E5E5E'} icon={'library_add'} iconSize={23} />
-										</Button>
-									</ButtonContainer>
-									<ExpandButtonContainer horizOpen={this.state.horizOpen} onClick={this.expandHoriz}>
-										<Icon icon={'more_horiz'} iconSize={23} />
-									</ExpandButtonContainer>
-								</Fragment>
+								<ButtonContainer horizOpen={this.state.horizOpen} style={{ flexFlow: 'row nowrap' }}>
+									<Button horizOpen={this.state.horizOpen} onClick={this.handleExpand}>
+										<Icon color={'#5E5E5E'} icon={'mode_edit'} iconSize={23} />
+									</Button>
+									<Button horizOpen={this.state.horizOpen}>
+										<Icon color={'#5E5E5E'} icon={'share'} iconSize={23} />
+									</Button>
+									<Button horizOpen={this.state.horizOpen}>
+										<Icon color={'#5E5E5E'} icon={'library_add'} iconSize={23} />
+									</Button>
+								</ButtonContainer>
+								<ExpandButtonContainer horizOpen={this.state.horizOpen} onClick={this.expandHoriz}>
+									<Icon icon={'more_horiz'} iconSize={23} />
+								</ExpandButtonContainer>
 							</ControlsContainer>
 						</ContainerWHorizControls>
 						<VerticalButtonContainer horizOpen={false} onClick={this.handleExpand}>

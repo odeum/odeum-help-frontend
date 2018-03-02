@@ -53,7 +53,33 @@ export const ExpandButtonContainer = styled.div`
 	transition: all 250ms ease;
 	justify-self:end;
 `
+export const ButtonContainer = styled.div`
+	width: ${p => p.horizOpen ? '100px' : '0px'};
+	visibility: ${p => p.horizOpen ? 'visible' : 'hidden'};
+	align-self: bottom;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: space-around;
+	background: #ccc;
+	height: 100%;
+	/* max-width: 200px; */
+	transition: all 250ms cubic-bezier(.87,-.41,.19,1.44);
+	/* border-radius: 0px 0px 10px 10px; */
+	overflow:hidden;
+`
 
+export const Button = styled.div`
+	opacity: ${p => p.horizOpen ? '1' : '0'};
+	/* border: 1px solid #D5D5D5; */
+	border-radius: 100px;
+	cursor: pointer;
+	&:hover{
+		background: #E6E6E6;
+		border: 1px solid #E6E6E6;
+	}
+	transition: opacity 0.1s cubic-bezier(.87,-.41,.19,1.44);
+`
 // export const VerticalButtonContainer = ExpandButtonContainer.extend`
 // 	/* max-height:200px; */
 // 	/* border-radius: ${p => p.vertOpen ? '0px 0px 10px 10px' : '0px 50px 50px 0px'}; */

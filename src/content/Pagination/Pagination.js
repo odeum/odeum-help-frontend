@@ -35,11 +35,9 @@ class Pagination extends React.Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (this.props.pageSize !== prevProps.pageSize) {
 			if (this.state.pager.currentPage < this.state.pager.endPage) {
-				console.log(this.state.pager.currentPage, this.state.pager.endPage)
 				this.setPage(this.state.pager.currentPage)
 			}
 			else {
-				console.log(this.state.pager.currentPage, this.state.pager.endPage)
 				this.setPage(this.state.pager.endPage)
 			}
 		}
@@ -47,7 +45,6 @@ class Pagination extends React.Component {
 		// reset page if items array has changed
 		if (this.props.items !== prevProps.items) {
 			// this.setPage(this.props.initialPage)
-			// console.log(this.props.items !== prevProps.items)
 		}
 	}
 	// shouldComponentUpdate(prevProps) {
@@ -89,7 +86,7 @@ class Pagination extends React.Component {
 
 		// default page size is 10
 		pageSize = pageSize || this.props.pageSize || 10
-		// console.log('Bing', this.props.pageSize)
+
 		// calculate total pages
 		var totalPages = Math.ceil(totalItems / pageSize)
 

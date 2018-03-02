@@ -7,10 +7,8 @@ export default class CardContainer extends Component {
 	}
 
 	handleExpand = () => {
-		console.log('Hi')
 	}
 	render() {
-		// console.log(this.props.children, this.context)
 		return (
 			<div style={{ position: 'relative', flex: '1', display: 'flex', flexFlow: 'column' }}>
 				{this.props.children}

@@ -26,7 +26,7 @@
 // 	// 	values: ['txuri', 'pitxi', 'kitty', 'obi']
 // 	// }
 // }
-// const mockData = mocker().schema('projects', Project, 150).build().then((result) => { console.log(result.projects); return result.projects })
+// const mockData = mocker().schema('projects', Project, 150).build().then((result) => { ojects })
 
 // export default mockData
 

@@ -20,7 +20,6 @@ export class TextAlignmentControls extends React.Component {
 		// 	.getBlockForKey(selection.getStartKey())
 		// 	.getType()
 		var currentStyle = props.editorState.getCurrentInlineStyle()
-		// console.log(currentStyle.toJS())
 		return (
 			<ButtonContainer>
 				{/* <Dropdown icon={'format_align_justify'} label={'Align Text'}> */}

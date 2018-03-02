@@ -33,7 +33,7 @@ class FormPage extends Component {
 	}
 
 	renderList = () => {
-		console.log('state: ', this.state.model)
+		// console.log('state: ', this.state.model)
 		return (
 			<div>
 				<FormList 

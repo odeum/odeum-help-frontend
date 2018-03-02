@@ -143,14 +143,14 @@ class FormNew extends Component {
 
 		*/
 
-		let refCount = Object.keys(this.inputRefs).length
+		// let refCount = Object.keys(this.inputRefs).length
 		let inFocus = document.activeElement.name
 
-		console.log(inFocus)
+		// console.log(inFocus)
 		this.setState({ inFocus: inFocus })
 
-		console.log('InnerRef: ', this.inputRefs[inFocus].name)		
-		console.log(refCount)
+		// console.log('InnerRef: ', this.inputRefs[inFocus].name)		
+		// console.log(refCount)
 	}
 
 	handleBlur = () => {

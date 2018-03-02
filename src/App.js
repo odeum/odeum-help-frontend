@@ -44,18 +44,6 @@ class App extends Component {
 			mockData: mockData
 		}
 	}
-	componentDidUpdate = (prevProps, prevState) => {
-		console.log('bing')
-		console.log(prevState)
-		console.log(prevProps)
-	}
-
-	componentDidMount = async () => {
-		// SetAppID('help')
-		// console.log(GetAppID())
-		// if (this.state.mockData === null)
-		// this.setState({ mockData: mockData })
-	}
 
 	handleLogin = () => {
 		this.setState({ isLoggedIn: true })
