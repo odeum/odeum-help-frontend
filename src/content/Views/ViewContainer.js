@@ -31,8 +31,9 @@ export default class ViewContainer extends Component {
 		}
 	}
 	filterItems() {
+		const { searchString } = this.state
 		var arr = this.props.items
-		var filtered = arr.filter(c => this.state.searchString === '' || c.name.includes(this.state.searchString))
+		var filtered = arr.filter(c => searchString === '' || c.name.includes(searchString) || c.responsible.includes(searchString) || c.date.toLocaleDateString().includes(searchString))
 		return filtered
 	}
 	renderView() {
@@ -40,11 +41,11 @@ export default class ViewContainer extends Component {
 		const { items } = this.props
 		switch (view) {
 			case 0:
-				return <CardView pageSize={pageSize} items={this.filterItems(items)}/>
+				return <CardView pageSize={pageSize} items={this.filterItems(items)} />
 			case 1:
-				return <ListView pageSize={pageSize} items={this.filterItems(items)}/>
+				return <ListView pageSize={pageSize} items={this.filterItems(items)} />
 			case 2:
-				return <MapView pageSize={pageSize} items={this.filterItems(items)}/>
+				return <MapView pageSize={pageSize} items={this.filterItems(items)} />
 			default:
 				break
 		}
