@@ -12,7 +12,7 @@ export default class CardView extends Component {
 		}
 	}
 	renderChildren = () => {
-		const arr = this.props.children.map((c, i) => {
+		const arr = this.props.items.map((c, i) => {
 			return <FormCard
 				key={i}
 				resp={c.responsible}
@@ -32,17 +32,27 @@ export default class CardView extends Component {
 	}
 	render() {
 		// console.log('CardView', this.props.pageSize)
-		const arr = this.renderChildren()
+		// const arr = this.renderChildren()
 		return (
-			<React.Fragment>
-				<CardListContainer pageSize={this.props.pageSize}>
-					{this.state.pageOfItems.map((item, index) =>
-						<React.Fragment key={index}>{item}</React.Fragment>
-					)}
 
-				</CardListContainer>
-				<Pagination items={arr} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />
-			</React.Fragment>
+			this.props.items.length !== 0 ?
+				<React.Fragment>
+					<CardListContainer pageSize={this.props.pageSize}>
+						{this.state.pageOfItems.map((c, i) =>
+							<FormCard
+								key={i}
+								resp={c.responsible}
+								label={c.name}
+								date={c.date.toLocaleDateString()}
+								img={c.img}
+								progress={c.progress}
+							/>
+						)}</CardListContainer>
+					<Pagination items={this.props.items} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />
+				</React.Fragment>
+				:
+				<div>No Items</div>
+
 		)
 	}
 }

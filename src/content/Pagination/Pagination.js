@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { PageButton, PageNumberButton, PageNumberContainer, PaginationContainer } from './PaginationStyles'
 var _ = require('lodash')
 
 const propTypes = {
-	items: PropTypes.array.isRequired,
 	onChangePage: PropTypes.func.isRequired,
 	initialPage: PropTypes.number
 }
@@ -13,7 +12,7 @@ const defaultProps = {
 	initialPage: 1
 }
 
-class Pagination extends React.Component {
+class Pagination extends Component {
 	constructor(props) {
 		super(props)
 		this.state = { pager: {} }
@@ -26,11 +25,13 @@ class Pagination extends React.Component {
 		}
 	}
 	componentWillUpdate = (nextProps, nextState) => {
+		// if (this.props.items.length !== nextProps.items.length) {
+		// 	this.setPage(this.props.initialPage)
+		// }
 		// Page size related -  if last page with 8 items on page (ex: page 17), user changes to show 12 items,
 		// pages reduce their numbers(page 17 dissapears) and it will be set the last existing page
 		if (this.state.pager.currentPage > nextState.pager.endPage && nextState.pager.currentPage !== 1) {
 			this.setPage(nextState.pager.endPage)
-
 		}
 	}
 
@@ -46,19 +47,14 @@ class Pagination extends React.Component {
 
 		// reset page if items array has changed
 		if (this.props.items !== prevProps.items) {
-			// this.setPage(this.props.initialPage)
+			this.setPage(this.props.initialPage)
 		}
 	}
 	// shouldComponentUpdate(prevProps) {
-	// 	if (this.props.pageSize !== prevProps.pageSize) {
-	// 		this.setPage(this.state.pager.currentPage)
+	// 	if (this.props.items.length !== prevProps.items.length)
 	// 		return true
-	// 	}
-	// 	else {
-	// 		if (this.props.items.length !== prevProps.items.length)
-	// 			return true
-	// 		else return false
-	// 	}
+	// 	else return false
+
 	// }
 
 	setPage(page) {
@@ -135,13 +131,12 @@ class Pagination extends React.Component {
 	render() {
 		var pager = this.state.pager
 
-		if (!pager.pages || pager.pages.length <= 1) {
-			// don't display pager if there is only 1 page
-			return null
-		}
+		// if (!pager.pages || pager.pages.length <= 1) {
+		// 	// don't display pager if there is only 1 page
+		// 	return null
+		// }
 
 		return (
-			// <div className="pagination" style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center' }}>
 			<PaginationContainer>
 				<PageButton onClick={() => this.setPage(1)}>First</PageButton>
 				<PageButton onClick={() => this.setPage(pager.currentPage - 1)}>Previous</PageButton>
@@ -153,8 +148,6 @@ class Pagination extends React.Component {
 				<PageButton onClick={() => this.setPage(pager.currentPage + 1)}>Next</PageButton>
 				<PageButton onClick={() => this.setPage(pager.totalPages)}>Last</PageButton>
 			</PaginationContainer>
-
-			// </div>
 		)
 	}
 }

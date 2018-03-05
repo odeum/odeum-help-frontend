@@ -12,7 +12,8 @@ export default class ViewContainer extends Component {
 
 		this.state = {
 			view: 1,
-			pageSize: 8
+			pageSize: 10,
+			searchString: ''
 		}
 		this.listPageSizes = [1, 10, 20, 30, 40, 50, 80, 100]
 		this.cardPageSizes = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -29,14 +30,21 @@ export default class ViewContainer extends Component {
 				return null
 		}
 	}
+	filterItems() {
+		var arr = this.props.items
+		var filtered = arr.filter(c => this.state.searchString === '' || c.name.includes(this.state.searchString))
+		return filtered
+	}
 	renderView() {
-		switch (this.state.view) {
+		const { pageSize, view } = this.state
+		const { items } = this.props
+		switch (view) {
 			case 0:
-				return <CardView pageSize={this.state.pageSize}>{this.props.items}</CardView>
+				return <CardView pageSize={pageSize} items={this.filterItems(items)}/>
 			case 1:
-				return <ListView pageSize={this.state.pageSize}>{this.props.items}</ListView>
+				return <ListView pageSize={pageSize} items={this.filterItems(items)}/>
 			case 2:
-				return <MapView pageSize={this.state.pageSize}>{this.props.items}</MapView>
+				return <MapView pageSize={pageSize} items={this.filterItems(items)}/>
 			default:
 				break
 		}
@@ -45,8 +53,12 @@ export default class ViewContainer extends Component {
 		e.preventDefault()
 		this.setState({ view: int })
 		return int === 0 ? this.setState({ pageSize: 8 }) :
-			int === 1 ? this.setState({ pageSize: 1 })
+			int === 1 ? this.setState({ pageSize: 30 })
 				: null
+	}
+	handleSearch = (e) => {
+		this.setState({ searchString: e.target.value })
+		console.log(this.state.searchString)
 	}
 	handlePageSize = (e) => {
 		// console.log(e.target.value)
@@ -59,7 +71,7 @@ export default class ViewContainer extends Component {
 			<React.Fragment>
 				<HeaderContainer>
 					<Icon icon="search" style={{ margin: 3 }} />
-					<input width={100} style={{ margin: 3 }} />
+					<input width={100} style={{ margin: 3 }} onChange={this.handleSearch} value={this.state.searchString} />
 					<select onChange={this.handlePageSize} value={this.state.pageSize}>
 						{this.renderPageSizes()}
 					</select>

@@ -68,7 +68,7 @@ class App extends Component {
 					</Menu>
 					<Menu label={'Card'}>
 						<div style={{ position: 'relative', flex: '1', display: 'flex', flexFlow: 'column' }}>
-							<ViewContainer pageSize={this.state.pageSize} items={this.state.mockData}/>
+							<ViewContainer items={this.state.mockData} />
 						</div>
 					</Menu>
 					{LoginForm(isLoggedIn, this.handleLogin)}
