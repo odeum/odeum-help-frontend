@@ -30,7 +30,7 @@ export default class ListCard extends PureComponent {
 						</Text>
 					</Label>
 					<Cell>
-						Gennemfort {this.props.progress}%
+						{this.props.progress} {typeof(this.props.progress) === 'string' ? '' : '%'}
 					</Cell>
 					<Cell>
 						{this.props.date}

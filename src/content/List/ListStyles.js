@@ -16,6 +16,7 @@ export const ListCardItem = styled.div`
 	display:flex;
 	flex-flow:row nowrap;
 	align-items:center;
+
 `
 
 export const ListItemContainer = styled.div`
