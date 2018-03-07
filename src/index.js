@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 import App from 'App'
-
+import 'react-dates/initialize'
 
 class AppRouter extends Component {
 	render() {

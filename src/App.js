@@ -9,7 +9,7 @@ import {
 	Tab,
 	Footer, Protected, LoginForm/* , SetAppID, GetAppID */
 } from 'odeum-app'
-
+import moment from 'moment'
 // Framework helper imports
 import { FooterLabel, handleLink } from './framework/FooterLabel'
 // import theme from './framework/theme'
@@ -30,7 +30,8 @@ import HelpList from './content/HelpInputFields/HelpList'
 import mockData from './framework/Data'
 
 import ViewContainer from './content/Views/ViewContainer'
-
+import DayPickerRangeControllerWrapper from 'content/Views/Components/DatePicker'
+moment.locale('da')
 // var _ = require('lodash')
 class App extends Component {
 
@@ -71,6 +72,12 @@ class App extends Component {
 							<ViewContainer items={this.state.mockData} />
 						</div>
 					</Menu>
+					<Menu label={'DatePicker'}>
+						<div>
+							<DayPickerRangeControllerWrapper
+								initialStartDate={moment('3/7/2018')} />
+						</div>
+					</Menu>
 					{LoginForm(isLoggedIn, this.handleLogin)}
 					<Protected>
 						<Menu icon={'help'} label={'Help'} route={'/help'}>
@@ -96,7 +103,7 @@ class App extends Component {
 export default App
 
 
-if (process.env.NODE_ENV !== 'production') {
-	const { whyDidYouUpdate } = require('why-did-you-update')
-	whyDidYouUpdate(React, { groupByComponent: true, collapseComponentGroups: true })
-}
+// if (process.env.NODE_ENV !== 'production') {
+// 	const { whyDidYouUpdate } = require('why-did-you-update')
+// 	whyDidYouUpdate(React, { groupByComponent: true, collapseComponentGroups: true })
+// }

@@ -5,13 +5,16 @@ import MapView from './MapView'
 import { HeaderContainer, /* ChangeViewButton */ChangeViewButtonCard, ChangeViewButtonMap, ChangeViewButtonList, Input, Select, ChangeViewButtonContainer } from './ViewStyles'
 import { Icon } from 'odeum-ui'
 // var _ = require('lodash')
+// import { DateRangePicker } from 'react-dates'
+// import DayPickerRangeControllerWrapper from './Components/DatePicker'
+import 'react-dates/lib/css/_datepicker.css'
 
 export default class ViewContainer extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			view: 1,
+			view: 0,
 			pageSize: 10,
 			searchString: '',
 
@@ -25,11 +28,15 @@ export default class ViewContainer extends Component {
 
 	handleSort = (column, direction) => {
 		// e.preventDefault()
-
-		this.setState({
-			sortColumn: column,
-			sortDirection: direction
-		})
+		if (this.state.sortColumn !== column)
+			this.setState({
+				sortColumn: column,
+				sortDirection: false
+			})
+		else
+			this.setState({
+				sortDirection: !this.state.sortDirection
+			})
 	}
 
 	renderPageSizes = () => {
@@ -88,13 +95,14 @@ export default class ViewContainer extends Component {
 	}
 
 	renderView = () => {
-		const { pageSize, view, sortColumn } = this.state
+		const { pageSize, view, sortColumn, sortDirection } = this.state
 		const { items } = this.props
 		switch (view) {
 			case 0:
 				return <CardView
 					pageSize={pageSize}
 					sortColumn={sortColumn}
+					sortDirection={sortDirection}
 					handleSort={this.handleSort}
 					items={this.filterItems(items)}
 				/>
@@ -102,6 +110,7 @@ export default class ViewContainer extends Component {
 				return <ListView
 					pageSize={pageSize}
 					sortColumn={sortColumn}
+					sortDirection={sortDirection}
 					handleSort={this.handleSort}
 					items={this.filterItems(items)}
 				/>
@@ -126,12 +135,9 @@ export default class ViewContainer extends Component {
 	}
 	handleSearch = (e) => {
 		this.setState({ searchString: e.target.value })
-		// console.log(this.state.searchString)
 	}
 	handlePageSize = (e) => {
-		// console.log(e.target.value)
 		this.setState({ pageSize: parseInt(e.target.value, 10) })
-		// console.log(this.state.pageSize)
 	}
 	render() {
 		const { view, searchString, pageSize } = this.state
@@ -140,6 +146,16 @@ export default class ViewContainer extends Component {
 				<HeaderContainer>
 					<Icon icon="search" style={{ margin: 3 }} />
 					<Input onChange={this.handleSearch} value={searchString} />
+					{/* <DateRangePicker
+						startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+						startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+						endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+						endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+						onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+						focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+						onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+					/> */}
+					{/* <DayPickerRangeControllerWrapper /> */}
 					<Select onChange={this.handlePageSize} value={pageSize}>
 						{this.renderPageSizes()}
 					</Select>

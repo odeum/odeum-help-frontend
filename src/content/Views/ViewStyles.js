@@ -29,7 +29,7 @@ export const LabelHeader = Label.extend`
 	}
 	&:after{
 		${p => p.active ? `content: "\u2191";
-		transform: ${p.sorting ? '' : 'rotate(180deg)'};
+		transform: ${p.sorting ? 'rotate(180deg)' : ''};
 		margin-right: 4px;
 	` : null};
 	}
@@ -49,13 +49,14 @@ export const CellHeader = Cell.extend`
 	}
 	&:after{
 		${p => p.active ? `content: "\u2191";
-		transform: ${p.sorting ? '' : 'rotate(180deg)'};
+		transform: ${p.sorting ? 'rotate(180deg)' : ''};
 		margin-right: 4px;
 	` : null};
 	}
 `
 
 export const ResponsibleHeader = Responsible.extend`
+	padding-left: 8px;
 	font-style: normal;
 	background: ${p => p.active ? p.theme.tab.selected : ''};
 	border-radius: 4px;
@@ -70,7 +71,7 @@ export const ResponsibleHeader = Responsible.extend`
 	}
 	&:after{
 		${p => p.active ? `content: "\u2191";
-		transform: ${p.sorting ? '' : 'rotate(180deg)'};
+		transform: ${p.sorting ? 'rotate(180deg)' : ''};
 		margin-right: 4px;
 	` : null};
 	}

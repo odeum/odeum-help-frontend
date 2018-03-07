@@ -29,11 +29,8 @@ export default class FormCard extends PureComponent {
 
 	onClickOutside = (e) => {
 		if (this.state.expand) {
-			// console.log('is Expanded')
 			if (this.node !== null && this.node !== undefined) {
-				// console.log('is Existent')
 				if (!this.node.contains(e.target)) {
-					// console.log('clicked something else than the node')
 					this.setState({ expand: false })
 					document.removeEventListener('click', this.onClickOutside, false)
 					if (this.props.handleCardExpand)

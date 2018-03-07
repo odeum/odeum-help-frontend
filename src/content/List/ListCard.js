@@ -17,15 +17,6 @@ export default class ListCard extends PureComponent {
 		this.node = node
 	}
 
-	// onClickOutside = (e) => {
-	// 	if (this.state.expand) {
-	// 		if (this.node !== null && this.node !== undefined)
-	// 			if (!this.node.contains(e.target)) {
-	// 				this.setState({ cardExpand: false })
-	// 				document.removeEventListener('click', this.onClickOutside, false)
-	// 			}
-	// 	}
-	// }
 	handleExpand = (e) => {
 		if (this.state.cardExpand) {
 			this.setState({ cardExpand: false })
