@@ -2,23 +2,23 @@ import styled from "styled-components"
 
 export const overlayTransition = {
 	entering: {
-		position: 'absolute', width: '100%', height: '100%', alignItems: 'center',
-		justifyContent: 'center', background: '#ffffff9a', zIndex: 5
+		position: 'fixed', width: '100%', height: '100%', alignItems: 'center',
+		justifyContent: 'center', background: '#ffffff9a', zIndex: 5, top: 0, left: 0
 	},
 	entered: {
-		position: 'absolute', width: '100%', height: '100%', alignItems: 'center',
-		justifyContent: 'center', background: '#ffffff9a', zIndex: 5
+		position: 'fixed', width: '100%', height: '100%', alignItems: 'center',
+		justifyContent: 'center', background: '#ffffff9a', zIndex: 5, top: 0, left: 0
 	},
 	exiting: {
-		position: 'absolute', width: '100%', height: '100%', alignItems: 'center',
-		justifyContent: 'center', background: '#ffffff22', zIndex: 5
+		position: 'fixed', width: '100%', height: '100%', alignItems: 'center',
+		justifyContent: 'center', background: '#ffffff22', zIndex: 5, top: 0, left: 0
 	},
 	exited: { position: 'relative', background: '#ffffff00' }
 }
 
 export const ContainerWHorizControlsTransitions = {
 	entering: { width: '200px', height: '300px' },
-	entered: { width: 'calc(100% - 120px)', height: '100%' },
+	entered: { width: 'calc(100% - 120px)', height: '70%' },
 	exiting: { width: '200px', height: '300px' },
 	exited: { width: '200px', height: '300px' }
 }

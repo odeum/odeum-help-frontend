@@ -21,14 +21,25 @@ export default class FormCard extends PureComponent {
 	setExpandedCardRef = (node) => {
 		this.node = node
 	}
+	componentWillMount = () => {
+		if (this.props.cardExpand && this.props.handleCardExpand)
+			document.addEventListener('click', this.onClickOutside, false)
+
+	}
 
 	onClickOutside = (e) => {
 		if (this.state.expand) {
-			if (this.node !== null && this.node !== undefined)
+			// console.log('is Expanded')
+			if (this.node !== null && this.node !== undefined) {
+				// console.log('is Existent')
 				if (!this.node.contains(e.target)) {
+					// console.log('clicked something else than the node')
 					this.setState({ expand: false })
 					document.removeEventListener('click', this.onClickOutside, false)
+					if (this.props.handleCardExpand)
+						this.props.handleCardExpand()
 				}
+			}
 		}
 	}
 
