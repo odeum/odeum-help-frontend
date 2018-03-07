@@ -73,10 +73,10 @@ class App extends Component {
 						</div>
 					</Menu>
 					<Menu label={'DatePicker'}>
-						<div>
-							<DayPickerRangeControllerWrapper
-								initialStartDate={moment('3/7/2018')} />
-						</div>
+						<DayPickerRangeControllerWrapper
+						// initialStartDate={moment('3/7/2018')}
+						// initialEndDate={moment('3/13/2018')}
+						/>
 					</Menu>
 					{LoginForm(isLoggedIn, this.handleLogin)}
 					<Protected>

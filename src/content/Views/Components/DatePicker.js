@@ -8,10 +8,10 @@ import omit from 'lodash/omit'
 
 import { DayPickerRangeController } from 'react-dates'
 
-import { ScrollableOrientationShape } from 'react-dates'
+// import { ScrollableOrientationShape } from 'react-dates'
 
 import { START_DATE, END_DATE, HORIZONTAL_ORIENTATION } from 'react-dates/src/constants'
-import isInclusivelyAfterDay from 'react-dates/src/utils/isInclusivelyAfterDay'
+// import isInclusivelyAfterDay from 'react-dates/src/utils/isInclusivelyAfterDay'
 
 const propTypes = forbidExtraProps({
 	// example props for the demo
@@ -20,6 +20,7 @@ const propTypes = forbidExtraProps({
 	initialEndDate: momentPropTypes.momentObj,
 	startDateOffset: PropTypes.func,
 	endDateOffset: PropTypes.func,
+	showInputs: PropTypes.bool,
 
 	keepOpenOnDateSelect: PropTypes.bool,
 	minimumNights: PropTypes.number,
@@ -30,7 +31,7 @@ const propTypes = forbidExtraProps({
 	// DayPicker props
 	enableOutsideDays: PropTypes.bool,
 	numberOfMonths: PropTypes.number,
-	orientation: ScrollableOrientationShape,
+	orientation: PropTypes.oneOf(['horizontal', 'vertical', 'verticalScrollable']),
 	withPortal: PropTypes.bool,
 	initialVisibleMonth: PropTypes.func,
 	renderCalendarInfo: PropTypes.func,
@@ -53,19 +54,20 @@ const propTypes = forbidExtraProps({
 const defaultProps = {
 	// example props for the demo
 	autoFocusEndDate: false,
-	initialStartDate: null,
-	initialEndDate: null,
+	initialStartDate: moment('1/1/2010'),
+	initialEndDate: moment(),
 	startDateOffset: undefined,
 	endDateOffset: undefined,
 	showInputs: true,
+
 	// day presentation and interaction related props
 	renderCalendarDay: undefined,
 	renderDayContents: null,
 	minimumNights: 1,
-	isDayBlocked: () => false,
-	isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
-	isDayHighlighted: () => false,
-	enableOutsideDays: false,
+	// isDayBlocked: () => false,
+	// isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
+	// isDayHighlighted: () => false,
+	// enableOutsideDays: false,
 
 	// calendar presentation and interaction related props
 	orientation: HORIZONTAL_ORIENTATION,
@@ -95,6 +97,7 @@ class DayPickerRangeControllerWrapper extends React.Component {
 			focusedInput: props.autoFocusEndDate ? END_DATE : START_DATE,
 			startDate: props.initialStartDate,
 			endDate: props.initialEndDate,
+			openDatePicker: false
 		}
 
 		this.onDatesChange = this.onDatesChange.bind(this)
@@ -111,38 +114,45 @@ class DayPickerRangeControllerWrapper extends React.Component {
 			focusedInput: !focusedInput ? START_DATE : focusedInput,
 		})
 	}
-
+	onOpenDatePicker = () => {
+		this.setState({
+			openDatePicker: !this.state.openDatePicker
+		})
+	}
 	render() {
 		const { showInputs } = this.props
-		const { focusedInput, startDate, endDate } = this.state
+		const { focusedInput, startDate, endDate, openDatePicker } = this.state
 
 		const props = omit(this.props, [
 			'autoFocus',
 			'autoFocusEndDate',
 			'initialStartDate',
 			'initialEndDate',
+			'showInputs'
 		])
 
 		const startDateString = startDate && startDate.format('DD.MM.YYYY')
 		const endDateString = endDate && endDate.format('DD.MM.YYYY')
 
 		return (
-			<div>
+			<div style={{ display: 'flex', position: 'relative', flexFlow: 'column nowrap' }}>
 				{showInputs &&
-					<div style={{ marginBottom: 16 }}>
-						<input type="text" name="start date" value={startDateString} readOnly />
-						<input type="text" name="end date" value={endDateString} readOnly />
+					<div style={{ marginBottom: 16, display: 'flex', flexFlow: 'row nowrap' }}>
+						<div type="text" name="startDate"readOnly onClick={this.onOpenDatePicker} style={{ border: 'none', background: '#fff', width: 'auto' }} >{startDateString}</div>
+						<div>&nbsp;{'-'}{'\u00A0'}</div>
+						<div type="text" name="end date" value={endDateString} readOnly onClick={this.onOpenDatePicker} style={{ border: 'none', background: '#fff', width: '100%' }}>{endDateString}</div>
 					</div>
 				}
 
-				<DayPickerRangeController
+				{openDatePicker && <DayPickerRangeController
 					{...props}
 					onDatesChange={this.onDatesChange}
 					onFocusChange={this.onFocusChange}
 					focusedInput={focusedInput}
 					startDate={startDate}
 					endDate={endDate}
-				/>
+					onOutsideClick={this.onOpenDatePicker}
+				/>}
 			</div>
 		)
 	}
