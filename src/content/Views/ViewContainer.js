@@ -88,19 +88,20 @@ export default class ViewContainer extends Component {
 	}
 
 	renderView = () => {
-		const { pageSize, view, sort } = this.state
+		const { pageSize, view, sortColumn } = this.state
 		const { items } = this.props
 		switch (view) {
 			case 0:
 				return <CardView
 					pageSize={pageSize}
-					sort={sort}
+					sortColumn={sortColumn}
 					handleSort={this.handleSort}
 					items={this.filterItems(items)}
 				/>
 			case 1:
 				return <ListView
 					pageSize={pageSize}
+					sortColumn={sortColumn}
 					handleSort={this.handleSort}
 					items={this.filterItems(items)}
 				/>
@@ -108,7 +109,7 @@ export default class ViewContainer extends Component {
 			case 2:
 				return <MapView
 					pageSize={pageSize}
-					sort={sort}
+					sortColumn={sortColumn}
 					handleSort={this.handleSort}
 					items={this.filterItems(items)}
 				/>

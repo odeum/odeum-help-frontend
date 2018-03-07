@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import ListCard from '../List/ListCard'
 import Pagination from '../Pagination/Pagination'
-import { ListContainer } from './ViewStyles'
+import { ListContainer, LabelHeader, CellHeader, ResponsibleHeader, HeaderListContainer, CellHeaderContainer } from './ViewStyles'
 import Checkbox from './Components/CheckBox'
-import { Label, Text, Cell, Responsible } from '../List/ListStyles'
+import { Text } from '../List/ListStyles'
 
 export default class ListView extends Component {
 	constructor(props) {
@@ -13,18 +13,14 @@ export default class ListView extends Component {
 			pageOfItems: [],
 			checkedItems: [],
 			sort: {
-				name: false,
+				name: true,
 				progress: false,
 				date: false,
 				responsible: false
 			}
 		}
 	}
-	componentWillUpdate = (nextProps, nextState) => {
-		// console.log('updated')
-		// console.log(this.state.pageOfItems[0], nextState.pageOfItems[0])
-		// console.log(this.props.items[0].name, nextProps.items[0].name)
-	}
+
 	handleSort = (column) => e => {
 		e.preventDefault()
 		this.props.handleSort(column, this.state.sort[column])
@@ -35,6 +31,10 @@ export default class ListView extends Component {
 			}
 		})
 	}
+	componentWillUpdate = (nextProps, nextState) => {
+		console.log(nextProps.sortColumn, this.props.sortColumn)
+	}
+
 	onCheckedItem = (id, add) => {
 		var newArr = this.state.checkedItems
 		if (add)
@@ -46,48 +46,51 @@ export default class ListView extends Component {
 	}
 
 	onChangePage = (pageOfItems) => {
-		// update state with new page of items
-		// Empty Checked items
 		if (this.state.pageOfItems !== pageOfItems)
 			this.setState({ pageOfItems: pageOfItems, checkedItems: [] })
 	}
-
+	activeColumnSorting = (col) => {
+		// e.preventDefault()
+		return col === this.props.sortColumn ? true : false
+	}
 	render() {
 		return (
 			<ListContainer pageSize={this.props.pageSize}>
-				<div style={{ display: 'flex', flexFlow: '' }} >
+				<HeaderListContainer >
 					<Checkbox />
-					<div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', flex: 1 }} >
-						<Label onClick={this.handleSort('name')} style={{ cursor: 'pointer' }}>
-							<Text title={this.props.label}>
+					<CellHeaderContainer>
+						<LabelHeader onClick={this.handleSort('name')} active={this.activeColumnSorting('name')} sorting={this.state.sort.name}>
+							<Text>
 								Name
 							</Text>
-						</Label>
-						<Cell onClick={this.handleSort('progress')} style={{ cursor: 'pointer' }}>
+						</LabelHeader>
+						<CellHeader onClick={this.handleSort('progress')} active={this.activeColumnSorting('progress')} sorting={this.state.sort.progress}>
 							Gennemfort
-						</Cell>
-						<Cell onClick={this.handleSort('date')} style={{ cursor: 'pointer' }}>
+						</CellHeader>
+						<CellHeader onClick={this.handleSort('date')} active={this.activeColumnSorting('date')} sorting={this.state.sort.date}>
 							Dato
-						</Cell>
-						<Responsible onClick={this.handleSort('responsible')} style={{ cursor: 'pointer' }}>
+						</CellHeader>
+						<ResponsibleHeader onClick={this.handleSort('responsible')} active={this.activeColumnSorting('responsible')} sorting={this.state.sort.responsible}>
 							Responsible
-						</Responsible>
-					</div>
-				</div>
-				{this.props.items.length !== 0 ? <React.Fragment>{this.state.pageOfItems.map((c, i) =>
-					<ListCard
-						key={i}
-						id={c.id}
-						resp={c.responsible}
-						label={c.name}
-						date={c.date.toLocaleDateString()}
-						img={c.img}
-						progress={c.progress}
-						onChecked={this.onCheckedItem}
-					/>
-				)}
-				<Pagination items={this.props.items} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />
-				</React.Fragment>
+						</ResponsibleHeader>
+					</CellHeaderContainer>
+				</HeaderListContainer>
+				{this.props.items.length !== 0 ?
+					<React.Fragment>
+						{this.state.pageOfItems.map((c, i) =>
+							<ListCard
+								key={i}
+								id={c.id}
+								resp={c.responsible}
+								label={c.name}
+								date={c.date.toLocaleDateString()}
+								img={c.img}
+								progress={c.progress}
+								onChecked={this.onCheckedItem}
+							/>
+						)}
+						<Pagination items={this.props.items} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />
+					</React.Fragment>
 					: <div>No Items</div>}
 			</ListContainer>
 		)

@@ -1,5 +1,79 @@
 import styled from "styled-components"
 import { transparentize } from 'polished'
+import { Label, Cell, Responsible } from '../List/ListStyles'
+
+export const HeaderListContainer = styled.div`
+	display:flex;
+	flex-flow: row nowrap;
+	align-items:center;
+`
+export const CellHeaderContainer = styled.div`
+	height: 100%;
+	display:grid;
+	grid-template-columns: repeat(5, 1fr);
+	flex: 1;
+	font-weight: 700;
+`
+export const LabelHeader = Label.extend`
+	border-radius: 4px;
+	margin: 0px 4px;
+	display:flex;
+	justify-content: space-between;
+	padding-left: 8px;
+	background: ${p => p.active ? p.theme.tab.selected : ''};
+	color: ${p => p.active ? '#fff' : '#000'};
+	cursor: pointer;
+	&:hover {
+		color: #fff;
+		background: ${p => p.theme.tab.hover};
+	}
+	&:after{
+		${p => p.active ? `content: "\u2191";
+		transform: ${p.sorting ? '' : 'rotate(180deg)'};
+		margin-right: 4px;
+	` : null};
+	}
+`
+export const CellHeader = Cell.extend`
+	padding-left: 8px;
+	border-radius: 4px;
+	margin: 0px 4px;
+	display:flex;
+	justify-content: space-between;
+	background: ${p => p.active ? p.theme.tab.selected : ''};
+	color: ${p => p.active ? '#fff' : '#000'};
+	cursor: pointer;
+	&:hover {
+		color: #fff;
+		background: ${p => p.theme.tab.hover};
+	}
+	&:after{
+		${p => p.active ? `content: "\u2191";
+		transform: ${p.sorting ? '' : 'rotate(180deg)'};
+		margin-right: 4px;
+	` : null};
+	}
+`
+
+export const ResponsibleHeader = Responsible.extend`
+	background: ${p => p.active ? p.theme.tab.selected : ''};
+	border-radius: 4px;
+	color: ${p => p.active ? '#fff' : '#000'};
+	margin: 0px 4px;
+	display:flex;
+	justify-content: space-between;
+	cursor: pointer;
+	&:hover {
+		color: #fff;
+		background: ${p => p.theme.tab.hover};
+	}
+	&:after{
+		${p => p.active ? `content: "\u2191";
+		transform: ${p.sorting ? '' : 'rotate(180deg)'};
+		margin-right: 4px;
+	` : null};
+	}
+`
 
 export const Select = styled.select`
 	height: 30px;
