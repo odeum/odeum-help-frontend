@@ -60,18 +60,16 @@ export default class ListView extends Component {
 					<Checkbox />
 					<CellHeaderContainer>
 						<LabelHeader onClick={this.handleSort('name')} active={this.activeColumnSorting('name')} sorting={this.state.sort.name}>
-							<Text>
-								Name
-							</Text>
+							<Text>Name</Text>
 						</LabelHeader>
 						<CellHeader onClick={this.handleSort('progress')} active={this.activeColumnSorting('progress')} sorting={this.state.sort.progress}>
-							Gennemfort
+							<Text>Gennemfort</Text>
 						</CellHeader>
 						<CellHeader onClick={this.handleSort('date')} active={this.activeColumnSorting('date')} sorting={this.state.sort.date}>
-							Dato
+							<Text>Dato</Text>
 						</CellHeader>
 						<ResponsibleHeader onClick={this.handleSort('responsible')} active={this.activeColumnSorting('responsible')} sorting={this.state.sort.responsible}>
-							Responsible
+							<Text>Responsible</Text>
 						</ResponsibleHeader>
 					</CellHeaderContainer>
 				</HeaderListContainer>

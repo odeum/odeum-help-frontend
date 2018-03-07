@@ -56,6 +56,7 @@ export const CellHeader = Cell.extend`
 `
 
 export const ResponsibleHeader = Responsible.extend`
+	font-style: normal;
 	background: ${p => p.active ? p.theme.tab.selected : ''};
 	border-radius: 4px;
 	color: ${p => p.active ? '#fff' : '#000'};
@@ -133,9 +134,7 @@ export const ListContainer = styled.div`
 	display:grid;
 	margin: 5px;
 	grid-template-columns: 1fr;
-	/* grid-template-rows: ${p => 'repeat(' + p.pageSize + ',1fr)'}; */
-	position:relative;
-	width: 70%;
+	/* width: 70%; */
 `
 
 export const HeaderContainer = styled.div`

@@ -12,7 +12,7 @@ export default class FormCard extends PureComponent {
 		super(props, context)
 
 		this.state = {
-			expand: false,
+			expand: this.props.cardExpand || false,
 			horizOpen: false,
 			imgLoad: 'Loading'
 		}
@@ -36,10 +36,14 @@ export default class FormCard extends PureComponent {
 		if (this.state.expand) {
 			this.setState({ expand: false })
 			document.removeEventListener('click', this.onClickOutside, false)
+			if (this.props.handleCardExpand)
+				this.props.handleCardExpand()
 		}
 		else {
 			this.setState({ expand: true })
 			document.addEventListener('click', this.onClickOutside, false)
+			if (this.props.handleCardExpand)
+				this.props.handleCardExpand()
 
 		}
 	}
