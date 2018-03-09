@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import CardView from './CardView'
 import ListView from './ListView'
 import MapView from './MapView'
-import { HeaderContainer, /* ChangeViewButton */ChangeViewButtonCard, ChangeViewButtonMap, ChangeViewButtonList, Input, Select, ChangeViewButtonContainer, HeaderListContainer, CellHeaderContainer, LabelHeader, CellHeader, ResponsibleHeader } from './ViewStyles'
+import {
+	HeaderContainer, ChangeViewButtonCard,
+	ChangeViewButtonMap, ChangeViewButtonList, Input,
+	ChangeViewButtonContainer,
+	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem
+} from './ViewStyles'
 import { Icon } from 'odeum-ui'
-// var _ = require('lodash')
-// import { DateRangePicker } from 'react-dates'
 // import DayPickerRangeControllerWrapper from './Components/DatePicker'
 import 'react-dates/lib/css/_datepicker.css'
 import { Text } from '../List/ListStyles'
@@ -19,6 +22,7 @@ export default class ViewContainer extends Component {
 			pageSize: 10,
 			searchString: '',
 			sortOpen: false,
+			pageSizeOpen: false,
 			sortColumn: 'name',
 			sortDirection: false, //false - alphabetically, true - reverse
 
@@ -84,11 +88,17 @@ export default class ViewContainer extends Component {
 		this.setState({ searchString: e.target.value })
 	}
 
-	handlePageSize = (e) => {
-		this.setState({ pageSize: parseInt(e.target.value, 10) })
+	handlePageSize = (size) => e => {
+		e.preventDefault()
+		this.setState({ pageSize: parseInt(size, 10) })
 	}
 
-	handleFocusSort = (sortOpen) => e => {
+	handlePageSizeOpen = (pageSizeOpen) => e => {
+		e.preventDefault()
+		this.setState({ pageSizeOpen: pageSizeOpen })
+	}
+
+	handleSortOpen = (sortOpen) => e => {
 		e.preventDefault()
 		this.setState({ sortOpen: sortOpen })
 	}
@@ -106,11 +116,20 @@ export default class ViewContainer extends Component {
 			})
 	}
 
-	activeColumnSort = (col) => {
-		// e.preventDefault()
-		return col === this.state.sortColumn ? true : false
-	}
+	activeColumnSort = (col) => col === this.state.sortColumn ? true : false
 
+	renderPageSizesNew = () => {
+		switch (this.state.view) {
+			case 0:
+				return this.cardPageSizes.map(o =>
+					<DropDownItem key={o} active={o === this.state.pageSize ? true : false} onClick={this.handlePageSize(o)}>{o}</DropDownItem>)
+			case 1:
+				return this.listPageSizes.map(o =>
+					<DropDownItem key={o} active={o === this.state.pageSize ? true : false} onClick={this.handlePageSize(o)}>{o}</DropDownItem>)
+			default:
+				return null
+		}
+	}
 	renderPageSizes = () => {
 		switch (this.state.view) {
 			case 0:
@@ -123,7 +142,6 @@ export default class ViewContainer extends Component {
 				return null
 		}
 	}
-
 	renderView = () => {
 		const { pageSize, view, sortColumn, sortDirection } = this.state
 		const { items } = this.props
@@ -156,49 +174,63 @@ export default class ViewContainer extends Component {
 				break
 		}
 	}
+	renderPageSizeOption = (pageSize, pageSizeOpen) => {
+		return <DropDownContainer onMouseLeave={this.handlePageSizeOpen(false)}>
+			<DropDownButton onMouseEnter={this.handlePageSizeOpen(true)}>
+				{pageSize}
+			</DropDownButton>
+			<Margin />
+			<DropDown>
+				{pageSizeOpen && this.renderPageSizesNew()}
+			</DropDown>
+		</DropDownContainer>
+	}
+	renderSortOption = (sortOpen, sortDirection) => {
+		return <DropDownContainer onMouseLeave={this.handleSortOpen(false)}>
+			<DropDownButton view={0} onMouseEnter={this.handleSortOpen(true)} >
+				<Icon icon={'visibility'} color={'#FFF'} ative={true} iconSize={20} style={{ margin: 3 }} />
+			</DropDownButton>
+			<Margin />
+			{sortOpen && <DropDown>
 
+				<DropDownItemWithArrow onClick={this.handleSort('name')} active={this.activeColumnSort('name')} sorting={sortDirection}>
+					<Text>Name</Text>
+				</DropDownItemWithArrow>
+				<DropDownItemWithArrow onClick={this.handleSort('progress')} active={this.activeColumnSort('progress')} sorting={sortDirection}>
+					<Text>Gennemfort</Text>
+				</DropDownItemWithArrow>
+				<DropDownItemWithArrow onClick={this.handleSort('date')} active={this.activeColumnSort('date')} sorting={sortDirection}>
+					<Text>Dato</Text>
+				</DropDownItemWithArrow>
+				<DropDownItemWithArrow onClick={this.handleSort('responsible')} active={this.activeColumnSort('responsible')} sorting={sortDirection}>
+					<Text>Responsible</Text>
+				</DropDownItemWithArrow>
+			</DropDown>}
+		</DropDownContainer>
+	}
+	renderChangeViewOptions = (view) => {
+		return <ChangeViewButtonContainer>
+			<ChangeViewButtonCard view={view} onClick={this.changeView(0)}>
+				<Icon iconSize={25} icon={'view_module'} color={'#FFFFFF'} active={view === 0 ? true : false} />
+			</ChangeViewButtonCard>
+			<ChangeViewButtonList view={view} onClick={this.changeView(1)}>
+				<Icon iconSize={25} icon={'list'} color={'#FFFFFF'} active={view === 1 ? true : false} />
+			</ChangeViewButtonList>
+			<ChangeViewButtonMap view={view} onClick={this.changeView(2)}>
+				<Icon iconSize={25} icon={'location'} color={'#FFFFFF'} active={view === 2 ? true : false} />
+			</ChangeViewButtonMap>
+		</ChangeViewButtonContainer>
+	}
 	render() {
-		const { view, searchString, pageSize } = this.state
+		const { view, searchString, pageSize, pageSizeOpen, sortOpen, sortDirection } = this.state
 		return (
 			<React.Fragment>
 				<HeaderContainer>
 					<Icon icon="search" iconSize={20} style={{ margin: 3 }} />
 					<Input onChange={this.handleSearch} value={searchString} />
-					<Select onChange={this.handlePageSize} value={pageSize}>
-						{this.renderPageSizes()}
-					</Select>
-					<div style={{ position: 'relative', border: '1px solid #efe', borderRadius: 4,  }} onMouseLeave={this.handleFocusSort(false)}>
-						<div onMouseEnter={this.handleFocusSort(true)} >
-							<Icon icon={'visibility'} iconSize={20} style={{ margin: 3 }}/>
-						</div>
-						{this.state.sortOpen && <HeaderListContainer style={{ position: 'absolute', zIndex: 3, margin: 0 }}>
-							<CellHeaderContainer style={{ display: 'flex', flexFlow: 'column nowrap', width: '200px' }}>
-								<LabelHeader onClick={this.handleSort('name')} active={this.activeColumnSort('name')} sorting={this.state.sortDirection}>
-									<Text>Name</Text>
-								</LabelHeader>
-								<CellHeader onClick={this.handleSort('progress')} active={this.activeColumnSort('progress')} sorting={this.state.sortDirection}>
-									<Text>Gennemfort</Text>
-								</CellHeader>
-								<CellHeader onClick={this.handleSort('date')} active={this.activeColumnSort('date')} sorting={this.state.sortDirection}>
-									<Text>Dato</Text>
-								</CellHeader>
-								<ResponsibleHeader onClick={this.handleSort('responsible')} active={this.activeColumnSort('responsible')} sorting={this.state.sortDirection}>
-									<Text>Responsible</Text>
-								</ResponsibleHeader>
-							</CellHeaderContainer>
-						</HeaderListContainer>}
-					</div>
-					<ChangeViewButtonContainer>
-						<ChangeViewButtonCard view={view} onClick={this.changeView(0)}>
-							<Icon iconSize={25} icon={'view_module'} color={'#FFFFFF'} active={view === 0 ? true : false} />
-						</ChangeViewButtonCard>
-						<ChangeViewButtonList view={view} onClick={this.changeView(1)}>
-							<Icon iconSize={25} icon={'list'} color={'#FFFFFF'} active={view === 1 ? true : false} />
-						</ChangeViewButtonList>
-						<ChangeViewButtonMap view={view} onClick={this.changeView(2)}>
-							<Icon iconSize={25} icon={'location'} color={'#FFFFFF'} active={view === 2 ? true : false} />
-						</ChangeViewButtonMap>
-					</ChangeViewButtonContainer>
+					{this.renderPageSizeOption(pageSize, pageSizeOpen)}
+					{this.renderSortOption(sortOpen, sortDirection)}
+					{this.renderChangeViewOptions(view)}
 				</HeaderContainer>
 				{this.renderView()}
 			</React.Fragment>
