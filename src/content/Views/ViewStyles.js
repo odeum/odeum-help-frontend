@@ -6,49 +6,55 @@ export const HeaderListContainer = styled.div`
 	display:flex;
 	flex-flow: row nowrap;
 	align-items:center;
+	background: ${p => p.theme.header.background};
+	color: #FFFFFF;
+	padding: 5px;
+	border-radius: 4px;
+	margin: 10px 0px;
 `
 export const CellHeaderContainer = styled.div`
 	height: 100%;
 	display:grid;
 	grid-template-columns: repeat(5, 1fr);
 	flex: 1;
-	font-weight: 700;
 `
+
 export const LabelHeader = Label.extend`
+	font-weight:${p => p.active ? 700 : 400};
 	border-radius: 4px;
 	margin: 0px 4px;
 	display:flex;
 	justify-content: space-between;
 	padding-left: 8px;
-	background: ${p => p.active ? p.theme.tab.selected : ''};
-	color: ${p => p.active ? '#fff' : '#000'};
 	cursor: pointer;
 	&:hover {
-		color: #fff;
 		background: ${p => p.theme.tab.hover};
 	}
 	&:after{
-		${p => p.active ? `content: "\u2191";
+		${p => p.active ? `
+		font-weight: 700;
+		content: "\u2191";
 		transform: ${p.sorting ? 'rotate(180deg)' : ''};
 		margin-right: 4px;
 	` : null};
 	}
 `
 export const CellHeader = Cell.extend`
+	font-weight:${p => p.active ? 700 : 400};
 	padding-left: 8px;
 	border-radius: 4px;
 	margin: 0px 4px;
 	display:flex;
 	justify-content: space-between;
-	background: ${p => p.active ? p.theme.tab.selected : ''};
-	color: ${p => p.active ? '#fff' : '#000'};
 	cursor: pointer;
 	&:hover {
 		color: #fff;
 		background: ${p => p.theme.tab.hover};
 	}
 	&:after{
-		${p => p.active ? `content: "\u2191";
+		${p => p.active ? `
+		font-weight: 700;
+		content: "\u2191";
 		transform: ${p.sorting ? 'rotate(180deg)' : ''};
 		margin-right: 4px;
 	` : null};
@@ -56,11 +62,10 @@ export const CellHeader = Cell.extend`
 `
 
 export const ResponsibleHeader = Responsible.extend`
+	font-weight:${p => p.active ? 700 : 400};
 	padding-left: 8px;
 	font-style: normal;
-	background: ${p => p.active ? p.theme.tab.selected : ''};
 	border-radius: 4px;
-	color: ${p => p.active ? '#fff' : '#000'};
 	margin: 0px 4px;
 	display:flex;
 	justify-content: space-between;
@@ -70,7 +75,10 @@ export const ResponsibleHeader = Responsible.extend`
 		background: ${p => p.theme.tab.hover};
 	}
 	&:after{
-		${p => p.active ? `content: "\u2191";
+		
+		${p => p.active ? `
+		font-weight: 700;
+		content: "\u2191";
 		transform: ${p.sorting ? 'rotate(180deg)' : ''};
 		margin-right: 4px;
 	` : null};

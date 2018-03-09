@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import {
 	FormContainer, FormImg, Header, ProjectInfo, Title, ProjectInfoCategory, ButtonContainer, Button, ControlsContainer,
 	ExpandButtonContainer, VerticalButtonContainer, CompleteContainer, ContainerWHorizControls,
-	ContainerWHorizControlsTransitions, overlayTransition, FormContainerTransitions, CompleteContainerTransitions, Img
+	ContainerWHorizControlsTransitions, overlayTransition, FormContainerTransitions, CompleteContainerTransitions, /* Img */
 } from './FormCardStyles'
 import { Icon } from 'odeum-ui'
 import { Transition } from 'react-transition-group'
@@ -72,15 +72,15 @@ export default class FormCard extends PureComponent {
 					<CompleteContainer style={{ ...CompleteContainerTransitions[state] }}>
 						<ContainerWHorizControls expand={expand} style={{ ...ContainerWHorizControlsTransitions[state] }} innerRef={this.setExpandedCardRef}>
 							<FormContainer style={{ ...FormContainerTransitions[state] }} expand={expand} id={this.props.id} horizOpen={horizOpen}>
-								<FormImg>
-									{this.state.imgLoad === 'loading' ? <div style={{ position: 'absolute', zIndex: 3, color: '#fff' }}>Loading</div> :
+								<FormImg image={img}>
+									{/* {this.state.imgLoad === 'loading' ? <div style={{ position: 'absolute', zIndex: 3, color: '#fff' }}>Loading</div> :
 										this.state.imgLoad === 'Error' ? <div style={{ position: 'absolute', zIndex: 3, color: '#fff' }}>Error</div> : null
 									}
 									<Img src={img}
 										// alt='projectimg'
 										onLoad={this.handleImg('Loaded')}
 										onError={this.handleImg('Error')}
-									/>
+									/> */}
 								</FormImg>
 								<Header>
 									<Icon icon={'info'} iconSize={22} style={{ marginRight: '5px' }} />{label}</Header>

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { CardListContainer, HeaderListContainer, CellHeaderContainer, LabelHeader, CellHeader, ResponsibleHeader } from './ViewStyles'
+import { CardListContainer/*  HeaderListContainer, CellHeaderContainer, LabelHeader, CellHeader, ResponsibleHeader  */ } from './ViewStyles'
 import Pagination from '../Pagination/Pagination'
 import FormCard from '../Card/FormCard'
-import { Text } from '../List/ListStyles'
+// import { Text } from '../List/ListStyles'
+// import { Icon } from 'odeum-ui'
 
 export default class CardView extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			pageOfItems: []
+			pageOfItems: [],
 		}
 	}
 	renderChildren = () => {
@@ -46,22 +47,6 @@ export default class CardView extends Component {
 
 			this.props.items.length !== 0 ?
 				<React.Fragment>
-					<HeaderListContainer >
-						<CellHeaderContainer>
-							<LabelHeader onClick={this.handleSort('name')} active={this.activeColumnSorting('name')} sorting={this.props.sortDirection}>
-								<Text>Name</Text>
-							</LabelHeader>
-							<CellHeader onClick={this.handleSort('progress')} active={this.activeColumnSorting('progress')} sorting={this.props.sortDirection}>
-								<Text>Gennemfort</Text>
-							</CellHeader>
-							<CellHeader onClick={this.handleSort('date')} active={this.activeColumnSorting('date')} sorting={this.props.sortDirection}>
-								<Text>Dato</Text>
-							</CellHeader>
-							<ResponsibleHeader onClick={this.handleSort('responsible')} active={this.activeColumnSorting('responsible')} sorting={this.props.sortDirection}>
-								<Text>Responsible</Text>
-							</ResponsibleHeader>
-						</CellHeaderContainer>
-					</HeaderListContainer>
 					<CardListContainer pageSize={this.props.pageSize}>
 						{this.state.pageOfItems.map((c, i) =>
 							<FormCard

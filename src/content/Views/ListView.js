@@ -16,8 +16,7 @@ export default class ListView extends Component {
 	}
 
 	handleSort = (column) => e => {
-		e.preventDefault()
-		this.props.handleSort(column)
+		this.props.handleSort(column)(e)
 	}
 
 	onCheckedItem = (id, add) => {

@@ -88,7 +88,13 @@ const defaultProps = {
 	// internationalization
 	monthFormat: 'MMMM YYYY',
 }
-
+/**
+ * 
+ * 
+ * @class DayPickerRangeControllerWrapper
+ * @extends {React.Component}
+ * @description Hello World
+ */
 class DayPickerRangeControllerWrapper extends React.Component {
 	constructor(props) {
 		super(props)
@@ -114,6 +120,7 @@ class DayPickerRangeControllerWrapper extends React.Component {
 			focusedInput: !focusedInput ? START_DATE : focusedInput,
 		})
 	}
+
 	onOpenDatePicker = () => {
 		this.setState({
 			openDatePicker: !this.state.openDatePicker
@@ -137,10 +144,10 @@ class DayPickerRangeControllerWrapper extends React.Component {
 		return (
 			<div style={{ display: 'flex', position: 'relative', flexFlow: 'column nowrap' }}>
 				{showInputs &&
-					<div style={{ marginBottom: 16, display: 'flex', flexFlow: 'row nowrap' }}>
-						<div type="text" name="startDate"readOnly onClick={this.onOpenDatePicker} style={{ border: 'none', background: '#fff', width: 'auto' }} >{startDateString}</div>
-						<div>&nbsp;{'-'}{'\u00A0'}</div>
-						<div type="text" name="end date" value={endDateString} readOnly onClick={this.onOpenDatePicker} style={{ border: 'none', background: '#fff', width: '100%' }}>{endDateString}</div>
+					<div style={{ marginBottom: 16, display: 'flex', flexFlow: 'row nowrap', border: '1px solid #efefef', background: '#efefef', borderRadius: '4px', width: '200px', alignItems: 'center' }} onClick={this.onOpenDatePicker}>
+						{startDateString}
+						&nbsp;{'-'}{'\u00A0'}
+						{endDateString}
 					</div>
 				}
 

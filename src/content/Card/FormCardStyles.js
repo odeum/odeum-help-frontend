@@ -76,19 +76,24 @@ export const FormContainer = styled.div`
 	z-index: 0;
 	transition: all 250ms ease;
 `
+
 export const Img = styled.img`
-	width:100%;
+height: 100%;
+width:100%;
 `
 
 export const FormImg = styled.div`
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	background: gray;
+	background: #fff;
 	width: 100%;
-	height: 150px;
+	min-height:150px;
+	max-height:150px;
 	position:relative;
 	overflow:hidden;
+	background-size:cover;
+	background-image: url(${p => p.image});
 `
 
 export const Header = styled.div`
@@ -141,7 +146,6 @@ export const ExpandButtonContainer = styled.div`
 	justify-content: space-around;
 	background: #D5D5D5;
 	width: 40%;
-	/* width: ${p => p.horizOpen ? '100%' : '40%'}; */
 	border-radius: 0px 0px 10px 10px;
 	height: 15px;
 	transition: all 300ms ease;

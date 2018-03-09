@@ -16,7 +16,7 @@ export const ListCardItem = styled.div`
 	display:flex;
 	flex-flow:row nowrap;
 	align-items:center;
-
+	margin: 0px 4px;
 `
 
 export const ListItemContainer = styled.div`
@@ -51,7 +51,6 @@ export const ExpandButtonContainer = styled.div`
 	border-radius: 0px 5px 5px 0px;
 	width: 15px;
 	height:25px;
-	/* transition: all 250ms ease; */
 	justify-self:end;
 `
 export const ButtonContainer = styled.div`

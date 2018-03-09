@@ -33,6 +33,7 @@ import ViewContainer from './content/Views/ViewContainer'
 import DayPickerRangeControllerWrapper from 'content/Views/Components/DatePicker'
 moment.locale('da')
 // var _ = require('lodash')
+
 class App extends Component {
 
 	constructor(props) {
