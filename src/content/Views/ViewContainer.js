@@ -4,12 +4,12 @@ import ListView from './ListView'
 import MapView from './MapView'
 import {
 	HeaderContainer, ChangeViewButtonCard,
-	ChangeViewButtonMap, ChangeViewButtonList, Input,
+	ChangeViewButtonMap, ChangeViewButtonList,
 	ChangeViewButtonContainer,
-	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem
+	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem, Input
 } from './ViewStyles'
 import { Icon } from 'odeum-ui'
-// import DayPickerRangeControllerWrapper from './Components/DatePicker'
+import DayPickerRangeControllerWrapper from './Components/DatePicker'
 import 'react-dates/lib/css/_datepicker.css'
 import { Text } from '../List/ListStyles'
 
@@ -117,7 +117,12 @@ export default class ViewContainer extends Component {
 	}
 
 	activeColumnSort = (col) => col === this.state.sortColumn ? true : false
-
+	createInputRef = (node) => {
+		this.node = node
+	}
+	focusInput = () => {
+		this.node.focus()
+	}
 	renderPageSizesNew = () => {
 		switch (this.state.view) {
 			case 0:
@@ -221,13 +226,19 @@ export default class ViewContainer extends Component {
 			</ChangeViewButtonMap>
 		</ChangeViewButtonContainer>
 	}
+	renderSearchOption = (searchString) => {
+		return <Input onClick={this.focusInput}>
+			<Icon icon={'search'} iconSize={20} style={{ margin: 3, paddingRight: 3, borderRight: '1px solid #cecece' }} />
+			<input ref={this.createInputRef} onChange={this.handleSearch} value={searchString} style={{ appearance: 'none', border: 'none', background: 'inherit' }} />
+		</Input>
+	}
 	render() {
 		const { view, searchString, pageSize, pageSizeOpen, sortOpen, sortDirection } = this.state
 		return (
 			<React.Fragment>
 				<HeaderContainer>
-					<Icon icon="search" iconSize={20} style={{ margin: 3 }} />
-					<Input onChange={this.handleSearch} value={searchString} />
+					<DayPickerRangeControllerWrapper/>
+					{this.renderSearchOption(searchString)}
 					{this.renderPageSizeOption(pageSize, pageSizeOpen)}
 					{this.renderSortOption(sortOpen, sortDirection)}
 					{this.renderChangeViewOptions(view)}

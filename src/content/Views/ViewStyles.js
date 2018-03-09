@@ -14,6 +14,10 @@ export const DropDownButton = styled.div`
 	height: 25px;
 	width: 25px;
 	justify-content:center;
+	&:hover {
+		border-color: ${p => transparentize(0.7, p.theme.tab.hover)};
+		box-shadow: ${p => `0 0 0 3px ${transparentize(0.7, p.theme.tab.hover)}`};
+	}
 `
 export const Margin = styled.div`
 	height: 5px;
@@ -174,9 +178,11 @@ export const Select = styled.select`
 	}
 `
 
-export const Input = styled.input`
+export const Input = styled.div`
+	display:flex;
+	align-items:center;
     padding: 5px;
-	height: 30px;
+	height: 35px;
     color: ${(props) => props.color ? props.color : '#2C3E50'};
     background: #ECF0F1;
     border: none;
@@ -234,6 +240,10 @@ export const ChangeViewButton = styled.div`
 	border-radius: 5px;
 	margin:5px;
 	cursor:pointer;
+	&:hover {
+		border-color: ${p => transparentize(0.7, p.theme.tab.hover)};
+		box-shadow: ${p => `0 0 0 3px ${transparentize(0.7, p.theme.tab.hover)}`};
+	}
 `
 
 export const ChangeViewButtonList = ChangeViewButton.extend`

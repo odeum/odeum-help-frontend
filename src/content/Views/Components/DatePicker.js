@@ -5,7 +5,7 @@ import momentPropTypes from 'react-moment-proptypes'
 import { forbidExtraProps } from 'airbnb-prop-types'
 import moment from 'moment'
 import omit from 'lodash/omit'
-
+import { Input } from '../ViewStyles'
 import { DayPickerRangeController } from 'react-dates'
 
 // import { ScrollableOrientationShape } from 'react-dates'
@@ -121,9 +121,15 @@ class DayPickerRangeControllerWrapper extends React.Component {
 		})
 	}
 
-	onOpenDatePicker = () => {
+	// onOpenDatePicker = () => {
+	// 	this.setState({
+	// 		openDatePicker: !this.state.openDatePicker
+	// 	})
+	// }
+	handleDatePickerOpen = (openDatePicker) => e => {
+		e.preventDefault()
 		this.setState({
-			openDatePicker: !this.state.openDatePicker
+			openDatePicker: openDatePicker
 		})
 	}
 	render() {
@@ -144,22 +150,23 @@ class DayPickerRangeControllerWrapper extends React.Component {
 		return (
 			<div style={{ display: 'flex', position: 'relative', flexFlow: 'column nowrap' }}>
 				{showInputs &&
-					<div style={{ marginBottom: 16, display: 'flex', flexFlow: 'row nowrap', border: '1px solid #efefef', background: '#efefef', borderRadius: '4px', width: '200px', alignItems: 'center' }} onClick={this.onOpenDatePicker}>
+					<Input style={{ padding: '0px 10px' }} onClick={this.handleDatePickerOpen(true)}>
 						{startDateString}
 						&nbsp;{'-'}{'\u00A0'}
 						{endDateString}
-					</div>
+					</Input>
 				}
 
-				{openDatePicker && <DayPickerRangeController
-					{...props}
-					onDatesChange={this.onDatesChange}
-					onFocusChange={this.onFocusChange}
-					focusedInput={focusedInput}
-					startDate={startDate}
-					endDate={endDate}
-					onOutsideClick={this.onOpenDatePicker}
-				/>}
+				{openDatePicker && <div style={{ position: 'absolute', zIndex: 5, marginTop: 40 }}>
+					<DayPickerRangeController
+						{...props}
+						onDatesChange={this.onDatesChange}
+						onFocusChange={this.onFocusChange}
+						focusedInput={focusedInput}
+						startDate={startDate}
+						endDate={endDate}
+						onOutsideClick={this.handleDatePickerOpen(false)} //TODO
+					/></div>}
 			</div>
 		)
 	}
