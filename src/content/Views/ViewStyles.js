@@ -17,6 +17,8 @@ export const DropDownButton = styled.div`
 	&:hover {
 		border-color: ${p => transparentize(0.7, p.theme.tab.hover)};
 		box-shadow: ${p => `0 0 0 3px ${transparentize(0.7, p.theme.tab.hover)}`};
+		background: ${p => p.theme.tab.hover};
+		color: ${p => p.theme.tab.activeColor};
 	}
 `
 export const Margin = styled.div`
@@ -117,7 +119,7 @@ export const CellHeader = Cell.extend`
 	justify-content: space-between;
 	cursor: pointer;
 	&:hover {
-		color: #fff;
+		color: #FFFFFF;
 		background: ${p => p.theme.tab.hover};
 	}
 	&:after{
@@ -144,7 +146,6 @@ export const ResponsibleHeader = Responsible.extend`
 		background: ${p => p.theme.tab.hover};
 	}
 	&:after{
-		
 		${p => p.active ? `
 		font-weight: 700;
 		content: "\u2191";
