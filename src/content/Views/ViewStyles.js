@@ -178,8 +178,14 @@ export const Select = styled.select`
 		box-shadow: ${p => `0 0 0 3px` + p.theme.tab.selected};
 	}
 `
+export const Input = styled.input`
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	border: none;
+	background: inherit;
+`
 
-export const Input = styled.div`
+export const SearchContainer = styled.div`
 	display:flex;
 	align-items:center;
     padding: 5px;
@@ -208,6 +214,8 @@ export const CardListContainer = styled.div`
 	/* display:-ms-grid; */
 	grid-template-columns: ${p => 'repeat(' + Math.round(p.pageSize / 2) + ',1fr)'};
 	grid-template-rows: 1fr 1fr;
+	grid-auto-columns: auto;
+	/* grid-template-rows: 1fr 1fr; */
 	position: relative;
 `
 
@@ -215,6 +223,7 @@ export const ListContainer = styled.div`
 	display:grid;
 	margin: 5px;
 	grid-template-columns: 1fr;
+	overflow-y:auto;
 	/* width: 70%; */
 `
 

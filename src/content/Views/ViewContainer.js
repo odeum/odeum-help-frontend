@@ -11,7 +11,7 @@ import {
 	HeaderContainer, ChangeViewButtonCard,
 	ChangeViewButtonMap, ChangeViewButtonList,
 	ChangeViewButtonContainer,
-	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem, Input
+	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem, Input, SearchContainer
 } from './ViewStyles'
 import { Text } from '../List/ListStyles'
 
@@ -20,7 +20,7 @@ export default class ViewContainer extends Component {
 		super(props)
 
 		this.state = {
-			view: 1,
+			view: 0,
 			pageSize: 10,
 			searchString: '',
 			sortOpen: false,
@@ -225,10 +225,10 @@ export default class ViewContainer extends Component {
 	}
 
 	renderSearchOption = (searchString) => {
-		return <Input onClick={this.handleFocusInput}>
+		return <SearchContainer onClick={this.handleFocusInput}>
 			<Icon icon={'search'} iconSize={20} style={{ margin: 3, paddingRight: 3, borderRight: '1px solid #cecece' }} />
-			<input ref={this.createInputRef} onChange={this.handleSearch} value={searchString} style={{ appearance: 'none', border: 'none', background: 'inherit' }} />
-		</Input>
+			<Input innerRef={this.createInputRef} onChange={this.handleSearch} value={searchString} />
+		</SearchContainer>
 	}
 
 	render() {

@@ -17,31 +17,31 @@ export const overlayTransition = {
 }
 
 export const ContainerWHorizControlsTransitions = {
-	entering: { width: '200px', height: '300px' },
+	entering: { width: '200px', height: '270px' },
 	entered: { width: 'calc(100% - 120px)', height: '70%' },
-	exiting: { width: '200px', height: '300px' },
-	exited: { width: '200px', height: '300px' }
+	exiting: { width: '200px', height: '270px' },
+	exited: { width: '200px', height: '270px' }
 }
 
 export const FormContainerTransitions = {
-	entering: { width: '200px', height: '300px' },
+	entering: { width: '200px', height: '270px' },
 	entered: { width: '100%', height: 'calc(100% - 60px)' },
-	exiting: { width: '200px', height: '300px' },
-	exited: { width: '200px', height: '300px' }
+	exiting: { width: '200px', height: '270px' },
+	exited: { width: '200px', height: '270px' }
 }
 
 export const CompleteContainerTransitions = {
-	entering: { width: '200px', height: '300px', alignItems: 'center', justifyContent: 'center' },
+	entering: { width: '200px', height: '270px', alignItems: 'center', justifyContent: 'center' },
 	entered: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
-	exiting: { width: '200px', height: '300px', alignItems: 'center', justifyContent: 'center' },
-	exited: { width: '200px', height: '300px' }
+	exiting: { width: '200px', height: '270px', alignItems: 'center', justifyContent: 'center' },
+	exited: { width: '200px', height: '270px' }
 }
 
 export const CompleteContainer = styled.div`
 	display: flex;
 	flex-flow:row nowrap;
 	margin: ${p => p.expand ? '0px' : '10px'};
-	transition: all 250ms ease;
+	transition: all 270ms ease;
 `
 
 export const ContainerWHorizControls = styled.div`
@@ -49,7 +49,7 @@ export const ContainerWHorizControls = styled.div`
 	flex-flow: column nowrap;
 	align-items:center;
 	margin:0;
-	transition: all 250ms ease;
+	transition: all 270ms ease;
 `
 
 export const CardListContainer = styled.div`
@@ -66,52 +66,67 @@ export const FormContainer = styled.div`
 	border-bottom:0px;
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 	border-radius: 10px;
-	min-width: 200px;
-	min-height: 300px;
+	/* min-width: 200px;
+	min-height: 270px; */
 	display:flex;
 	flex-flow: column nowrap;
 	overflow:hidden;
 	box-shadow: 0px -2px 10px 0px rgba(0,0,0,0.2);
 	position:relative;
 	z-index: 0;
-	transition: all 250ms ease;
+	transition: all 270ms ease;
+	position:relative;
+	&:before {
+		content:"";
+		background-image: url(${p => p.img});
+		background-size: cover;
+		height: 100%;
+		z-index: -1;
+		position: absolute;
+		width: 100%;
+		/* filter: ${p => p.expand ? '' : 'saturate(50%)'}; */
+	}
+	justify-content:flex-end;
 `
 
 export const Img = styled.img`
-height: 100%;
-width:100%;
+	height: 100%;
+	width:100%;
 `
 
 export const FormImg = styled.div`
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	background: #fff;
+	/* background: #fff; */
 	width: 100%;
-	min-height:150px;
-	max-height:150px;
+	min-height:50px;
+	max-height:130px;
 	position:relative;
 	overflow:hidden;
-	background-size:cover;
-	background-image: url(${p => p.image});
+	flex:1;
 `
 
 export const Header = styled.div`
-	background: white;
+	/* background: white; */
 	display: flex;
 	align-items: center;
 	font-size: 20px;
 	padding: 5px;
+	background:white;
+	height:20%;
 `
 
 export const ProjectInfo = styled.div`
-	background: white;
+	/* background: white; */
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-around;
 	width: 100%;
 	padding: 5px;
-	flex: 1;
+	background:white;
+	${p => p.expand ? `flex:1;` : ''};
+	height:30%;
 `
 
 export const Title = styled.div`
@@ -132,8 +147,8 @@ export const ControlsContainer = styled.div`
 	justify-content: space-around;
 	width: 80%;
 	max-width: 80%;
-	transition: all 250ms ease;
-	border-radius: 0px 0px 300px 300px;
+	transition: all 270ms ease;
+	border-radius: 0px 0px 270px 270px;
 	z-index:2;
 `
 
@@ -148,16 +163,16 @@ export const ExpandButtonContainer = styled.div`
 	width: 40%;
 	border-radius: 0px 0px 10px 10px;
 	height: 15px;
-	transition: all 300ms ease;
+	transition: all 270ms ease;
 `
 
 export const VerticalButtonContainer = ExpandButtonContainer.extend`
 	max-height:200px;
 	border-radius: ${p => p.vertOpen ? '0px 0px 10px 10px' : '0px 50px 50px 0px'};
 	width: 15px;
-	height: 80%;
+	height: 40%;
 	margin-top: 40px;
-	transition: all 250ms ease;
+	transition: all 270ms ease;
 `
 
 export const ButtonContainer = styled.div`
@@ -171,7 +186,7 @@ export const ButtonContainer = styled.div`
 	background: #D5D5D5;
 	width: 100%;
 	/* max-width: 200px; */
-	transition: all 250ms cubic-bezier(.87,-.41,.19,1.44);
+	transition: all 270ms cubic-bezier(.87,-.41,.19,1.44);
 	border-radius: 0px 0px 10px 10px;
 	overflow:hidden;
 `

@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { transparentize } from 'polished'
 
 export const Cell = styled.div`
 	display:flex;
@@ -30,6 +31,11 @@ export const ListItemContainer = styled.div`
 	height: 25px;
 	align-content: center;
 	width: 100%;
+	&:hover {
+		border-color: ${p => transparentize(0.7, p.theme.tab.hover)};
+		box-shadow: ${p => `0 0 0 3px ${transparentize(0.7, p.theme.tab.hover)}`};
+	}
+	cursor: default;
 `
 
 export const Label = Cell.extend`

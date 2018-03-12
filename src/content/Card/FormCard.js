@@ -71,20 +71,11 @@ export default class FormCard extends PureComponent {
 				{state => <CompleteContainer style={{ ...overlayTransition[state] }} expand={expand}>
 					<CompleteContainer style={{ ...CompleteContainerTransitions[state] }}>
 						<ContainerWHorizControls expand={expand} style={{ ...ContainerWHorizControlsTransitions[state] }} innerRef={this.setExpandedCardRef}>
-							<FormContainer style={{ ...FormContainerTransitions[state] }} expand={expand} id={this.props.id} horizOpen={horizOpen}>
-								<FormImg image={img}>
-									{/* {this.state.imgLoad === 'loading' ? <div style={{ position: 'absolute', zIndex: 3, color: '#fff' }}>Loading</div> :
-										this.state.imgLoad === 'Error' ? <div style={{ position: 'absolute', zIndex: 3, color: '#fff' }}>Error</div> : null
-									}
-									<Img src={img}
-										// alt='projectimg'
-										onLoad={this.handleImg('Loaded')}
-										onError={this.handleImg('Error')}
-									/> */}
-								</FormImg>
+							<FormContainer img={img} style={{ ...FormContainerTransitions[state] }} expand={expand} id={this.props.id} horizOpen={horizOpen}>
+								 <FormImg />
 								<Header>
 									<Icon icon={'info'} iconSize={22} style={{ marginRight: '5px' }} />{label}</Header>
-								<ProjectInfo style={{ color: '#000' }}>
+								<ProjectInfo style={{ color: '#000' }} expand={expand}>
 									<ProjectInfoCategory>
 										<Title>Date</Title>
 										{date}
