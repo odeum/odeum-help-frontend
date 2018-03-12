@@ -18,7 +18,7 @@ export const overlayTransition = {
 
 export const ContainerWHorizControlsTransitions = {
 	entering: { width: '200px', height: '270px' },
-	entered: { width: 'calc(100% - 120px)', height: '70%' },
+	entered: { width: 'calc(100% - 120px)', height: '90%' },
 	exiting: { width: '200px', height: '270px' },
 	exited: { width: '200px', height: '270px' }
 }
@@ -41,7 +41,7 @@ export const CompleteContainer = styled.div`
 	display: flex;
 	flex-flow:row nowrap;
 	margin: ${p => p.expand ? '0px' : '10px'};
-	transition: all 270ms ease;
+	transition: all 300ms ease;
 `
 
 export const ContainerWHorizControls = styled.div`
@@ -49,7 +49,7 @@ export const ContainerWHorizControls = styled.div`
 	flex-flow: column nowrap;
 	align-items:center;
 	margin:0;
-	transition: all 270ms ease;
+	transition: all 300ms ease;
 `
 
 export const CardListContainer = styled.div`
@@ -74,9 +74,9 @@ export const FormContainer = styled.div`
 	box-shadow: 0px -2px 10px 0px rgba(0,0,0,0.2);
 	position:relative;
 	z-index: 0;
-	transition: all 270ms ease;
+	transition: all 300ms ease;
 	position:relative;
-	&:before {
+	/* &:before {
 		content:"";
 		background-image: url(${p => p.img});
 		background-size: cover;
@@ -85,7 +85,7 @@ export const FormContainer = styled.div`
 		position: absolute;
 		width: 100%;
 		/* filter: ${p => p.expand ? '' : 'saturate(50%)'}; */
-	}
+	} */
 	justify-content:flex-end;
 `
 
@@ -98,13 +98,16 @@ export const FormImg = styled.div`
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	/* background: #fff; */
 	width: 100%;
-	min-height:50px;
-	max-height:130px;
+	min-height:${p => p.imgExpand ? '270px' : '50px'};
 	position:relative;
 	overflow:hidden;
-	flex:1;
+	flex:${p => p.imgExpand ? '10' : '1'};
+	background-image: url(${p => p.image});
+	background-size: cover;
+	background-position: center;
+	transition: all 300ms ease;
+
 `
 
 export const Header = styled.div`
@@ -114,7 +117,7 @@ export const Header = styled.div`
 	font-size: 20px;
 	padding: 5px;
 	background:white;
-	height:20%;
+	/* height:20%; */
 `
 
 export const ProjectInfo = styled.div`
@@ -127,6 +130,7 @@ export const ProjectInfo = styled.div`
 	background:white;
 	${p => p.expand ? `flex:1;` : ''};
 	height:30%;
+	overflow:hidden;
 `
 
 export const Title = styled.div`
@@ -137,6 +141,7 @@ export const ProjectInfoCategory = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
+	flex: 1;
 `
 
 export const ControlsContainer = styled.div`
@@ -147,7 +152,7 @@ export const ControlsContainer = styled.div`
 	justify-content: space-around;
 	width: 80%;
 	max-width: 80%;
-	transition: all 270ms ease;
+	transition: all 300ms ease;
 	border-radius: 0px 0px 270px 270px;
 	z-index:2;
 `
@@ -163,7 +168,7 @@ export const ExpandButtonContainer = styled.div`
 	width: 40%;
 	border-radius: 0px 0px 10px 10px;
 	height: 15px;
-	transition: all 270ms ease;
+	transition: all 300ms ease;
 `
 
 export const VerticalButtonContainer = ExpandButtonContainer.extend`
@@ -172,7 +177,7 @@ export const VerticalButtonContainer = ExpandButtonContainer.extend`
 	width: 15px;
 	height: 40%;
 	margin-top: 40px;
-	transition: all 270ms ease;
+	transition: all 300ms ease;
 `
 
 export const ButtonContainer = styled.div`
@@ -186,7 +191,7 @@ export const ButtonContainer = styled.div`
 	background: #D5D5D5;
 	width: 100%;
 	/* max-width: 200px; */
-	transition: all 270ms cubic-bezier(.87,-.41,.19,1.44);
+	transition: all 300ms cubic-bezier(.87,-.41,.19,1.44);
 	border-radius: 0px 0px 10px 10px;
 	overflow:hidden;
 `

@@ -27,6 +27,7 @@ export default class ViewContainer extends Component {
 			pageSizeOpen: false,
 			sortColumn: 'name',
 			sortDirection: false,
+			columns: Object.keys(this.props.items[0])
 
 		}
 		this.listPageSizes = [1, 10, 20, 30, 40, 50, 80, 100]

@@ -14,10 +14,31 @@ export default class FormCard extends PureComponent {
 		this.state = {
 			expand: this.props.cardExpand || false,
 			horizOpen: false,
-			imgLoad: 'Loading'
+			imgLoad: 'Loading',
+			imgExpand: false
 		}
 	}
 
+	// google.maps.event.addListener(marker, 'mouseover', function() {
+	// 	timer = window.setTimeout(function () {
+	// 		alert("Stackoverflow Rocks!!!");
+	// 	}, 2000);
+	// } );
+
+	// google.maps.event.addListener(marker, 'mouseout', function() {
+	// 	window.clearTimeout(timer);
+	// } );
+
+	onImageHover = () => {
+		console.log('Bing, Entered')
+		this.imageHover = window.setTimeout(() => this.setState({ imgExpand: true })
+			, 1000)
+		console.log(this.imageHover)
+	}
+	onImageLeave = () => {
+		window.clearTimeout(this.imageHover)
+		this.setState({ imgExpand: false })
+	}
 	setExpandedCardRef = (node) => {
 		this.node = node
 	}
@@ -63,6 +84,8 @@ export default class FormCard extends PureComponent {
 		e.preventDefault()
 		this.setState({ imgLoad: load })
 	}
+
+
 	render() {
 		const { label, date, /* regs, */ resp, img } = this.props
 		const { expand, horizOpen } = this.state
@@ -72,7 +95,7 @@ export default class FormCard extends PureComponent {
 					<CompleteContainer style={{ ...CompleteContainerTransitions[state] }}>
 						<ContainerWHorizControls expand={expand} style={{ ...ContainerWHorizControlsTransitions[state] }} innerRef={this.setExpandedCardRef}>
 							<FormContainer img={img} style={{ ...FormContainerTransitions[state] }} expand={expand} id={this.props.id} horizOpen={horizOpen}>
-								 <FormImg />
+								<FormImg image={img} onMouseEnter={this.onImageHover} onMouseLeave={this.onImageLeave} imgExpand={this.state.imgExpand} />
 								<Header>
 									<Icon icon={'info'} iconSize={22} style={{ marginRight: '5px' }} />{label}</Header>
 								<ProjectInfo style={{ color: '#000' }} expand={expand}>
@@ -86,7 +109,37 @@ export default class FormCard extends PureComponent {
 									</ProjectInfoCategory> */}
 									<ProjectInfoCategory>
 										<Title>Responsible</Title>
-										{resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+										{resp} {resp}
+
 									</ProjectInfoCategory>
 								</ProjectInfo>
 							</FormContainer>
