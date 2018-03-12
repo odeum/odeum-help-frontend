@@ -18,13 +18,14 @@ export default class ViewContainer extends Component {
 		super(props)
 
 		this.state = {
-			view: 0,
+			view: 1,
 			pageSize: 10,
 			searchString: '',
 			sortOpen: false,
 			pageSizeOpen: false,
 			sortColumn: 'name',
-			sortDirection: false, //false - alphabetically, true - reverse
+			//false - alphabetically, true - reverse
+			sortDirection: false,
 
 		}
 		this.listPageSizes = [1, 10, 20, 30, 40, 50, 80, 100]
@@ -32,6 +33,9 @@ export default class ViewContainer extends Component {
 	}
 
 
+	createInputRef = (node) => {
+		this.node = node
+	}
 
 	filterItems = () => {
 		const { searchString, sortDirection, sortColumn } = this.state
@@ -116,39 +120,27 @@ export default class ViewContainer extends Component {
 			})
 	}
 
-	activeColumnSort = (col) => col === this.state.sortColumn ? true : false
-	createInputRef = (node) => {
-		this.node = node
-	}
-	focusInput = () => {
+	handleFocusInput = () => {
 		this.node.focus()
 	}
-	renderPageSizesNew = () => {
-		switch (this.state.view) {
+
+	handleActiveColumn = (col) => col === this.state.sortColumn ? true : false
+
+
+	renderPageSizes = (view, pageSize) => {
+		switch (view) {
 			case 0:
 				return this.cardPageSizes.map(o =>
-					<DropDownItem key={o} active={o === this.state.pageSize ? true : false} onClick={this.handlePageSize(o)}>{o}</DropDownItem>)
+					<DropDownItem key={o} active={o === pageSize ? true : false} onClick={this.handlePageSize(o)}>{o}</DropDownItem>)
 			case 1:
 				return this.listPageSizes.map(o =>
-					<DropDownItem key={o} active={o === this.state.pageSize ? true : false} onClick={this.handlePageSize(o)}>{o}</DropDownItem>)
+					<DropDownItem key={o} active={o === pageSize ? true : false} onClick={this.handlePageSize(o)}>{o}</DropDownItem>)
 			default:
 				return null
 		}
 	}
-	renderPageSizes = () => {
-		switch (this.state.view) {
-			case 0:
-				return this.cardPageSizes.map(o =>
-					<option key={o} value={o}>{o}</option>)
-			case 1:
-				return this.listPageSizes.map(o =>
-					<option key={o} value={o}>{o}</option>)
-			default:
-				return null
-		}
-	}
-	renderView = () => {
-		const { pageSize, view, sortColumn, sortDirection } = this.state
+
+	renderView = (pageSize, view, sortColumn, sortDirection) => {
 		const { items } = this.props
 		switch (view) {
 			case 0:
@@ -179,40 +171,44 @@ export default class ViewContainer extends Component {
 				break
 		}
 	}
-	renderPageSizeOption = (pageSize, pageSizeOpen) => {
+
+	renderPageSizeOption = (view, pageSize, pageSizeOpen) => {
 		return <DropDownContainer onMouseLeave={this.handlePageSizeOpen(false)}>
 			<DropDownButton onMouseEnter={this.handlePageSizeOpen(true)}>
 				{pageSize}
 			</DropDownButton>
 			<Margin />
 			<DropDown>
-				{pageSizeOpen && this.renderPageSizesNew()}
+				{pageSizeOpen && this.renderPageSizes(view, pageSize)}
 			</DropDown>
 		</DropDownContainer>
 	}
+
 	renderSortOption = (sortOpen, sortDirection) => {
+
 		return <DropDownContainer onMouseLeave={this.handleSortOpen(false)}>
 			<DropDownButton view={0} onMouseEnter={this.handleSortOpen(true)} >
 				<Icon icon={'visibility'} color={'#FFF'} ative={true} iconSize={20} style={{ margin: 3 }} />
 			</DropDownButton>
 			<Margin />
 			{sortOpen && <DropDown>
-
-				<DropDownItemWithArrow onClick={this.handleSort('name')} active={this.activeColumnSort('name')} sorting={sortDirection}>
+				<DropDownItemWithArrow onClick={this.handleSort('name')} active={this.handleActiveColumn('name')} sorting={sortDirection}>
 					<Text>Name</Text>
 				</DropDownItemWithArrow>
-				<DropDownItemWithArrow onClick={this.handleSort('progress')} active={this.activeColumnSort('progress')} sorting={sortDirection}>
+				<DropDownItemWithArrow onClick={this.handleSort('progress')} active={this.handleActiveColumn('progress')} sorting={sortDirection}>
 					<Text>Gennemfort</Text>
 				</DropDownItemWithArrow>
-				<DropDownItemWithArrow onClick={this.handleSort('date')} active={this.activeColumnSort('date')} sorting={sortDirection}>
+				<DropDownItemWithArrow onClick={this.handleSort('date')} active={this.handleActiveColumn('date')} sorting={sortDirection}>
 					<Text>Dato</Text>
 				</DropDownItemWithArrow>
-				<DropDownItemWithArrow onClick={this.handleSort('responsible')} active={this.activeColumnSort('responsible')} sorting={sortDirection}>
+				<DropDownItemWithArrow onClick={this.handleSort('responsible')} active={this.handleActiveColumn('responsible')} sorting={sortDirection}>
 					<Text>Responsible</Text>
 				</DropDownItemWithArrow>
-			</DropDown>}
+			</DropDown>
+			}
 		</DropDownContainer>
 	}
+
 	renderChangeViewOptions = (view) => {
 		return <ChangeViewButtonContainer>
 			<ChangeViewButtonCard view={view} onClick={this.changeView(0)}>
@@ -226,25 +222,26 @@ export default class ViewContainer extends Component {
 			</ChangeViewButtonMap>
 		</ChangeViewButtonContainer>
 	}
+
 	renderSearchOption = (searchString) => {
-		return <Input onClick={this.focusInput}>
+		return <Input onClick={this.handleFocusInput}>
 			<Icon icon={'search'} iconSize={20} style={{ margin: 3, paddingRight: 3, borderRight: '1px solid #cecece' }} />
 			<input ref={this.createInputRef} onChange={this.handleSearch} value={searchString} style={{ appearance: 'none', border: 'none', background: 'inherit' }} />
 		</Input>
 	}
+
 	render() {
-		const { view, searchString, pageSize, pageSizeOpen, sortOpen, sortDirection } = this.state
-		return (
-			<React.Fragment>
-				<HeaderContainer>
-					<DayPickerRangeControllerWrapper/>
-					{this.renderSearchOption(searchString)}
-					{this.renderPageSizeOption(pageSize, pageSizeOpen)}
-					{this.renderSortOption(sortOpen, sortDirection)}
-					{this.renderChangeViewOptions(view)}
-				</HeaderContainer>
-				{this.renderView()}
-			</React.Fragment>
-		)
+		const { view, searchString, pageSize, pageSizeOpen, sortOpen, sortDirection, sortColumn } = this.state
+		return <React.Fragment>
+			<HeaderContainer>
+				<DayPickerRangeControllerWrapper />
+				{this.renderSearchOption(searchString)}
+				{this.renderPageSizeOption(view, pageSize, pageSizeOpen)}
+				{this.renderSortOption(sortOpen, sortDirection)}
+				{this.renderChangeViewOptions(view)}
+			</HeaderContainer>
+			{this.renderView(pageSize, view, sortColumn, sortDirection)}
+		</React.Fragment>
+
 	}
 }
