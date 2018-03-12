@@ -208,7 +208,13 @@ export const SearchContainer = styled.div`
 		box-shadow: ${(props) => `0 0 0 3px ` + props.theme.tab.selected};
     }
 `
-
+export const View = styled.div`
+	position:relative;
+	height:100%;
+	width:100%;
+	display:flex;
+	flex-flow:column nowrap;
+`
 export const CardListContainer = styled.div`
 	display:grid;
 	/* display:-ms-grid; */
@@ -217,6 +223,7 @@ export const CardListContainer = styled.div`
 	grid-auto-columns: auto;
 	/* grid-template-rows: 1fr 1fr; */
 	position: relative;
+	overflow-x: auto;
 `
 
 export const ListContainer = styled.div`

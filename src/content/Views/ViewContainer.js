@@ -11,7 +11,7 @@ import {
 	HeaderContainer, ChangeViewButtonCard,
 	ChangeViewButtonMap, ChangeViewButtonList,
 	ChangeViewButtonContainer,
-	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem, Input, SearchContainer
+	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem, Input, SearchContainer, View
 } from './ViewStyles'
 import { Text } from '../List/ListStyles'
 
@@ -233,7 +233,7 @@ export default class ViewContainer extends Component {
 
 	render() {
 		const { view, searchString, pageSize, pageSizeOpen, sortOpen, sortDirection, sortColumn } = this.state
-		return <React.Fragment>
+		return <View>
 			<HeaderContainer>
 				<DayPickerRangeControllerWrapper />
 				{this.renderSearchOption(searchString)}
@@ -242,7 +242,7 @@ export default class ViewContainer extends Component {
 				{this.renderChangeViewOptions(view)}
 			</HeaderContainer>
 			{this.renderView(pageSize, view, sortColumn, sortDirection)}
-		</React.Fragment>
+		</View>
 
 	}
 }

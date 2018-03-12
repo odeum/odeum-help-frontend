@@ -69,9 +69,7 @@ class App extends Component {
 						<Homepage />
 					</Menu>
 					<Menu label={'Card'}>
-						<div style={{ position: 'relative', flex: '1', display: 'flex', flexFlow: 'column', height: '100%' }}>
-							<ViewContainer items={this.state.mockData} />
-						</div>
+						<ViewContainer items={this.state.mockData} />
 					</Menu>
 					<Menu label={'DatePicker'}>
 						<DayPickerRangeControllerWrapper
