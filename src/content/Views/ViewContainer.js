@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
+import { Icon } from 'odeum-ui'
+import 'react-dates/lib/css/_datepicker.css'
+
+import DayPickerRangeControllerWrapper from './Components/DatePicker'
 import CardView from './CardView'
 import ListView from './ListView'
 import MapView from './MapView'
+
 import {
 	HeaderContainer, ChangeViewButtonCard,
 	ChangeViewButtonMap, ChangeViewButtonList,
 	ChangeViewButtonContainer,
 	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem, Input
 } from './ViewStyles'
-import { Icon } from 'odeum-ui'
-import DayPickerRangeControllerWrapper from './Components/DatePicker'
-import 'react-dates/lib/css/_datepicker.css'
 import { Text } from '../List/ListStyles'
 
 export default class ViewContainer extends Component {
@@ -24,7 +26,6 @@ export default class ViewContainer extends Component {
 			sortOpen: false,
 			pageSizeOpen: false,
 			sortColumn: 'name',
-			//false - alphabetically, true - reverse
 			sortDirection: false,
 
 		}
