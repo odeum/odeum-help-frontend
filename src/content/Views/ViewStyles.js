@@ -86,7 +86,7 @@ export const HeaderListContainer = styled.div`
 export const CellHeaderContainer = styled.div`
 	height: 100%;
 	display:grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(${p => p.columnCount}, 1fr);
 	flex: 1;
 `
 

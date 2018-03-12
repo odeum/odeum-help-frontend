@@ -20,7 +20,7 @@ export default class ViewContainer extends Component {
 		super(props)
 
 		this.state = {
-			view: 0,
+			view: 1,
 			pageSize: 10,
 			searchString: '',
 			sortOpen: false,
@@ -160,6 +160,7 @@ export default class ViewContainer extends Component {
 					sortDirection={sortDirection}
 					handleSort={this.handleSort}
 					items={this.filterItems(items)}
+					columns={this.state.columns}
 				/>
 
 			case 2:

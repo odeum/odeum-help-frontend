@@ -22,7 +22,7 @@ export const ListCardItem = styled.div`
 
 export const ListItemContainer = styled.div`
 	display:grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(${p => p.columnCount}, 1fr);
 	color: ${p => p.selected ? p.theme.tab.activeColor : p.theme.tab.color};
 	border: 1px solid ${p => p.selected ? p.theme.tab.selected : p.theme.tab.unselected};
 	background: ${p => p.selected ? p.theme.tab.selected : p.theme.tab.unselected};

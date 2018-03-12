@@ -109,37 +109,7 @@ export default class FormCard extends PureComponent {
 									</ProjectInfoCategory> */}
 									<ProjectInfoCategory>
 										<Title>Responsible</Title>
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-										{resp} {resp}
-
+										{resp}
 									</ProjectInfoCategory>
 								</ProjectInfo>
 							</FormContainer>
