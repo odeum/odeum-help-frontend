@@ -50,8 +50,6 @@ class Pagination extends Component {
 		if (this.props.items !== prevProps.items) {
 			this.setPage(this.props.initialPage)
 		}
-		if (this.props.items.length !== prevProps.items.length)
-			this.setPage(this.props.initialPage)
 	}
 	// shouldComponentUpdate(prevProps) {
 	// 	if (this.props.items.length !== prevProps.items.length)
@@ -138,7 +136,6 @@ class Pagination extends Component {
 		// 	// don't display pager if there is only 1 page
 		// 	return null
 		// }
-		console.log(pager)
 		return (
 			<PaginationContainer>
 				{pager.totalPages >= 1 ? <React.Fragment>
