@@ -33,6 +33,7 @@ class Pagination extends Component {
 		if (this.state.pager.currentPage > nextState.pager.endPage && nextState.pager.currentPage !== 1) {
 			this.setPage(nextState.pager.endPage)
 		}
+
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -49,6 +50,8 @@ class Pagination extends Component {
 		if (this.props.items !== prevProps.items) {
 			this.setPage(this.props.initialPage)
 		}
+		if (this.props.items.length !== prevProps.items.length)
+			this.setPage(this.props.initialPage)
 	}
 	// shouldComponentUpdate(prevProps) {
 	// 	if (this.props.items.length !== prevProps.items.length)
@@ -61,9 +64,9 @@ class Pagination extends Component {
 		var items = this.props.items
 		var pager = this.state.pager
 
-		if (page < 1 || page > pager.totalPages) {
-			return
-		}
+		// if (page < 1 || page > pager.totalPages) {
+		// 	return
+		// }
 
 		// get new pager object for specified page
 		pager = this.getPager(items.length, page, this.props.pageSize)
@@ -135,18 +138,20 @@ class Pagination extends Component {
 		// 	// don't display pager if there is only 1 page
 		// 	return null
 		// }
-
+		console.log(pager)
 		return (
 			<PaginationContainer>
-				<PageButton onClick={() => this.setPage(1)}>First</PageButton>
-				<PageButton onClick={() => this.setPage(pager.currentPage - 1)}>Previous</PageButton>
-				<PageNumberContainer>
-					{pager.pages.map((page, index) =>
-						<PageNumberButton key={index} active={pager.currentPage === page ? true : false} onClick={() => this.setPage(page)}>{page}</PageNumberButton>
-					)}
-				</PageNumberContainer>
-				<PageButton onClick={() => this.setPage(pager.currentPage + 1)}>Next</PageButton>
-				<PageButton onClick={() => this.setPage(pager.totalPages)}>Last</PageButton>
+				{pager.totalPages >= 1 ? <React.Fragment>
+					<PageButton onClick={() => this.setPage(1)}>First</PageButton>
+					<PageButton onClick={() => this.setPage(pager.currentPage - 1)}>Previous</PageButton>
+					<PageNumberContainer>
+						{pager.pages.map((page, index) =>
+							<PageNumberButton key={index} active={pager.currentPage === page ? true : false} onClick={() => this.setPage(page)}>{page}</PageNumberButton>
+						)}
+					</PageNumberContainer>
+					<PageButton onClick={() => this.setPage(pager.currentPage + 1)}>Next</PageButton>
+					<PageButton onClick={() => this.setPage(pager.totalPages)}>Last</PageButton>
+				</React.Fragment> : null}
 			</PaginationContainer>
 		)
 	}

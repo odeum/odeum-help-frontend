@@ -39,27 +39,27 @@ export default class ListView extends Component {
 	}
 	render() {
 		return (
-			<ListContainer pageSize={this.props.pageSize}>
-				<HeaderListContainer >
-					<Checkbox />
-					<CellHeaderContainer>
-						<LabelHeader onClick={this.handleSort('name')} active={this.activeColumnSorting('name')} sorting={this.props.sortDirection}>
-							<Text>Name</Text>
-						</LabelHeader>
-						<CellHeader onClick={this.handleSort('progress')} active={this.activeColumnSorting('progress')} sorting={this.props.sortDirection}>
-							<Text>Gennemfort</Text>
-						</CellHeader>
-						<CellHeader onClick={this.handleSort('date')} active={this.activeColumnSorting('date')} sorting={this.props.sortDirection}>
-							<Text>Dato</Text>
-						</CellHeader>
-						<ResponsibleHeader onClick={this.handleSort('responsible')} active={this.activeColumnSorting('responsible')} sorting={this.props.sortDirection}>
-							<Text>Responsible</Text>
-						</ResponsibleHeader>
-					</CellHeaderContainer>
-				</HeaderListContainer>
-				{this.props.items.length !== 0 ?
-					<React.Fragment>
-						{this.state.pageOfItems.map((c, i) =>
+			<React.Fragment>
+				<ListContainer pageSize={this.props.pageSize}>
+					<HeaderListContainer >
+						<Checkbox />
+						<CellHeaderContainer>
+							<LabelHeader onClick={this.handleSort('name')} active={this.activeColumnSorting('name')} sorting={this.props.sortDirection}>
+								<Text>Name</Text>
+							</LabelHeader>
+							<CellHeader onClick={this.handleSort('progress')} active={this.activeColumnSorting('progress')} sorting={this.props.sortDirection}>
+								<Text>Gennemfort</Text>
+							</CellHeader>
+							<CellHeader onClick={this.handleSort('date')} active={this.activeColumnSorting('date')} sorting={this.props.sortDirection}>
+								<Text>Dato</Text>
+							</CellHeader>
+							<ResponsibleHeader onClick={this.handleSort('responsible')} active={this.activeColumnSorting('responsible')} sorting={this.props.sortDirection}>
+								<Text>Responsible</Text>
+							</ResponsibleHeader>
+						</CellHeaderContainer>
+					</HeaderListContainer>
+					{this.props.items.length !== 0 ?
+						this.state.pageOfItems.map((c, i) =>
 							<ListCard
 								key={i}
 								id={c.id}
@@ -70,11 +70,11 @@ export default class ListView extends Component {
 								progress={c.progress}
 								onChecked={this.onCheckedItem}
 							/>
-						)}
-						<Pagination items={this.props.items} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />
-					</React.Fragment>
-					: <div>No Items</div>}
-			</ListContainer>
+						) : <div>No Items</div>}
+				</ListContainer>
+				<Pagination items={this.props.items} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />
+			</React.Fragment>
+
 		)
 	}
 }
