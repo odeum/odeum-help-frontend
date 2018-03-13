@@ -11,7 +11,7 @@ import {
 	HeaderContainer, ChangeViewButtonCard,
 	ChangeViewButtonMap, ChangeViewButtonList,
 	ChangeViewButtonContainer,
-	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem, Input, SearchContainer, View
+	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem, Input, SearchContainer, View, DropDownItemWithDot
 } from './ViewStyles'
 import { Text } from '../List/ListStyles'
 
@@ -27,11 +27,27 @@ export default class ViewContainer extends Component {
 			pageSizeOpen: false,
 			sortColumn: 'name',
 			sortDirection: false,
-			columns: Object.keys(this.props.items[0])
+			visibleColDropDown: false,
+			columns: Object.keys(this.props.items[0]),
+			visibleColumns: {
+
+			}
 
 		}
 		this.listPageSizes = [1, 10, 20, 30, 40, 50, 80, 100]
 		this.cardPageSizes = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+	}
+	componentWillMount = () => {
+		var columns = Object.keys(this.props.items[0])
+		var visibleColumns = columns.map(c => {
+			// if (c !== 'img')
+			return c = { column: c, visible: true }
+
+		})
+		console.log(visibleColumns)
+		this.setState({
+			visibleColumns: visibleColumns
+		})
 	}
 
 
@@ -160,7 +176,7 @@ export default class ViewContainer extends Component {
 					sortDirection={sortDirection}
 					handleSort={this.handleSort}
 					items={this.filterItems(items)}
-					columns={this.state.columns}
+					columns={this.state.visibleColumns}
 				/>
 
 			case 2:
@@ -187,26 +203,45 @@ export default class ViewContainer extends Component {
 		</DropDownContainer>
 	}
 
+	handleVisibility = (visibleColDropDown) => e => {
+		e.preventDefault()
+		this.setState({ visibleColDropDown: visibleColDropDown })
+	}
+	handleVisibleColumn = (column) => e => {
+		e.preventDefault()
+		var newArr = this.state.visibleColumns.map(c => c.column === column ? { column: c.column, visible: !c.visible } : c)
+		this.setState({ visibleColumns: newArr })
+	}
+
+	renderVisibleColumns = (visibleColDropDown) => {
+		return <DropDownContainer onMouseLeave={this.handleVisibility(false)}>
+			<DropDownButton onMouseEnter={this.handleVisibility(true)}>
+				<Icon icon={'visibility'} color={'#FFF'} active={true} iconSize={20} style={{ margin: 3 }} />
+			</DropDownButton>
+			{visibleColDropDown && <DropDown>
+				{this.state.visibleColumns.map((c, i) =>
+					<DropDownItemWithDot key={i} onClick={this.handleVisibleColumn(c.column)} active={c.visible}>
+						<Text>{c.column}</Text>
+					</DropDownItemWithDot>
+				)}
+			</DropDown>
+
+			}
+		</DropDownContainer>
+	}
 	renderSortOption = (sortOpen, sortDirection) => {
 
 		return <DropDownContainer onMouseLeave={this.handleSortOpen(false)}>
-			<DropDownButton view={0} onMouseEnter={this.handleSortOpen(true)} >
-				<Icon icon={'visibility'} color={'#FFF'} ative={true} iconSize={20} style={{ margin: 3 }} />
+			<DropDownButton onMouseEnter={this.handleSortOpen(true)} >
+				<Icon icon={'sort_by_alpha'} color={'#FFF'} active={true} iconSize={20} style={{ margin: 3 }} />
 			</DropDownButton>
 			<Margin />
 			{sortOpen && <DropDown>
-				<DropDownItemWithArrow onClick={this.handleSort('name')} active={this.handleActiveColumn('name')} sorting={sortDirection}>
-					<Text>Name</Text>
-				</DropDownItemWithArrow>
-				<DropDownItemWithArrow onClick={this.handleSort('progress')} active={this.handleActiveColumn('progress')} sorting={sortDirection}>
-					<Text>Gennemfort</Text>
-				</DropDownItemWithArrow>
-				<DropDownItemWithArrow onClick={this.handleSort('date')} active={this.handleActiveColumn('date')} sorting={sortDirection}>
-					<Text>Dato</Text>
-				</DropDownItemWithArrow>
-				<DropDownItemWithArrow onClick={this.handleSort('responsible')} active={this.handleActiveColumn('responsible')} sorting={sortDirection}>
-					<Text>Responsible</Text>
-				</DropDownItemWithArrow>
+				{this.state.visibleColumns.map((c, i) =>
+					c.visible ? <DropDownItemWithArrow key={i} onClick={this.handleSort(c.column)} active={this.handleActiveColumn(c.column)} sorting={sortDirection}>
+						<Text>{c.column}</Text>
+					</DropDownItemWithArrow>
+						: null)}
 			</DropDown>
 			}
 		</DropDownContainer>
@@ -234,13 +269,14 @@ export default class ViewContainer extends Component {
 	}
 
 	render() {
-		const { view, searchString, pageSize, pageSizeOpen, sortOpen, sortDirection, sortColumn } = this.state
+		const { view, searchString, pageSize, pageSizeOpen, sortOpen, sortDirection, sortColumn, visibleColDropDown } = this.state
 		return <View>
 			<HeaderContainer>
 				<DayPickerRangeControllerWrapper />
 				{this.renderSearchOption(searchString)}
 				{this.renderPageSizeOption(view, pageSize, pageSizeOpen)}
 				{this.renderSortOption(sortOpen, sortDirection)}
+				{this.renderVisibleColumns(visibleColDropDown)}
 				{this.renderChangeViewOptions(view)}
 			</HeaderContainer>
 			{this.renderView(pageSize, view, sortColumn, sortDirection)}

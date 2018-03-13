@@ -37,16 +37,21 @@ export default class ListView extends Component {
 		// e.preventDefault()
 		return col === this.props.sortColumn ? true : false
 	}
+	handleActiveColumnCount = () => {
+		var x = 0
+		this.props.columns.map(c => c.visible === true ? x = x + 1 : null)
+		return x
+	}
 	render() {
 		return (
 			<React.Fragment>
 				<HeaderListContainer >
 					<Checkbox />
-					<CellHeaderContainer columnCount={this.props.columns.length}>
-						{this.props.columns ? this.props.columns.map(col =>
-							<LabelHeader onClick={this.handleSort(col)} active={this.activeColumnSorting(col)} sorting={this.props.sortDirection}>
-								<Text>{col}</Text>
-							</LabelHeader>
+					<CellHeaderContainer columnCount={this.handleActiveColumnCount}>
+						{this.props.columns ? this.props.columns.map((col, i) =>
+							col.visible ? <LabelHeader key={i} onClick={this.handleSort(col.column)} active={this.activeColumnSorting(col.column)} sorting={this.props.sortDirection}>
+								<Text>{col.column}</Text>
+							</LabelHeader> : null
 						) :
 							<React.Fragment>
 								<LabelHeader onClick={this.handleSort('name')} active={this.activeColumnSorting('name')} sorting={this.props.sortDirection}>
@@ -69,7 +74,8 @@ export default class ListView extends Component {
 					{this.props.items.length !== 0 ?
 						this.state.pageOfItems.map((c, i) =>
 							<ListCard
-								columnCount={this.props.columns.length}
+								column={this.props.columns}
+								columnCount={this.handleActiveColumnCount}
 								item={c}
 								key={i}
 								// id={c.id}

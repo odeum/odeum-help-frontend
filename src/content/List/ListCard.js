@@ -44,12 +44,12 @@ export default class ListCard extends PureComponent {
 				<ListCardItem>
 					<Checkbox onChange={this.onChecked} />
 					<ListItemContainer selected={this.state.checked} columnCount={this.props.columnCount}>
-						{Object.keys(this.props.item).map((i) =>
-							<Label>
+						{Object.keys(this.props.item).map((i, index) =>
+							this.props.column[index].visible ? <Label key={index}>
 								<Text title={this.props.item[i].toString()}>
 									{this.props.item[i].toString()}
 								</Text>
-							</Label>
+							</Label> : null
 						)}
 						{/* <Label>
 							<Text title={this.props.label}>

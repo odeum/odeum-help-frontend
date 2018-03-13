@@ -19,21 +19,8 @@ export default class FormCard extends PureComponent {
 		}
 	}
 
-	// google.maps.event.addListener(marker, 'mouseover', function() {
-	// 	timer = window.setTimeout(function () {
-	// 		alert("Stackoverflow Rocks!!!");
-	// 	}, 2000);
-	// } );
-
-	// google.maps.event.addListener(marker, 'mouseout', function() {
-	// 	window.clearTimeout(timer);
-	// } );
-
 	onImageHover = () => {
-		console.log('Bing, Entered')
-		this.imageHover = window.setTimeout(() => this.setState({ imgExpand: true })
-			, 1000)
-		console.log(this.imageHover)
+		this.imageHover = window.setTimeout(() => this.setState({ imgExpand: true }), 1000)
 	}
 	onImageLeave = () => {
 		window.clearTimeout(this.imageHover)

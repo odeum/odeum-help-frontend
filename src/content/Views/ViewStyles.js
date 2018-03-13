@@ -73,6 +73,19 @@ export const DropDownItemWithArrow = DropDownItem.extend`
 	}
 `
 
+export const DropDownItemWithDot = DropDownItem.extend`
+	justify-content:space-between;
+	width: 200px;
+	font-weight:${p => p.active ? 700 : 300};
+	&:after{
+		${p => p.active ? `
+		font-weight: 700;
+		content: "\u2714";
+		transform: ${p.sorting ? 'rotate(180deg)' : ''};
+		margin-right: 4px;
+	` : null};
+	}
+`
 export const HeaderListContainer = styled.div`
 	display:flex;
 	flex-flow: row nowrap;
