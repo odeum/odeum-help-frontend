@@ -198,6 +198,8 @@ export const Input = styled.input`
 	-webkit-appearance: none;
 	border: none;
 	background: inherit;
+	outline:none;
+	height:100%;
 `
 
 export const SearchContainer = styled.div`
@@ -212,7 +214,7 @@ export const SearchContainer = styled.div`
     box-sizing: border-box;
 	outline: none;
 	margin: 0px 5px;
-
+	box-shadow: ${(props) => props.active ? `0 0 0 3px ` + props.theme.tab.selected : `0 0 0 0 #13A085`};
     &:hover {
         border-color: ${p => transparentize(0.7, p.theme.tab.hover)};
 		box-shadow: ${p => `0 0 0 3px ${transparentize(0.7, p.theme.tab.hover)}`};

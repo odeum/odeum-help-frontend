@@ -20,6 +20,7 @@ export default class ViewContainer extends Component {
 		super(props)
 		var settings = JSON.parse(window.localStorage.getItem('visibleColumns')) || undefined
 		this.state = {
+			inputFocus: false,
 			view: 1,
 			pageSize: 10,
 			searchString: '',
@@ -33,6 +34,8 @@ export default class ViewContainer extends Component {
 		}
 		this.listPageSizes = [1, 10, 20, 30, 40, 50, 80, 100]
 		this.cardPageSizes = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+	}
+	componentWillUpdate = (nextProps, nextState) => {
 	}
 
 	createInputRef = (node) => {
@@ -117,6 +120,7 @@ export default class ViewContainer extends Component {
 
 	handleFocusInput = () => {
 		this.node.focus()
+		this.setState({ inputFocus: true })
 	}
 
 	handleActiveColumn = (col) => col === this.state.sortColumn ? true : false
@@ -199,6 +203,7 @@ export default class ViewContainer extends Component {
 			}
 		</DropDownContainer>
 	}
+
 	renderSortOption = (sortOpen, sortDirection) => {
 
 		return <DropDownContainer onMouseLeave={this.handleSortOpen(false)}>
@@ -232,9 +237,9 @@ export default class ViewContainer extends Component {
 	}
 
 	renderSearchOption = (searchString) => {
-		return <SearchContainer onClick={this.handleFocusInput}>
+		return <SearchContainer onClick={this.handleFocusInput} active={this.state.inputFocus}>
 			<Icon icon={'search'} iconSize={20} style={{ margin: 3, paddingRight: 3, borderRight: '1px solid #cecece' }} />
-			<Input innerRef={this.createInputRef} onChange={this.handleSearch} value={searchString} />
+			<Input innerRef={this.createInputRef} onChange={this.handleSearch} value={searchString} onBlur={() => this.setState({ inputFocus: false })} />
 		</SearchContainer>
 	}
 
