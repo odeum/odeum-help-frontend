@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import ListCard from '../List/ListCard'
 import Pagination from '../Pagination/Pagination'
 import { ListContainer, LabelHeader, CellHeader, ResponsibleHeader, HeaderListContainer, CellHeaderContainer } from './ViewStyles'
 import Checkbox from './Components/CheckBox'
 import { Text } from '../List/ListStyles'
 
-export default class ListView extends Component {
+export default class ListView extends PureComponent {
 	constructor(props) {
 		super(props)
 

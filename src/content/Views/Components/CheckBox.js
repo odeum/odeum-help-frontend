@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StyledCheckbox, CheckMarkIco } from './CheckboxStyles'
 
-class Checkbox extends PureComponent {
+class Checkbox extends Component {
 
 	constructor(props) {
 		super(props)
@@ -10,6 +10,12 @@ class Checkbox extends PureComponent {
 		this.state = {
 			isChecked: false
 		}
+	}
+	shouldComponentUpdate = (nextProps, nextState) => {
+		if (nextState.isChecked !== this.state.isChecked)
+			return true
+		else
+			return false
 	}
 
 	handleChange = () => {

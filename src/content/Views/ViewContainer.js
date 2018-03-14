@@ -239,7 +239,7 @@ export default class ViewContainer extends Component {
 	renderSearchOption = (searchString) => {
 		return <SearchContainer onClick={this.handleFocusInput} active={this.state.inputFocus}>
 			<Icon icon={'search'} iconSize={20} style={{ margin: 3, paddingRight: 3, borderRight: '1px solid #cecece' }} />
-			<Input innerRef={this.createInputRef} onChange={this.handleSearch} value={searchString} onBlur={() => this.setState({ inputFocus: false })} />
+			<Input innerRef={this.createInputRef} onChange={this.handleSearch} value={searchString} onBlur={() => this.state.inputFocus ? this.setState({ inputFocus: false }) : null} />
 		</SearchContainer>
 	}
 

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import {
 	FormContainer, FormImg, Header, ProjectInfo, Title, ProjectInfoCategory, ButtonContainer, Button, ControlsContainer,
 	ExpandButtonContainer, VerticalButtonContainer, CompleteContainer, ContainerWHorizControls,
-	ContainerWHorizControlsTransitions, overlayTransition, FormContainerTransitions, CompleteContainerTransitions, /* Img */
+	ContainerWHorizControlsTransitions, overlayTransition, FormContainerTransitions, /* CompleteContainerTransitions Img */
 } from './FormCardStyles'
 import { Icon } from 'odeum-ui'
 import { Transition } from 'react-transition-group'
