@@ -101,12 +101,13 @@ export const CellHeaderContainer = styled.div`
 	display:grid;
 	grid-template-columns: repeat(${p => p.columnCount}, 1fr);
 	flex: 1;
+	margin-right: 25px;
 `
 
 export const LabelHeader = Label.extend`
 	font-weight:${p => p.active ? 700 : 400};
 	border-radius: 4px;
-	margin: 0px 4px;
+	/* margin: 0px 4px; */
 	display:flex;
 	justify-content: space-between;
 	padding-left: 8px;

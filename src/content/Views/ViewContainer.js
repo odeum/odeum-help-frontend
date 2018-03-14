@@ -18,49 +18,22 @@ import { Text } from '../List/ListStyles'
 export default class ViewContainer extends Component {
 	constructor(props) {
 		super(props)
-
+		var settings = JSON.parse(window.localStorage.getItem('visibleColumns')) || undefined
 		this.state = {
 			view: 1,
 			pageSize: 10,
 			searchString: '',
 			sortOpen: false,
 			pageSizeOpen: false,
-			sortColumn: '',
+			sortColumn: settings ? settings[settings.findIndex(c => c.visible === true)].column : Object.keys(this.props.items[0])[0],
 			sortDirection: false,
 			visibleColDropDown: false,
-			visibleColumns: {}
+			visibleColumns: settings || Object.keys(this.props.items[0]).map(c => c = { column: c, visible: true })
 
 		}
 		this.listPageSizes = [1, 10, 20, 30, 40, 50, 80, 100]
 		this.cardPageSizes = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 	}
-	componentWillMount = () => {
-		//TODO: Check if stored columns match the actual columns
-		var settings = window.localStorage.getItem('visibleColumns')
-		console.log(settings)
-		if (settings === null) {
-			var columns = Object.keys(this.props.items[0])
-			var visibleColumns = columns.length > 0 ? columns.map(c => {
-				if (c.includes('img'))
-					return c = { column: c, visible: false }
-				else
-					return c = { column: c, visible: true }
-
-			}) : []
-			this.setState({
-				visibleColumns: visibleColumns,
-				sortColumn: visibleColumns[visibleColumns.indexOf(c => c.visible === true)].column
-			})
-		}
-		else {
-			this.setState({
-				visibleColumns: JSON.parse(settings),
-				sortColumn: JSON.parse(settings)[JSON.parse(settings).findIndex(c => c.visible === true)].column
-
-			})
-		}
-	}
-
 
 	createInputRef = (node) => {
 		this.node = node
@@ -214,7 +187,7 @@ export default class ViewContainer extends Component {
 			{visibleColDropDown && <DropDown>
 				{this.state.visibleColumns.map((c, i) =>
 					<DropDownItemWithDot key={i} onClick={this.handleVisibleColumn(c.column)} active={c.visible}>
-						<Text>{c.column}</Text>
+						<Text>{c.column.charAt(0).toUpperCase() + c.column.slice(1)}</Text>
 					</DropDownItemWithDot>
 				)}
 			</DropDown>
@@ -232,7 +205,7 @@ export default class ViewContainer extends Component {
 			{sortOpen && <DropDown>
 				{this.state.visibleColumns.map((c, i) =>
 					c.visible ? <DropDownItemWithArrow key={i} onClick={this.handleSort(c.column)} active={this.handleActiveColumn(c.column)} sorting={sortDirection}>
-						<Text>{c.column}</Text>
+						<Text>{c.column.charAt(0).toUpperCase() + c.column.slice(1)}</Text>
 					</DropDownItemWithArrow>
 						: null)}
 			</DropDown>

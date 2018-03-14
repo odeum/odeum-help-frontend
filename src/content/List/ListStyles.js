@@ -5,7 +5,8 @@ export const Cell = styled.div`
 	display:flex;
 	align-items:center;
 	overflow: hidden;
-	margin: 0px 8px;
+	margin: 0px 4px;
+	padding-left: 4px;
 `
 export const Text = styled.div`
 	display:inline-block;

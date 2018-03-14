@@ -48,9 +48,9 @@ export default class ListView extends Component {
 				<HeaderListContainer >
 					<Checkbox />
 					<CellHeaderContainer columnCount={this.handleActiveColumnCount}>
-						{this.props.columns ? this.props.columns.map((col, i) =>
-							col.visible ? <LabelHeader key={i} onClick={this.handleSort(col.column)} active={this.activeColumnSorting(col.column)} sorting={this.props.sortDirection}>
-								<Text>{col.column}</Text>
+						{this.props.columns ? this.props.columns.map((c, i) =>
+							c.visible ? <LabelHeader key={i} onClick={this.handleSort(c.column)} active={this.activeColumnSorting(c.column)} sorting={this.props.sortDirection}>
+								<Text>{c.column.charAt(0).toUpperCase() + c.column.slice(1)}</Text>
 							</LabelHeader> : null
 						) :
 							<React.Fragment>
