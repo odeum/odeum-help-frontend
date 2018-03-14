@@ -32,7 +32,7 @@ class Checkbox extends PureComponent {
 	render() {
 		const { size } = this.props
 		return (
-			<StyledCheckbox size={size}>
+			<StyledCheckbox size={size} style={{ ...this.props.style }}>
 				<input
 					type="checkbox"
 					checked={this.state.isChecked}

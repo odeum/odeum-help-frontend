@@ -15,6 +15,9 @@ cursor:pointer;
 	border-color: ${p => transparentize(0.7, p.theme.tab.hover)};
 	box-shadow: ${p => `0 0 0 3px ${transparentize(0.7, p.theme.tab.hover)}`};
 }
+height: 30px;
+display: flex;
+align-items: center;
 `
 
 export const PageNumberButton = styled.a`
@@ -28,6 +31,10 @@ cursor:pointer;
 	background: ${p => p.theme.tab.hover};
 	color: ${p => p.theme.tab.activeColor};
 }
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
 `
 
 export const PageNumberContainer = styled.div`
@@ -36,10 +43,13 @@ color: #000;
 border-radius:5px;
 overflow:hidden;
 padding:5px 0px;
+height: 30px;
 &:hover {
 		border-color: ${p => transparentize(0.7, p.theme.tab.hover)};
 		box-shadow: ${p => `0 0 0 3px ${transparentize(0.7, p.theme.tab.hover)}`};
 	}
+display: flex;
+align-items: center;
 `
 
 export const PaginationContainer = styled.div`
@@ -50,4 +60,5 @@ flex-flow:row nowrap;
 justify-content:center;
 align-items:center;
 margin-top:auto;
+height: 30px;
 `

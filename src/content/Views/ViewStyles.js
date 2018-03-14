@@ -102,6 +102,7 @@ export const CellHeaderContainer = styled.div`
 	grid-template-columns: repeat(${p => p.columnCount}, 1fr);
 	flex: 1;
 	margin-right: 25px;
+	margin-left: 4px;
 `
 
 export const LabelHeader = Label.extend`

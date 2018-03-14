@@ -71,6 +71,18 @@ export default class ViewContainer extends Component {
 				: null
 	}
 
+	handleVisibility = (visibleColDropDown) => e => {
+		e.preventDefault()
+		this.setState({ visibleColDropDown: visibleColDropDown })
+	}
+
+	handleVisibleColumn = (column) => e => {
+		e.preventDefault()
+		var newArr = this.state.visibleColumns.map(c => c.column === column ? { column: c.column, visible: !c.visible } : c)
+		this.setState({ visibleColumns: newArr })
+		window.localStorage.setItem('visibleColumns', JSON.stringify(newArr))
+	}
+
 	handleSearch = (e) => {
 		this.setState({ searchString: e.target.value })
 	}
@@ -168,22 +180,14 @@ export default class ViewContainer extends Component {
 		</DropDownContainer>
 	}
 
-	handleVisibility = (visibleColDropDown) => e => {
-		e.preventDefault()
-		this.setState({ visibleColDropDown: visibleColDropDown })
-	}
-	handleVisibleColumn = (column) => e => {
-		e.preventDefault()
-		var newArr = this.state.visibleColumns.map(c => c.column === column ? { column: c.column, visible: !c.visible } : c)
-		this.setState({ visibleColumns: newArr })
-		window.localStorage.setItem('visibleColumns', JSON.stringify(newArr))
-	}
+
 
 	renderVisibleColumns = (visibleColDropDown) => {
 		return <DropDownContainer onMouseLeave={this.handleVisibility(false)}>
 			<DropDownButton onMouseEnter={this.handleVisibility(true)}>
 				<Icon icon={'visibility'} color={'#FFF'} active={true} iconSize={20} style={{ margin: 3 }} />
 			</DropDownButton>
+			<Margin />
 			{visibleColDropDown && <DropDown>
 				{this.state.visibleColumns.map((c, i) =>
 					<DropDownItemWithDot key={i} onClick={this.handleVisibleColumn(c.column)} active={c.visible}>

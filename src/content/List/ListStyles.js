@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { transparentize } from 'polished'
+// import { transparentize } from 'polished'
 
 export const Cell = styled.div`
 	display:flex;
@@ -7,6 +7,8 @@ export const Cell = styled.div`
 	overflow: hidden;
 	margin: 0px 4px;
 	padding-left: 4px;
+	height: 30px;
+
 `
 export const Text = styled.div`
 	display:inline-block;
@@ -25,18 +27,17 @@ export const ListItemContainer = styled.div`
 	display:grid;
 	grid-template-columns: repeat(${p => p.columnCount}, 1fr);
 	color: ${p => p.selected ? p.theme.tab.activeColor : p.theme.tab.color};
-	border: 1px solid ${p => p.selected ? p.theme.tab.selected : p.theme.tab.unselected};
 	background: ${p => p.selected ? p.theme.tab.selected : p.theme.tab.unselected};
-	border-radius: 5px;
-	margin: 3px;
-	height: 25px;
+	border-radius: 5px 0px 0px 5px;
+	margin: 3px 0px 3px 8px;
+	height: 30px;
 	align-content: center;
 	width: 100%;
-	&:hover {
-		border-color: ${p => transparentize(0.7, p.theme.tab.hover)};
-		box-shadow: ${p => `0 0 0 3px ${transparentize(0.7, p.theme.tab.hover)}`};
-	}
 	cursor: default;
+	&:hover {
+		background: gray;
+		color: ${p => p.theme.tab.activeColor};
+	}
 `
 
 export const Label = Cell.extend`
@@ -57,8 +58,11 @@ export const ExpandButtonContainer = styled.div`
 	background: ${p => p.selected ? p.theme.tab.selected : p.theme.tab.unselected};
 	border-radius: 0px 5px 5px 0px;
 	width: 15px;
-	height:25px;
+	height:30px;
 	justify-self:end;
+	&:hover{
+		background: gray;
+	}
 `
 export const ButtonContainer = styled.div`
 	width: ${p => p.horizOpen ? '100px' : '0px'};

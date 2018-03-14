@@ -17,29 +17,30 @@ export const overlayTransition = {
 }
 
 export const ContainerWHorizControlsTransitions = {
-	entering: { width: '200px', height: '270px' },
+	entering: { width: '230px', height: '300px' },
 	entered: { width: 'calc(100% - 120px)', height: '90%' },
-	exiting: { width: '200px', height: '270px' },
-	exited: { width: '200px', height: '270px' }
+	exiting: { width: '230px', height: '300px' },
+	exited: { width: '230px', height: '300px' }
 }
 
 export const FormContainerTransitions = {
-	entering: { width: '200px', height: '270px' },
+	entering: { width: '230px', height: '300px' },
 	entered: { width: '100%', height: 'calc(100% - 60px)' },
-	exiting: { width: '200px', height: '270px' },
-	exited: { width: '200px', height: '270px' }
+	exiting: { width: '230px', height: '300px' },
+	exited: { width: '230px', height: '300px' }
 }
 
 export const CompleteContainerTransitions = {
-	entering: { width: '200px', height: '270px', alignItems: 'center', justifyContent: 'center' },
+	entering: { width: '230px', height: '300px', alignItems: 'center', justifyContent: 'center' },
 	entered: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
-	exiting: { width: '200px', height: '270px', alignItems: 'center', justifyContent: 'center' },
-	exited: { width: '200px', height: '270px' }
+	exiting: { width: '230px', height: '300px', alignItems: 'center', justifyContent: 'center' },
+	exited: { width: '230px', height: '300px' }
 }
 
 export const CompleteContainer = styled.div`
 	display: flex;
 	flex-flow:row nowrap;
+	align-items:center;
 	margin: ${p => p.expand ? '0px' : '10px'};
 	transition: all 300ms ease;
 `
@@ -76,16 +77,6 @@ export const FormContainer = styled.div`
 	z-index: 0;
 	transition: all 300ms ease;
 	position:relative;
-	/* &:before {
-		content:"";
-		background-image: url(${p => p.img});
-		background-size: cover;
-		height: 100%;
-		z-index: -1;
-		position: absolute;
-		width: 100%;
-		/* filter: ${p => p.expand ? '' : 'saturate(50%)'}; */
-	} */
 	justify-content:flex-end;
 `
 
@@ -153,7 +144,7 @@ export const ControlsContainer = styled.div`
 	width: 80%;
 	max-width: 80%;
 	transition: all 300ms ease;
-	border-radius: 0px 0px 270px 270px;
+	border-radius: 0px 0px 2px 2px;
 	z-index:2;
 `
 
@@ -166,17 +157,17 @@ export const ExpandButtonContainer = styled.div`
 	justify-content: space-around;
 	background: #D5D5D5;
 	width: 40%;
-	border-radius: 0px 0px 10px 10px;
+	border-radius: 0px 0px 5px 5px;
 	height: 15px;
 	transition: all 300ms ease;
 `
 
 export const VerticalButtonContainer = ExpandButtonContainer.extend`
 	max-height:200px;
-	border-radius: ${p => p.vertOpen ? '0px 0px 10px 10px' : '0px 50px 50px 0px'};
+	border-radius: ${p => p.vertOpen ? '0px 0px 5px 5px' : '0px 50px 50px 0px'};
 	width: 15px;
-	height: 40%;
-	margin-top: 40px;
+	height: 150px;
+	/* margin-top: 40px; */
 	transition: all 300ms ease;
 `
 
