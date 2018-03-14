@@ -47,26 +47,10 @@ export default class ListCard extends PureComponent {
 						{Object.keys(this.props.item).map((i, index) =>
 							this.props.column[index].visible ? <Label key={index}>
 								<Text title={this.props.item[i].toString()}>
-									{this.props.item[i].toString()}
+									{this.props.item[i] instanceof Date ? this.props.item[i].toLocaleDateString() : this.props.item[i].toString()}
 								</Text>
 							</Label> : null
 						)}
-						{/* <Label>
-							<Text title={this.props.label}>
-								{this.props.label}
-							</Text>
-						</Label>
-						<Cell>
-							{this.props.progress} {typeof (this.props.progress) === 'string' ? '' : '%'}
-						</Cell>
-						<Cell>
-							{this.props.date}
-						</Cell>
-						<Responsible>
-							{this.props.resp}
-						</Responsible> */}
-
-
 					</ListItemContainer>
 					<ControlsContainer>
 						<ButtonContainer horizOpen={this.state.expand} style={{ flexFlow: 'row nowrap' }}>

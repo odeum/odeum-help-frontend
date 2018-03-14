@@ -25,29 +25,40 @@ export default class ViewContainer extends Component {
 			searchString: '',
 			sortOpen: false,
 			pageSizeOpen: false,
-			sortColumn: 'name',
+			sortColumn: '',
 			sortDirection: false,
 			visibleColDropDown: false,
-			columns: Object.keys(this.props.items[0]),
-			visibleColumns: {
-
-			}
+			visibleColumns: {}
 
 		}
 		this.listPageSizes = [1, 10, 20, 30, 40, 50, 80, 100]
 		this.cardPageSizes = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 	}
 	componentWillMount = () => {
-		var columns = Object.keys(this.props.items[0])
-		var visibleColumns = columns.map(c => {
-			// if (c !== 'img')
-			return c = { column: c, visible: true }
+		//TODO: Check if stored columns match the actual columns
+		var settings = window.localStorage.getItem('visibleColumns')
+		console.log(settings)
+		if (settings === null) {
+			var columns = Object.keys(this.props.items[0])
+			var visibleColumns = columns.length > 0 ? columns.map(c => {
+				if (c.includes('img'))
+					return c = { column: c, visible: false }
+				else
+					return c = { column: c, visible: true }
 
-		})
-		console.log(visibleColumns)
-		this.setState({
-			visibleColumns: visibleColumns
-		})
+			}) : []
+			this.setState({
+				visibleColumns: visibleColumns,
+				sortColumn: visibleColumns[visibleColumns.indexOf(c => c.visible === true)].column
+			})
+		}
+		else {
+			this.setState({
+				visibleColumns: JSON.parse(settings),
+				sortColumn: JSON.parse(settings)[JSON.parse(settings).findIndex(c => c.visible === true)].column
+
+			})
+		}
 	}
 
 
@@ -57,44 +68,25 @@ export default class ViewContainer extends Component {
 
 	filterItems = () => {
 		const { searchString, sortDirection, sortColumn } = this.state
+		var searchStr = searchString.toLowerCase()
 		var arr = this.props.items
-		var filtered = arr.filter(c => searchString === '' ||
-			c.name.includes(searchString) ||
-			c.progress.toString().includes(searchString) ||
-			c.responsible.includes(searchString) ||
-			c.date.toLocaleDateString().includes(searchString))
-
+		var keys = Object.keys(arr[0])
+		var filtered = arr.filter(c => {
+			var contains = keys.map(key => {
+				if (c[key] instanceof Date)
+					return c[key].toLocaleDateString().toLowerCase().includes(searchStr)
+				else
+					return c[key].toString().toLowerCase().includes(searchStr)
+			})
+			return contains.indexOf(true) !== -1 ? true : false
+		})
 		switch (sortDirection) {
-			case true: {
-				switch (sortColumn) {
-					case 'name':
-						return filtered.sort((a, b) => a.name > b.name ? -1 : a.name < b.name ? 1 : 0)
-					case 'progress':
-						return filtered.sort((a, b) => a.progress > b.progress ? -1 : a.progress < b.progress ? 1 : 0)
-					case 'responsible':
-						return filtered.sort((a, b) => a.responsible > b.responsible ? -1 : a.responsible < b.responsible ? 1 : 0)
-					case 'date':
-						return filtered.sort((a, b) => a.date > b.date ? -1 : a.date < b.date ? 1 : 0)
-					default:
-						return filtered
-				}
-			}
-			case false: {
-				switch (sortColumn) {
-					case 'name':
-						return filtered.sort((a, b) => a.name > b.name ? 1 : a.name < b.name ? -1 : 0)
-					case 'progress':
-						return filtered.sort((a, b) => a.progress > b.progress ? 1 : a.progress < b.progress ? -1 : 0)
-					case 'responsible':
-						return filtered.sort((a, b) => a.responsible > b.responsible ? 1 : a.responsible < b.responsible ? -1 : 0)
-					case 'date':
-						return filtered.sort((a, b) => a.date > b.date ? 1 : a.date < b.date ? -1 : 0)
-
-					default:
-						return filtered
-				}
-			}
-			default: return
+			case true:
+				return filtered.sort((a, b) => a[sortColumn] > b[sortColumn] ? -1 : a[sortColumn] < b[sortColumn] ? 1 : 0)
+			case false:
+				return filtered.sort((a, b) => a[sortColumn] < b[sortColumn] ? -1 : a[sortColumn] > b[sortColumn] ? 1 : 0)
+			default:
+				return filtered
 		}
 	}
 
@@ -211,6 +203,7 @@ export default class ViewContainer extends Component {
 		e.preventDefault()
 		var newArr = this.state.visibleColumns.map(c => c.column === column ? { column: c.column, visible: !c.visible } : c)
 		this.setState({ visibleColumns: newArr })
+		window.localStorage.setItem('visibleColumns', JSON.stringify(newArr))
 	}
 
 	renderVisibleColumns = (visibleColDropDown) => {
