@@ -69,7 +69,7 @@ class App extends Component {
 						<Homepage />
 					</Menu>
 					<Menu label={'Card'}>
-						<Tab icon={'view_module'} label={'Cards'} route={'/card'} exact>
+						<Tab icon={'view_module'} label={'Cards'} route={'/'} exact>
 							<ViewContainer items={this.state.mockData} />
 						</Tab>
 					</Menu>
