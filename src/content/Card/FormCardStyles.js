@@ -140,12 +140,13 @@ export const ControlsContainer = styled.div`
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: space-around;
-	position:relative;
+	position:absolute;
 	width: 80%;
 	max-width: 80%;
 	transition: all 300ms ease;
 	border-radius: 0px 0px 2px 2px;
 	z-index:2;
+	top: 100%;
 `
 
 export const ExpandButtonContainer = styled.div`
@@ -180,7 +181,6 @@ export const ButtonContainer = styled.div`
 	align-items: center;
 	justify-content: space-around;
 	background: #D5D5D5;
-	position:absolute;
 	width: 100%;
 	/* max-width: 200px; */
 	transition: all 300ms cubic-bezier(.87,-.41,.19,1.44);

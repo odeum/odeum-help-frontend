@@ -80,7 +80,7 @@ export default class FormCard extends PureComponent {
 			<Transition in={this.state.expand} timeout={300}>
 				{state => <CompleteContainer style={{ ...overlayTransition[state] }} expand={expand}>
 					<CompleteContainer style={{ ...CompleteContainerTransitions[state] }}>
-						<ContainerWHorizControls expand={expand} style={{ ...ContainerWHorizControlsTransitions[state] }} innerRef={this.setExpandedCardRef}>
+						<ContainerWHorizControls expand={expand} style={{ ...ContainerWHorizControlsTransitions[state], position: 'relative' }} innerRef={this.setExpandedCardRef}>
 							<FormContainer style={{ ...FormContainerTransitions[state] }} expand={expand} id={this.props.id} horizOpen={horizOpen}>
 								<FormImg image={this.props.item ? this.props.item.img ? this.props.item.img : null : null} onMouseEnter={this.onImageHover} onMouseLeave={this.onImageLeave} imgExpand={this.state.imgExpand} />
 								<Header>

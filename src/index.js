@@ -10,7 +10,9 @@ import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 import App from 'App'
 import 'react-dates/initialize'
+const { registerObserver } = require('react-perf-devtool')
 
+registerObserver()
 class AppRouter extends Component {
 	render() {
 		return (
