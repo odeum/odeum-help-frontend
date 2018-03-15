@@ -11,7 +11,7 @@ import {
 	HeaderContainer, ChangeViewButtonCard,
 	ChangeViewButtonMap, ChangeViewButtonList,
 	ChangeViewButtonContainer,
-	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItemWithArrow, DropDownItem, Input, SearchContainer, View, DropDownItemWithDot
+	DropDown, DropDownContainer, DropDownButton, Margin, DropDownItem, Input, SearchContainer, View, DropDownSection, DropDownIcon, DropDownText, DropDownSubSection, DropDownSubItem
 } from './ViewStyles'
 import { Text } from '../List/ListStyles'
 
@@ -149,6 +149,7 @@ export default class ViewContainer extends Component {
 					sortDirection={sortDirection}
 					handleSort={this.handleSort}
 					items={this.filterItems(items)}
+					columns={this.state.visibleColumns}
 				/>
 			case 1:
 				return <ListView
@@ -186,37 +187,74 @@ export default class ViewContainer extends Component {
 
 
 
-	renderVisibleColumns = (visibleColDropDown) => {
-		return <DropDownContainer onMouseLeave={this.handleVisibility(false)}>
-			<DropDownButton onMouseEnter={this.handleVisibility(true)}>
-				<Icon icon={'visibility'} color={'#FFF'} active={true} iconSize={20} style={{ margin: 3 }} />
-			</DropDownButton>
-			<Margin />
-			{visibleColDropDown && <DropDown>
-				{this.state.visibleColumns.map((c, i) =>
-					<DropDownItemWithDot key={i} onClick={this.handleVisibleColumn(c.column)} active={c.visible}>
-						<Text>{c.column.charAt(0).toUpperCase() + c.column.slice(1)}</Text>
-					</DropDownItemWithDot>
-				)}
-			</DropDown>
+	// renderVisibleColumns = (visibleColDropDown) => {
+	// 	return <DropDownContainer onMouseLeave={this.handleVisibility(false)}>
+	// 		<DropDownButton onMouseEnter={this.handleVisibility(true)}>
+	// 			<Icon icon={'visibility'} color={'#FFF'} active={true} iconSize={20} style={{ margin: 3 }} />
+	// 		</DropDownButton>
+	// 		<Margin />
+	// 		{visibleColDropDown && <DropDown>
+	// 			{this.state.visibleColumns.map((c, i) =>
+	// 				<DropDownItemWithDot key={i} onClick={this.handleVisibleColumn(c.column)} active={c.visible}>
+	// 					<Text>{c.column.charAt(0).toUpperCase() + c.column.slice(1)}</Text>
+	// 				</DropDownItemWithDot>
+	// 			)}
+	// 		</DropDown>
 
-			}
-		</DropDownContainer>
-	}
+	// 		}
+	// 	</DropDownContainer>
+	// }
 
-	renderSortOption = (sortOpen, sortDirection) => {
+	renderVisibleSortOption = (sortOpen, sortDirection) => {
 
 		return <DropDownContainer onMouseLeave={this.handleSortOpen(false)}>
 			<DropDownButton onMouseEnter={this.handleSortOpen(true)} >
-				<Icon icon={'sort_by_alpha'} color={'#FFF'} active={true} iconSize={20} style={{ margin: 3 }} />
+				<Icon icon={'visibility'} color={'#FFF'} active={true} iconSize={20} style={{ margin: 3 }} />
 			</DropDownButton>
 			<Margin />
-			{sortOpen && <DropDown>
+			{sortOpen && <DropDown style={{ width: 200 }}>
 				{this.state.visibleColumns.map((c, i) =>
-					c.visible ? <DropDownItemWithArrow key={i} onClick={this.handleSort(c.column)} active={this.handleActiveColumn(c.column)} sorting={sortDirection}>
-						<Text>{c.column.charAt(0).toUpperCase() + c.column.slice(1)}</Text>
+					<DropDownSection key={i}>
+						<DropDownSubSection active={this.handleActiveColumn(c.column)}>
+							<DropDownIcon onClick={this.handleVisibleColumn(c.column)} >
+								<Icon icon={"visibility"} color={'#FFFFFF'} active={c.visible} />
+							</DropDownIcon>
+							<DropDownText onClick={c.visible ? this.handleSort(c.column) : undefined} active={this.handleActiveColumn(c.column)} sorting={sortDirection}>
+								<Text >{c.column.charAt(0).toUpperCase() + c.column.slice(1)}</Text>
+							</DropDownText>
+						</DropDownSubSection>
+						<DropDownSubItem active={this.handleActiveColumn(c.column)}>
+							<DropDownIcon onClick={this.handleVisibleColumn(c.column)} >
+								<Icon icon={"visibility"} color={'#FFFFFF'} active={c.visible} />
+							</DropDownIcon>
+							<DropDownText onClick={c.visible ? this.handleSort(c.column) : undefined} active={this.handleActiveColumn(c.column)} sorting={sortDirection}>
+								<Text >{c.column.charAt(0).toUpperCase() + c.column.slice(1)}</Text>
+							</DropDownText>
+						</DropDownSubItem>
+					</DropDownSection>
+				)}
+				{/* {this.state.visibleColumns.map((c, i) =>
+					<DropDownItemWithArrow style={{ justifyContent: 'flex-start' }} key={i} active={this.handleActiveColumn(c.column)} sorting={sortDirection}>
+						<div style={{ marginRight: '8px', display: 'flex' }} onClick={this.handleVisibleColumn(c.column)} >
+							<Icon icon={"visibility"} color={'#FFFFFF'} active={c.visible} />
+						</div>
+						<div onClick={this.handleSort(c.column)} style={{ width: '100%', display: 'flex', flex: 1 }}>
+							<Text >{c.column.charAt(0).toUpperCase() + c.column.slice(1)}</Text>
+						</div>
 					</DropDownItemWithArrow>
-						: null)}
+				)} */}
+				{/* <div style={{ display: 'flex', flexFlow: 'column nowrap', alignItems: 'flex-start', width: 200 }}>
+					<DropDownItem style={{ flex: 1 }}>
+						Progress
+					</DropDownItem>
+					<div style={{ background: '#66ccff' }}>
+						<DropDownItemWithArrow style={{ paddingLeft: 30 }}> {'> 50'} </DropDownItemWithArrow>
+					</div>
+					<div style={{ background: '#66ccff' }}>
+						<DropDownItemWithArrow style={{ paddingLeft: 30 }}> {'< 50'} </DropDownItemWithArrow>
+					</div>
+				</div> */}
+				{/* </DropDownItem> */}
 			</DropDown>
 			}
 		</DropDownContainer>
@@ -244,14 +282,14 @@ export default class ViewContainer extends Component {
 	}
 
 	render() {
-		const { view, searchString, pageSize, pageSizeOpen, sortOpen, sortDirection, sortColumn, visibleColDropDown } = this.state
+		const { view, searchString, pageSize, pageSizeOpen, sortOpen, sortDirection, sortColumn } = this.state
 		return <View>
 			<HeaderContainer>
 				<DayPickerRangeControllerWrapper />
 				{this.renderSearchOption(searchString)}
 				{this.renderPageSizeOption(view, pageSize, pageSizeOpen)}
-				{this.renderSortOption(sortOpen, sortDirection)}
-				{this.renderVisibleColumns(visibleColDropDown)}
+				{this.renderVisibleSortOption(sortOpen, sortDirection)}
+				{/* {this.renderVisibleColumns(visibleColDropDown)} */}
 				{this.renderChangeViewOptions(view)}
 			</HeaderContainer>
 			{this.renderView(pageSize, view, sortColumn, sortDirection)}

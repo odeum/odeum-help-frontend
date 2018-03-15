@@ -11,19 +11,16 @@ export default class CardView extends Component {
 			pageOfItems: [],
 		}
 	}
-	renderChildren = () => {
-		const arr = this.props.items.map((c, i) => {
-			return <FormCard
-				key={i}
-				resp={c.responsible}
-				label={c.name}
-				date={c.date.toLocaleDateString()}
-				img={c.img}
-				progress={c.progress}
-			/>
-		})
-		return arr
-	}
+	// renderChildren = () => {
+	// 	const arr = this.props.items.map((c, i) => {
+	// 		console.log(c)
+	// 		return <FormCard
+	// 			key={i}
+	// 			item={c}
+	// 		/>
+	// 	})
+	// 	return arr
+	// }
 	handleSort = (column) => e => {
 		e.preventDefault()
 		this.props.handleSort(column)
@@ -49,11 +46,8 @@ export default class CardView extends Component {
 						{this.state.pageOfItems.map((c, i) =>
 							<FormCard
 								key={i}
-								resp={c.responsible}
-								label={c.name}
-								date={c.date.toLocaleDateString()}
-								img={c.img}
-								progress={c.progress}
+								item={c}
+								column={this.props.columns}
 							/>
 						)}</CardListContainer>
 					<Pagination items={this.props.items} onChangePage={this.onChangePage} pageSize={this.props.pageSize} />

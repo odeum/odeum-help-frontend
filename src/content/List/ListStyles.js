@@ -35,8 +35,8 @@ export const ListItemContainer = styled.div`
 	width: 100%;
 	cursor: default;
 	&:hover {
-		background: gray;
-		color: ${p => p.theme.tab.activeColor};
+		background: #BDBDBD;
+		/* color: ${p => p.theme.tab.activeColor}; */
 	}
 `
 
@@ -61,7 +61,7 @@ export const ExpandButtonContainer = styled.div`
 	height:30px;
 	justify-self:end;
 	&:hover{
-		background: gray;
+		background: #BDBDBD;
 	}
 `
 export const ButtonContainer = styled.div`

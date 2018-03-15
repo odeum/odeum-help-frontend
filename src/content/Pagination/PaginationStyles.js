@@ -60,5 +60,6 @@ flex-flow:row nowrap;
 justify-content:center;
 align-items:center;
 margin-top:auto;
-height: 30px;
+height: 50px;
+min-height:50px;
 `

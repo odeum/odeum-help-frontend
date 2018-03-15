@@ -90,7 +90,7 @@ export const FormImg = styled.div`
 	align-items:center;
 	justify-content:center;
 	width: 100%;
-	min-height:${p => p.imgExpand ? '270px' : '50px'};
+	min-height:${p => p.imgExpand ? '350px' : '50px'};
 	position:relative;
 	overflow:hidden;
 	flex:${p => p.imgExpand ? '10' : '1'};
@@ -114,9 +114,8 @@ export const Header = styled.div`
 export const ProjectInfo = styled.div`
 	/* background: white; */
 	display: flex;
-	flex-flow: row nowrap;
+	flex-flow: row wrap;
 	justify-content: space-around;
-	width: 100%;
 	padding: 5px;
 	background:white;
 	${p => p.expand ? `flex:1;` : ''};
@@ -141,6 +140,7 @@ export const ControlsContainer = styled.div`
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: space-around;
+	position:relative;
 	width: 80%;
 	max-width: 80%;
 	transition: all 300ms ease;
@@ -180,6 +180,7 @@ export const ButtonContainer = styled.div`
 	align-items: center;
 	justify-content: space-around;
 	background: #D5D5D5;
+	position:absolute;
 	width: 100%;
 	/* max-width: 200px; */
 	transition: all 300ms cubic-bezier(.87,-.41,.19,1.44);

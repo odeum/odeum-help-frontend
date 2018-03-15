@@ -35,6 +35,7 @@ export const DropDown = styled.div`
 	min-width: 45px;
 	border-radius: 4px;
 	overflow:hidden;
+	/* width: 200px; */
 `
 export const DropDownContainer = styled.div`
 	position:relative;
@@ -59,30 +60,27 @@ export const DropDownItem = styled.div`
 	background: ${p => p.active ? p.theme.tab.selected : ''};
 `
 
-export const DropDownItemWithArrow = DropDownItem.extend`
-	justify-content:space-between;
-	width: 200px;
-	font-weight:${p => p.active ? 700 : 300};
-	&:after{
-		${p => p.active ? `
-		font-weight: 700;
-		content: "\u2191";
-		transform: ${p.sorting ? 'rotate(180deg)' : ''};
-		margin-right: 4px;
-	` : null};
-	}
-`
+// export const DropDownItemWithArrow = DropDownItem.extend`
+// 	width: 200px;
+// 	&:after{
+// 		${p => p.active ? `
+// 		font-weight: 700;
+// 		content: "\u2191";
+// 		transform: ${p.sorting ? 'rotate(180deg)' : ''};
+// 		margin-right: 4px;
+// 		margin-left: auto;
+// 	` : null};
+// 	}
+// `
 
 export const DropDownItemWithDot = DropDownItem.extend`
-	justify-content:space-between;
-	width: 200px;
-	font-weight:${p => p.active ? 700 : 300};
 	&:after{
 		${p => p.active ? `
 		font-weight: 700;
 		content: "\u2714";
 		transform: ${p.sorting ? 'rotate(180deg)' : ''};
 		margin-right: 4px;
+		margin-left:auto;
 	` : null};
 	}
 `
@@ -95,6 +93,7 @@ export const HeaderListContainer = styled.div`
 	padding: 5px;
 	border-radius: 4px;
 	margin: 10px 0px;
+	min-height:30px;
 `
 export const CellHeaderContainer = styled.div`
 	height: 100%;
@@ -108,7 +107,7 @@ export const CellHeaderContainer = styled.div`
 export const LabelHeader = Label.extend`
 	font-weight:${p => p.active ? 700 : 400};
 	border-radius: 4px;
-	/* margin: 0px 4px; */
+	margin: 0px;
 	display:flex;
 	justify-content: space-between;
 	padding-left: 8px;
@@ -129,7 +128,7 @@ export const CellHeader = Cell.extend`
 	font-weight:${p => p.active ? 700 : 400};
 	padding-left: 8px;
 	border-radius: 4px;
-	margin: 0px 4px;
+	margin: 0px;
 	display:flex;
 	justify-content: space-between;
 	cursor: pointer;
@@ -287,4 +286,56 @@ export const ChangeViewButtonCard = ChangeViewButton.extend`
 `
 export const ChangeViewButtonMap = ChangeViewButton.extend`
 	background: ${p => p.view === 2 ? p.theme.tab.selected : p.theme.tab.unselected};
+`
+
+
+export const DropDownSection = styled.div`
+	display:flex;
+	flex-flow:column nowrap;
+	min-height:30px;
+	font-weight: ${p => p.active ? 700 : 300};
+	background: ${p => p.active ? p.theme.tab.selected : ''};
+
+	cursor:pointer;
+`
+export const DropDownSubSection = DropDownSection.extend`
+	flex-flow: row nowrap;
+	&:hover {
+		background: ${p => p.theme.tab.hover};
+	}
+`
+
+export const DropDownIcon = styled.div`
+	display:flex;
+	align-items:center;
+	min-height: 30px;
+	margin-right: 4px;
+	margin-left: 4px;
+`
+export const DropDownSubItem = styled.div`
+	display:flex;
+	color: #FFF;
+	align-items:center;
+	padding-left: 30px;
+	background: ${p => p.active ? 'p.theme.tab.hover' : '#354F69'};
+	&:hover {
+		background: ${p => p.theme.tab.hover};
+	}
+`
+
+export const DropDownText = styled.div`
+	color: #FFFFFF;
+	display: flex;
+	align-items:center;
+	flex:1;
+	min-height: 30px;
+	margin-right:4px;
+	&:after {
+		${p => p.active ? `
+		font-weight: 700;
+		content: "\u2191";
+		transform: ${p.sorting ? 'rotate(180deg)' : ''};
+		margin-right: 4px;
+		margin-left: auto;
+	` : null}
 `

@@ -41,7 +41,9 @@ export const StyledCheckbox = styled.label`
     position: relative;
     /* padding-left: 35px; */
     /* margin-bottom: ${p => p.size === 'small' ? '30px' : '35px'}; */
-	padding:13px;
+	/* padding:13px; */
+	width: ${({ size }) => sizes[size].width};
+ 	height: ${({ size }) => sizes[size].height};
     cursor: pointer;
     font-size: 22px;
     user-select: none;
@@ -79,13 +81,15 @@ export const StyledCheckbox = styled.label`
  }
 
  	> input + .checkmark:after {
-     	left: 9px;
+     	left: 5px;
  		top: 5px;
  		width: ${({ size }) => sizes[size].checkmarkWidth};
  		height: ${({ size }) => sizes[size].checkmarkHeight};
+		background: white;
  		border: solid white;
- 		border-width: 0 3px 3px 0;
-		transform: rotate(45deg);
+		border-radius:4px;
+ 		border-width: 0;
+		/* transform: rotate(45deg); */
 }
 `
 
@@ -93,13 +97,13 @@ const sizes = {
 	small: {
 		width: '25px',
 		height: '25px',
-		checkmarkWidth: '5px',
-		checkmarkHeight: '10px',
+		checkmarkWidth: '15px',
+		checkmarkHeight: '15px',
 	},
 	medium: {
 		width: '30px',
 		height: '30px',
-		checkmarkWidth: '8px',
-		checkmarkHeight: '13px',
+		checkmarkWidth: '20px',
+		checkmarkHeight: '20px',
 	},
 }

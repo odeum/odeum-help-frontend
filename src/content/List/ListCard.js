@@ -40,9 +40,9 @@ export default class ListCard extends PureComponent {
 		const { cardExpand } = this.state
 		return (
 			<React.Fragment>
-				{cardExpand ? <FormCard handleCardExpand={this.handleExpand} cardExpand={cardExpand} {...this.props} /> : null}
+				{cardExpand ? <FormCard handleCardExpand={this.handleExpand} cardExpand={cardExpand} item={this.props.item} column={this.props.column}/> : null}
 				<ListCardItem>
-					<Checkbox onChange={this.onChecked} />
+					<Checkbox size={'medium'} onChange={this.onChecked} />
 					<ListItemContainer selected={this.state.checked} columnCount={this.props.columnCount}>
 						{Object.keys(this.props.item).map((i, index) =>
 							this.props.column[index].visible ? <Label key={index}>
