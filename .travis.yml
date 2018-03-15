@@ -23,7 +23,8 @@ deploy:
   - provider: script
     skip_cleanup: true
     #script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/build/ cb@kanata.webhouse.net:./deploy
-    script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/build/ ubuntu@kanata.webhouse.net:/srv/www/odeumcode/playground
+    #script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/build/ ubuntu@kanata.webhouse.net:/srv/www/odeumcode/playground
+    script: rsync -r $TRAVIS_BUILD_DIR/build/ ubuntu@kanata.webhouse.net:/srv/www/odeumcode/playground
     on:
       branch: master
 
