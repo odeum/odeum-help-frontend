@@ -81,7 +81,9 @@ class App extends Component {
 						</CardListContainer>
 					</Menu>
 					<Menu label={'Card'}>
-						<ViewContainer items={this.state.mockData} />
+						<Tab icon={'view_module'} label={'Cards'} route={'/'} exact>
+							<ViewContainer items={this.state.mockData} />
+						</Tab>
 					</Menu>
 					<Menu label={'DatePicker'}>
 						<DayPickerRangeControllerWrapper
