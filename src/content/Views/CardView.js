@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { CardListContainer/*  HeaderListContainer, CellHeaderContainer, LabelHeader, CellHeader, ResponsibleHeader  */ } from './ViewStyles'
 import Pagination from '../Pagination/Pagination'
-import FormCard from '../Card/FormCard'
+import FormCard from '../Card/FormCardV2'
 
 export default class CardView extends Component {
 	constructor(props) {

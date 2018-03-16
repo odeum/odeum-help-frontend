@@ -1,38 +1,70 @@
 import React, { Component } from 'react'
+import { Text, FormCardContainer, FormImg, ProjectInfoContainer, ProjectInfoCategory, ProjectInfo, ProjectInfoTitle, HorizontalControls, VerticalControls, VerticalButton, HorizontalButton, HorizontalControlsDrawer, Shadow, ControlButton } from './FormCardV2Styles'
+import { Icon } from 'odeum-ui'
 
 export default class FormCard extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			horizontalExpand: false,
+			verticalExpand: false
+		}
+	}
+	handleHorizontalExpand = () => {
+		this.setState({ horizontalExpand: !this.state.horizontalExpand })
+	}
 	render() {
+		const { horizontalExpand, /* verticalExpand */ } = this.state
+		const { item, column } = this.props
 		return (
-			<div style={{ display: 'flex', alignItems: 'center', flexFlow: 'column nowrap', borderRadius: '4px', border: '1px solid black', width: 250, height: 300, margin: 10, position: 'relative' }}>
-				<div style={{ overflow: 'hidden', width: '100%', height: 150, display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
-					<img alt={'img card'} src={'https://picsum.photos/1920/1404/?random=0'} />
-				</div>
-				<div style={{ display: 'flex', flexFlow: 'row wrap', flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-					<div style={{ margin: 4 }}>
-						<div>Title</div>
-						<div>Content</div>
+			<FormCardContainer>
+				<Shadow>
+					<FormImg img={item.img ? item.img : 'https://picsum.photos/1920/1404/?random=0'} />
+					<div style={{ display: 'flex', height: 30, fontSize: 26, width: '100%', justifyContent: 'flex-start', alignItems: 'center', margin: 4 }}>
+						<Icon icon={'info'} iconSize={30} />
+						<Text title={item.name}>{item.name}</Text>
 					</div>
-					<div style={{ margin: 4 }}>
-						<div>Title</div>
-						<div>Content</div>
+					<ProjectInfoContainer>
+						{Object.keys(item).map((i, index) =>
+							column[index].visible ?
+								<ProjectInfoCategory key={index}>
+									<ProjectInfoTitle title={item[i].toString()}>
+										{column[index].column.charAt(0).toUpperCase() + column[index].column.slice(1)}
+									</ProjectInfoTitle>
+									<ProjectInfo>
+										{item[i] instanceof Date ? item[i].toLocaleDateString() : item[i].toString()}
+									</ProjectInfo>
+								</ProjectInfoCategory> : null
+						)}
+					</ProjectInfoContainer>
+					<div style={{ display: 'flex', flexFlow: 'row', width: '70%', height: 20, background: '#DEDEDE', overflow: 'hidden', borderRadius: '4px', margin: '10px', justifyContent: 'center', position: 'relative' }}>
+						<div style={{ zIndex: 4, color: item.progress > 50 ? '#FFF' : '#000' }}>{item.progress ? item.progress + '%' : '0%'}</div>
+						<div style={{ position: 'absolute', height: '100%', left: 0, display: 'flex', justifyContent: 'center', width: item.progress ? item.progress + '%' : '0%', background: '#3B97D3', color: '#fff' }} ></div>
 					</div>
-					<div style={{ margin: 4 }}>
-						<div>Title</div>
-						<div>Content</div>
+				</Shadow>
+				<HorizontalControls expand={horizontalExpand} onClick={this.handleHorizontalExpand}>
+					<HorizontalControlsDrawer expand={horizontalExpand}>
+						<ControlButton><Icon icon={'mode_edit'} iconSize={30} /></ControlButton>
+						<ControlButton><Icon icon={'mode_edit'} iconSize={30} /></ControlButton>
+						<ControlButton><Icon icon={'mode_edit'} iconSize={30} /></ControlButton>
+					</HorizontalControlsDrawer>
+					<HorizontalButton expand={horizontalExpand}>
+						<div style={{ transform: 'perspective(20px) rotateX(20deg)' }}>
+							{'\u2022 \u2022 \u2022'}
+						</div>
+					</HorizontalButton>
+				</HorizontalControls>
+				<VerticalControls>
+					<div style={{
+						display: 'flex', flexFlow: 'column nowrap', transform: 'perspective(20px) rotateY(-20deg)'
+					}}>
+						<VerticalButton>{'\u2022'}</VerticalButton>
+						<VerticalButton>{'\u2022'}</VerticalButton>
+						<VerticalButton>{'\u2022'}</VerticalButton>
 					</div>
-					<div style={{ margin: 4 }}>
-						<div>Title</div>
-						<div>Content</div>
-					</div>
-					<div style={{ margin: 4 }}>
-						<div>Title</div>
-						<div>Content</div>
-					</div>
-				</div>
-				<div style={{ position: 'absolute', top: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					Controls
-				</div>
-			</div>
+				</VerticalControls>
+			</FormCardContainer>
 		)
 	}
 }

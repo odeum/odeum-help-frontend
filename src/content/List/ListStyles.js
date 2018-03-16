@@ -15,6 +15,7 @@ export const Text = styled.div`
 	text-overflow: ellipsis;
 	white-space:nowrap;
 	overflow:hidden;
+	max-width: 200px;
 `
 export const ListCardItem = styled.div`
 	display:flex;
