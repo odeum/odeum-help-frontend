@@ -31,6 +31,9 @@ import mockData from './framework/Data'
 
 import ViewContainer from './content/Views/ViewContainer'
 import DayPickerRangeControllerWrapper from 'content/Views/Components/DatePicker'
+import FormCard from './content/Card/FormCardV2'
+import { CardListContainer } from 'content/Views/ViewStyles';
+
 moment.locale('da')
 // var _ = require('lodash')
 
@@ -67,6 +70,15 @@ class App extends Component {
 
 					<Menu route={'/'}>
 						<Homepage />
+					</Menu>
+					<Menu label={'Cardv2'}>
+
+						<CardListContainer pageSize={8}>
+							<FormCard />
+							<FormCard />
+							<FormCard />
+							<FormCard />
+						</CardListContainer>
 					</Menu>
 					<Menu label={'Card'}>
 						<ViewContainer items={this.state.mockData} />
